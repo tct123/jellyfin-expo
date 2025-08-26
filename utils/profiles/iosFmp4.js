@@ -1,9 +1,12 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-import MediaTypes from '../../constants/MediaTypes';
+
+import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
 
 import iOSProfile from './ios';
 
@@ -15,7 +18,7 @@ export default {
 	Name: 'Expo iOS fMP4 Video Profile',
 	TranscodingProfiles: [
 		// Add all audio profiles from default profile
-		...iOSProfile.TranscodingProfiles.filter(profile => profile.Type === MediaTypes.Audio),
+		...iOSProfile.TranscodingProfiles.filter(profile => profile.Type === DlnaProfileType.Audio),
 		// Add fMP4 profile
 		{
 			AudioCodec: 'aac,mp3,flac,alac',
@@ -25,11 +28,11 @@ export default {
 			MaxAudioChannels: '6',
 			MinSegments: '2',
 			Protocol: 'hls',
-			Type: MediaTypes.Video,
+			Type: DlnaProfileType.Video,
 			VideoCodec: 'hevc,h264'
 		},
 		// Add all video profiles from default profile
-		...iOSProfile.TranscodingProfiles.filter(profile => profile.Type === MediaTypes.Video)
+		...iOSProfile.TranscodingProfiles.filter(profile => profile.Type === DlnaProfileType.Video)
 	]
 };
 
