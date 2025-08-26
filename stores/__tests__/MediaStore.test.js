@@ -1,16 +1,18 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  *
  * @jest-environment jsdom
  * @jest-environment-options {"url": "https://jestjs.io/"}
  */
-import { renderHook } from '@testing-library/react';
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
+import { renderHook } from '@testing-library/react';
 import { act } from '@testing-library/react-native';
 
-import MediaTypes from '../../constants/MediaTypes';
 import { useMediaStore } from '../MediaStore';
 
 describe('MediaStore', () => {
@@ -38,7 +40,7 @@ describe('MediaStore', () => {
 
 		act(() => {
 			store.result.current.set({
-				type: MediaTypes.Video,
+				type: MediaType.Video,
 				uri: 'https://foobar',
 				isFinished: true,
 				isLocalFile: true,
@@ -50,7 +52,7 @@ describe('MediaStore', () => {
 			});
 		});
 
-		expect(store.result.current.type).toBe(MediaTypes.Video);
+		expect(store.result.current.type).toBe(MediaType.Video);
 		expect(store.result.current.uri).toBe('https://foobar');
 		expect(store.result.current.backdropUri).toBe('https://foobar');
 

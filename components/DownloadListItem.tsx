@@ -1,17 +1,35 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import React, { FC } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 
+import type DownloadModel from '../models/DownloadModel';
 import { getIconName } from '../utils/Icons';
 
-const DownloadListItem = ({ item, index, onSelect, onPlay, isEditMode = false, isSelected = false }) => (
+interface DownloadListItemProps {
+	item: DownloadModel;
+	index: number;
+	onSelect: (item: DownloadModel) => void;
+	onPlay: (item: DownloadModel) => void;
+	isEditMode?: boolean;
+	isSelected?: boolean;
+}
+
+const DownloadListItem: FC<DownloadListItemProps> = ({
+	item,
+	index,
+	onSelect,
+	onPlay,
+	isEditMode = false,
+	isSelected = false
+}) => (
 	<ListItem
 		topDivider={index === 0}
 		bottomDivider
@@ -47,13 +65,6 @@ const DownloadListItem = ({ item, index, onSelect, onPlay, isEditMode = false, i
 	</ListItem>
 );
 
-DownloadListItem.propTypes = {
-	item: PropTypes.object.isRequired,
-	index: PropTypes.number.isRequired,
-	onSelect: PropTypes.func.isRequired,
-	onPlay: PropTypes.func.isRequired,
-	isEditMode: PropTypes.bool,
-	isSelected: PropTypes.bool
-};
+DownloadListItem.displayName = 'DownloadListItem';
 
 export default DownloadListItem;
