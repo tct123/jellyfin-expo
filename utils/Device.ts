@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
 import compareVersions from 'compare-versions';
 import Constants from 'expo-constants';
 import * as Device from 'expo-device';
@@ -21,7 +22,10 @@ export function getAppName() {
 }
 
 export function getSafeDeviceName() {
-	const safeName = Constants.deviceName
+	// FIXME: This character replacement hasn't been needed for awhile.
+	// The SDK will properly encode special characters.
+	// Need verification that web will encode values from the NativeShell.
+	const safeName = (Constants.deviceName || '')
 	// Replace non-ascii apostrophe with single quote (default on iOS)
 		.replace(/’/g, '\'')
 	// Remove all other non-ascii characters
@@ -35,7 +39,7 @@ export function getSafeDeviceName() {
 	return Device.modelName || 'Jellyfin iOS Device';
 }
 
-export function getDeviceProfile({ enableFmp4 = false } = {}) {
+export function getDeviceProfile({ enableFmp4 = false } = {}): DeviceProfile {
 	if (Platform.OS === 'ios') {
 		if (compareVersions.compare(Platform.Version, '11', '<')) {
 			return iOS10Profile;
@@ -47,7 +51,7 @@ export function getDeviceProfile({ enableFmp4 = false } = {}) {
 			return iOSProfile;
 		}
 	}
-	// TODO: Add Android support
+	// NOTE: Other platforms are not supported
 	return {};
 }
 
