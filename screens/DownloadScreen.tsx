@@ -1,9 +1,12 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import * as FileSystem from 'expo-file-system';
 import React, { useCallback, useContext, useState } from 'react';
@@ -14,9 +17,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import DownloadListItem from '../components/DownloadListItem';
 import ErrorView from '../components/ErrorView';
-import MediaTypes from '../constants/MediaTypes';
 import { Screens } from '../constants/Screens';
 import { useStores } from '../hooks/useStores';
+import type DownloadModel from '../models/DownloadModel';
 
 const DownloadScreen = () => {
 	const navigation = useNavigation();
@@ -24,7 +27,7 @@ const DownloadScreen = () => {
 	const { t } = useTranslation();
 	const { theme } = useContext(ThemeContext);
 	const [ isEditMode, setIsEditMode ] = useState(false);
-	const [ selectedItems, setSelectedItems ] = useState([]);
+	const [ selectedItems, setSelectedItems ] = useState<DownloadModel[]>([]);
 
 	function exitEditMode() {
 		setIsEditMode(false);
@@ -32,7 +35,7 @@ const DownloadScreen = () => {
 	}
 
 	React.useLayoutEffect(() => {
-		async function deleteItem(download) {
+		async function deleteItem(download: DownloadModel) {
 			// TODO: Add user messaging on errors
 			try {
 				await FileSystem.deleteAsync(download.localPath);
@@ -43,7 +46,7 @@ const DownloadScreen = () => {
 			}
 		}
 
-		function onDeleteItems(downloads) {
+		function onDeleteItems(downloads: DownloadModel[]) {
 			Alert.alert(
 				t('alerts.deleteDownloads.title'),
 				t('alerts.deleteDownloads.description'),
@@ -119,7 +122,7 @@ const DownloadScreen = () => {
 		<SafeAreaView
 			style={{
 				...styles.container,
-				backgroundColor: theme.colors.background
+				backgroundColor: theme.colors?.background
 			}}
 			edges={[ 'right', 'left' ]}
 		>
@@ -144,7 +147,7 @@ const DownloadScreen = () => {
 								item.isNew = false;
 								mediaStore.set({
 									isLocalFile: true,
-									type: MediaTypes.Video,
+									type: MediaType.Video,
 									uri: item.uri
 								});
 							}}

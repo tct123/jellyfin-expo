@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { create } from 'zustand';
 
 import { ticksToMs } from '../utils/Time';
@@ -14,7 +15,7 @@ import { logger } from './middleware/logger';
 
 type State = {
 	/** The media type being played */
-	type: string | null,
+	type: MediaType | null,
 
 	/** URI of the current media file */
 	uri: string | null,

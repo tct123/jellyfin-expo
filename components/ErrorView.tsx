@@ -1,17 +1,34 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+
+import React, { type FC, useContext } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { Button, Icon, Text, ThemeContext } from 'react-native-elements';
 
 import { isCompact } from '../utils/Device';
 import { getIconName } from '../utils/Icons';
 
-const ErrorView = ({
+interface IconProps {
+	name: string;
+	type?: string;
+}
+
+interface ErrorViewProps {
+	icon?: IconProps;
+	heading: string;
+	message: string;
+	details?: string[];
+	buttonIcon?: IconProps;
+	buttonTitle?: string;
+	onPress?: () => void;
+}
+
+const ErrorView: FC<ErrorViewProps> = ({
 	icon = { name: getIconName('alert'), type: 'ionicon' },
 	heading,
 	message,
@@ -27,7 +44,7 @@ const ErrorView = ({
 	return (
 		<View style={{
 			...styles.container,
-			backgroundColor: theme.colors.background
+			backgroundColor: theme.colors?.background
 		}}>
 			<View style={styles.body}>
 				<Icon
@@ -74,25 +91,9 @@ const ErrorView = ({
 	);
 };
 
-ErrorView.propTypes = {
-	icon: PropTypes.shape({
-		name: PropTypes.string,
-		type: PropTypes.string
-	}),
-	heading: PropTypes.string.isRequired,
-	message: PropTypes.string.isRequired,
-	details: PropTypes.arrayOf(PropTypes.string),
-	buttonIcon: PropTypes.shape({
-		name: PropTypes.string,
-		type: PropTypes.string
-	}),
-	buttonTitle: PropTypes.string,
-	onPress: PropTypes.func
-};
-
 const styles = StyleSheet.create({
 	container: {
-		...StyleSheet.absoluteFill,
+		...StyleSheet.absoluteFillObject,
 		flex: 1,
 		paddingHorizontal: 15
 	},
@@ -114,5 +115,7 @@ const styles = StyleSheet.create({
 		fontSize: 15
 	}
 });
+
+ErrorView.displayName = 'ErrorView';
 
 export default ErrorView;
