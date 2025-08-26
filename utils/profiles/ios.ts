@@ -6,14 +6,17 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
 import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
+import { EncodingContext } from '@jellyfin/sdk/lib/generated-client/models/encoding-context';
+import { MediaStreamProtocol } from '@jellyfin/sdk/lib/generated-client/models/media-stream-protocol';
 
 import BaseProfile from './base';
 
 /**
  * Device profile for Expo Video player on iOS 13+
  */
-export default {
+const IosProfile: DeviceProfile = {
 	...BaseProfile,
 	Name: 'Expo iOS Video Profile',
 	DirectPlayProfiles: [
@@ -75,78 +78,80 @@ export default {
 			AudioCodec: 'aac',
 			BreakOnNonKeyFrames: true,
 			Container: 'aac',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			MinSegments: '2',
-			Protocol: 'hls',
+			MinSegments: 2,
+			Protocol: MediaStreamProtocol.Hls,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac',
 			Container: 'aac',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'mp3',
 			Container: 'mp3',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'wav',
 			Container: 'wav',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'mp3',
 			Container: 'mp3',
-			Context: 'Static',
+			Context: EncodingContext.Static,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac',
 			Container: 'aac',
-			Context: 'Static',
+			Context: EncodingContext.Static,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'wav',
 			Container: 'wav',
-			Context: 'Static',
+			Context: EncodingContext.Static,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac,mp3',
 			BreakOnNonKeyFrames: true,
 			Container: 'ts',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			MinSegments: '2',
-			Protocol: 'hls',
+			MinSegments: 2,
+			Protocol: MediaStreamProtocol.Hls,
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		},
 		{
 			AudioCodec: 'aac,mp3,ac3,eac3,flac,alac',
 			Container: 'mp4',
-			Context: 'Static',
-			Protocol: 'http',
+			Context: EncodingContext.Static,
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		}
 	]
 };
+
+export default IosProfile;
