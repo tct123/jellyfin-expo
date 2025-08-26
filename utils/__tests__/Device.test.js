@@ -9,7 +9,7 @@ import { Platform } from 'react-native';
 
 import { getAppName, getDeviceProfile, getSafeDeviceName, isCompact, isSystemThemeSupported } from '../Device';
 import iOSProfile from '../profiles/ios';
-import iOS10Profile from '../profiles/ios10';
+import iOS10Profile from '../profiles/ios-10';
 import iOS12Profile from '../profiles/ios12';
 import iOSFmp4Profile from '../profiles/iosFmp4';
 
