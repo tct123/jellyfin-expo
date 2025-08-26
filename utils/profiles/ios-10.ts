@@ -6,14 +6,20 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { CodecType } from '@jellyfin/sdk/lib/generated-client/models/codec-type';
+import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
 import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
+import { EncodingContext } from '@jellyfin/sdk/lib/generated-client/models/encoding-context';
+import { MediaStreamProtocol } from '@jellyfin/sdk/lib/generated-client/models/media-stream-protocol';
+import { ProfileConditionType } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-type';
+import { ProfileConditionValue } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-value';
 
 import BaseProfile from './base';
 
 /**
  * Device profile for Expo Video player on iOS 10
  */
-export default {
+const Ios10Profile = {
 	...BaseProfile,
 	Name: 'Expo iOS 10 Video Profile',
 	CodecProfiles: [
@@ -22,32 +28,32 @@ export default {
 			Codec: 'h264',
 			Conditions: [
 				{
-					Condition: 'NotEquals',
+					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
-					Property: 'IsAnamorphic',
+					Property: ProfileConditionValue.IsAnamorphic,
 					Value: 'true'
 				},
 				{
-					Condition: 'EqualsAny',
+					Condition: ProfileConditionType.EqualsAny,
 					IsRequired: false,
-					Property: 'VideoProfile',
+					Property: ProfileConditionValue.VideoProfile,
 					Value: 'high|main|baseline|constrained baseline'
 				},
 				{
-					Condition: 'NotEquals',
+					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
-					Property: 'IsInterlaced',
+					Property: ProfileConditionValue.IsInterlaced,
 					Value: 'true'
 				},
 				{
-					Condition: 'LessThanEqual',
+					Condition: ProfileConditionType.LessThanEqual,
 					IsRequired: false,
-					Property: 'VideoLevel',
+					Property: ProfileConditionValue.VideoLevel,
 					Value: '42'
 				}
 			],
 			Container: 'ts',
-			Type: DlnaProfileType.Video
+			Type: CodecType.Video
 		},
 		...BaseProfile.CodecProfiles
 	],
@@ -106,78 +112,80 @@ export default {
 			AudioCodec: 'aac',
 			BreakOnNonKeyFrames: true,
 			Container: 'aac',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			MinSegments: '2',
-			Protocol: 'hls',
+			MinSegments: 2,
+			Protocol: MediaStreamProtocol.Hls,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac',
 			Container: 'aac',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'mp3',
 			Container: 'mp3',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'wav',
 			Container: 'wav',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'mp3',
 			Container: 'mp3',
-			Context: 'Static',
+			Context: EncodingContext.Static,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac',
 			Container: 'aac',
-			Context: 'Static',
+			Context: EncodingContext.Static,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'wav',
 			Container: 'wav',
-			Context: 'Static',
+			Context: EncodingContext.Static,
 			MaxAudioChannels: '6',
-			Protocol: 'http',
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac,mp3',
 			BreakOnNonKeyFrames: true,
 			Container: 'ts',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			MinSegments: '2',
-			Protocol: 'hls',
+			MinSegments: 2,
+			Protocol: MediaStreamProtocol.Hls,
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		},
 		{
 			AudioCodec: 'aac,mp3,dca,dts,alac',
 			Container: 'mp4',
-			Context: 'Static',
-			Protocol: 'http',
+			Context: EncodingContext.Static,
+			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		}
 	]
-};
+} satisfies DeviceProfile;
+
+export default Ios10Profile;

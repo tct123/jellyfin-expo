@@ -6,14 +6,17 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
 import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
+import { EncodingContext } from '@jellyfin/sdk/lib/generated-client/models/encoding-context';
+import { MediaStreamProtocol } from '@jellyfin/sdk/lib/generated-client/models/media-stream-protocol';
 
 import iOSProfile from './ios';
 
 /**
  * Device profile for Expo Video player on iOS 13+ with fMP4 support
  */
-export default {
+const IosFmp4Profile = {
 	...iOSProfile,
 	Name: 'Expo iOS fMP4 Video Profile',
 	TranscodingProfiles: [
@@ -24,15 +27,16 @@ export default {
 			AudioCodec: 'aac,mp3,flac,alac',
 			BreakOnNonKeyFrames: true,
 			Container: 'mp4',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
-			MinSegments: '2',
-			Protocol: 'hls',
+			MinSegments: 2,
+			Protocol: MediaStreamProtocol.Hls,
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'hevc,h264'
 		},
 		// Add all video profiles from default profile
 		...iOSProfile.TranscodingProfiles.filter(profile => profile.Type === DlnaProfileType.Video)
 	]
-};
+} satisfies DeviceProfile;
 
+export default IosFmp4Profile;

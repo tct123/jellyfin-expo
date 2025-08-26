@@ -1,17 +1,20 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
+
 import compareVersions from 'compare-versions';
 import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 
 import iOSProfile from './profiles/ios';
-import iOS10Profile from './profiles/ios10';
-import iOS12Profile from './profiles/ios12';
-import iOSFmp4Profile from './profiles/iosFmp4';
+import iOS10Profile from './profiles/ios-10';
+import iOS12Profile from './profiles/ios-12';
+import iOSFmp4Profile from './profiles/ios-fmp4';
 
 export function getAppName() {
 	return `Jellyfin (${Device.osName})`;
