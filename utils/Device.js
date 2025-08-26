@@ -11,7 +11,7 @@ import { Platform } from 'react-native';
 import iOSProfile from './profiles/ios';
 import iOS10Profile from './profiles/ios-10';
 import iOS12Profile from './profiles/ios12';
-import iOSFmp4Profile from './profiles/iosFmp4';
+import iOSFmp4Profile from './profiles/ios-fmp4';
 
 export function getAppName() {
 	return `Jellyfin (${Device.osName})`;

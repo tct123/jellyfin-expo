@@ -11,7 +11,7 @@ import { getAppName, getDeviceProfile, getSafeDeviceName, isCompact, isSystemThe
 import iOSProfile from '../profiles/ios';
 import iOS10Profile from '../profiles/ios-10';
 import iOS12Profile from '../profiles/ios12';
-import iOSFmp4Profile from '../profiles/iosFmp4';
+import iOSFmp4Profile from '../profiles/ios-fmp4';
 
 jest.mock('react-native/Libraries/Utilities/Platform');
 
