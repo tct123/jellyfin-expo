@@ -1,13 +1,15 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av';
 import React, { useEffect, useState } from 'react';
 
-import MediaTypes from '../constants/MediaTypes';
 import { useStores } from '../hooks/useStores';
 import { msToTicks } from '../utils/Time';
 
@@ -70,7 +72,7 @@ const AudioPlayer = () => {
 			}
 		};
 
-		if (mediaStore.type === MediaTypes.Audio) {
+		if (mediaStore.type === MediaType.Audio) {
 			createPlayer({
 				uri: mediaStore.uri,
 				positionMillis: mediaStore.positionMillis
@@ -80,7 +82,7 @@ const AudioPlayer = () => {
 
 	// Update the play/pause state when the store indicates it should
 	useEffect(() => {
-		if (mediaStore.type === MediaTypes.Audio && mediaStore.shouldPlayPause) {
+		if (mediaStore.type === MediaType.Audio && mediaStore.shouldPlayPause) {
 			if (mediaStore.isPlaying) {
 				player?.pauseAsync();
 			} else {
@@ -92,7 +94,7 @@ const AudioPlayer = () => {
 
 	// Stop the player when the store indicates it should stop playback
 	useEffect(() => {
-		if (mediaStore.type === MediaTypes.Audio && mediaStore.shouldStop) {
+		if (mediaStore.type === MediaType.Audio && mediaStore.shouldStop) {
 			player?.stopAsync();
 			player?.unloadAsync();
 			mediaStore.set({ shouldStop: false });

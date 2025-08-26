@@ -1,9 +1,12 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-import MediaTypes from '../../constants/MediaTypes';
+
+import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
 
 import BaseProfile from './base';
 
@@ -17,54 +20,54 @@ export default {
 		{
 			AudioCodec: 'aac,mp3,ac3,eac3,flac,alac',
 			Container: 'mp4,m4v',
-			Type: MediaTypes.Video,
+			Type: DlnaProfileType.Video,
 			VideoCodec: 'hevc,h264'
 		},
 		{
 			AudioCodec: 'aac,mp3,ac3,eac3,flac,alac',
 			Container: 'mov',
-			Type: MediaTypes.Video,
+			Type: DlnaProfileType.Video,
 			VideoCodec: 'hevc,h264'
 		},
 		{
 			Container: 'mp3',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			Container: 'aac',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac',
 			Container: 'm4a',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac',
 			Container: 'm4b',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			Container: 'flac',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			Container: 'alac',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'alac',
 			Container: 'm4a',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'alac',
 			Container: 'm4b',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			Container: 'wav',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		}
 	],
 	TranscodingProfiles: [
@@ -76,7 +79,7 @@ export default {
 			MaxAudioChannels: '6',
 			MinSegments: '2',
 			Protocol: 'hls',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac',
@@ -84,7 +87,7 @@ export default {
 			Context: 'Streaming',
 			MaxAudioChannels: '6',
 			Protocol: 'http',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'mp3',
@@ -92,7 +95,7 @@ export default {
 			Context: 'Streaming',
 			MaxAudioChannels: '6',
 			Protocol: 'http',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'wav',
@@ -100,7 +103,7 @@ export default {
 			Context: 'Streaming',
 			MaxAudioChannels: '6',
 			Protocol: 'http',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'mp3',
@@ -108,7 +111,7 @@ export default {
 			Context: 'Static',
 			MaxAudioChannels: '6',
 			Protocol: 'http',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac',
@@ -116,7 +119,7 @@ export default {
 			Context: 'Static',
 			MaxAudioChannels: '6',
 			Protocol: 'http',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'wav',
@@ -124,7 +127,7 @@ export default {
 			Context: 'Static',
 			MaxAudioChannels: '6',
 			Protocol: 'http',
-			Type: MediaTypes.Audio
+			Type: DlnaProfileType.Audio
 		},
 		{
 			AudioCodec: 'aac,mp3',
@@ -134,7 +137,7 @@ export default {
 			MaxAudioChannels: '6',
 			MinSegments: '2',
 			Protocol: 'hls',
-			Type: MediaTypes.Video,
+			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		},
 		{
@@ -142,7 +145,7 @@ export default {
 			Container: 'mp4',
 			Context: 'Static',
 			Protocol: 'http',
-			Type: MediaTypes.Video,
+			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		}
 	]

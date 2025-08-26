@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -18,7 +19,6 @@ import ErrorView from '../components/ErrorView';
 import NativeShellWebView from '../components/NativeShellWebView';
 import VideoPlayer from '../components/VideoPlayer';
 import Colors from '../constants/Colors';
-import MediaTypes from '../constants/MediaTypes';
 import { Screens } from '../constants/Screens';
 import { useStores } from '../hooks/useStores';
 import { getIconName } from '../utils/Icons';
@@ -72,9 +72,9 @@ const HomeScreen = () => {
 				positionMillis: mediaStore.positionMillis
 			};
 
-			if (mediaStore.type === MediaTypes.Audio) {
+			if (mediaStore.type === MediaType.Audio) {
 				webview.current?.injectJavaScript(`window.ExpoAudioPlayer && window.ExpoAudioPlayer._reportStatus(${JSON.stringify(status)});`);
-			} else if (mediaStore.type === MediaTypes.Video) {
+			} else if (mediaStore.type === MediaType.Video) {
 				webview.current?.injectJavaScript(`window.ExpoVideoPlayer && window.ExpoVideoPlayer._reportStatus(${JSON.stringify(status)});`);
 			}
 		}

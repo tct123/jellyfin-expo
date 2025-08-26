@@ -1,9 +1,12 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
-import MediaTypes from '../../constants/MediaTypes';
+
+import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
 
 export default {
 	Name: 'Expo Base Video Profile',
@@ -39,7 +42,7 @@ export default {
 					Value: 'true'
 				}
 			],
-			Type: MediaTypes.Video
+			Type: DlnaProfileType.Video
 		},
 		{
 			Codec: 'hevc',
@@ -69,7 +72,7 @@ export default {
 					Value: 'true'
 				}
 			],
-			Type: MediaTypes.Video
+			Type: DlnaProfileType.Video
 		}
 	],
 	ContainerProfiles: [],
@@ -78,7 +81,7 @@ export default {
 		{
 			Container: 'm4v',
 			MimeType: 'video/mp4',
-			Type: MediaTypes.Video
+			Type: DlnaProfileType.Video
 		}
 	],
 	SubtitleProfiles: [

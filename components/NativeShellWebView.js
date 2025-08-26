@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import compareVersions from 'compare-versions';
 import { nativeApplicationVersion } from 'expo-application';
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
@@ -13,7 +14,6 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, Platform } from 'react-native';
 
-import MediaTypes from '../constants/MediaTypes';
 import { useStores } from '../hooks/useStores';
 import DownloadModel from '../models/DownloadModel';
 import { getAppName, getDeviceProfile, getSafeDeviceName } from '../utils/Device';
@@ -93,7 +93,7 @@ true;
 					break;
 				case 'downloadFile': {
 					console.log('Download item', data);
-					if (data.item.item?.MediaType !== MediaTypes.Video) {
+					if (data.item.item?.MediaType !== MediaType.Video) {
 						Alert.alert(
 							t('alerts.downloadUnsupported.title'),
 							t('alerts.downloadUnsupported.description')
@@ -133,7 +133,7 @@ true;
 				case 'ExpoAudioPlayer.play':
 				case 'ExpoVideoPlayer.play':
 					mediaStore.set({
-						type: event === 'ExpoAudioPlayer.play' ? MediaTypes.Audio : MediaTypes.Video,
+						type: event === 'ExpoAudioPlayer.play' ? MediaType.Audio : MediaType.Video,
 						uri: data.url,
 						backdropUri: data.backdropUrl,
 						isFinished: false,
