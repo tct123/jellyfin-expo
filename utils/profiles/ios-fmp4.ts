@@ -8,6 +8,8 @@
 
 import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
 import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
+import { EncodingContext } from '@jellyfin/sdk/lib/generated-client/models/encoding-context';
+import { MediaStreamProtocol } from '@jellyfin/sdk/lib/generated-client/models/media-stream-protocol';
 
 import iOSProfile from './ios';
 
@@ -25,10 +27,10 @@ const IosFmp4Profile: DeviceProfile = {
 			AudioCodec: 'aac,mp3,flac,alac',
 			BreakOnNonKeyFrames: true,
 			Container: 'mp4',
-			Context: 'Streaming',
+			Context: EncodingContext.Streaming,
 			MaxAudioChannels: '6',
 			MinSegments: 2,
-			Protocol: 'hls',
+			Protocol: MediaStreamProtocol.Hls,
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'hevc,h264'
 		},
