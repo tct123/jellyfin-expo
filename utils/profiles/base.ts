@@ -6,8 +6,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { CodecType } from '@jellyfin/sdk/lib/generated-client/models/codec-type';
 import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
-import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
 import { ProfileConditionType } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-type';
 import { ProfileConditionValue } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-value';
 import { SubtitleDeliveryMethod } from '@jellyfin/sdk/lib/generated-client/models/subtitle-delivery-method';
@@ -46,7 +46,7 @@ const BaseProfile: DeviceProfile = {
 					Value: 'true'
 				}
 			],
-			Type: DlnaProfileType.Video
+			Type: CodecType.Video
 		},
 		{
 			Codec: 'hevc',
@@ -76,7 +76,7 @@ const BaseProfile: DeviceProfile = {
 					Value: 'true'
 				}
 			],
-			Type: DlnaProfileType.Video
+			Type: CodecType.Video
 		}
 	],
 	ContainerProfiles: [],

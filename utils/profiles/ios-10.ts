@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { CodecType } from '@jellyfin/sdk/lib/generated-client/models/codec-type';
 import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
 import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
 import { EncodingContext } from '@jellyfin/sdk/lib/generated-client/models/encoding-context';
@@ -52,7 +53,7 @@ const Ios10Profile: DeviceProfile = {
 				}
 			],
 			Container: 'ts',
-			Type: DlnaProfileType.Video
+			Type: CodecType.Video
 		},
 		...(BaseProfile.CodecProfiles ?? [])
 	],
