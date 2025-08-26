@@ -6,39 +6,43 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
 import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-profile-type';
+import { ProfileConditionType } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-type';
+import { ProfileConditionValue } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-value';
+import { SubtitleDeliveryMethod } from '@jellyfin/sdk/lib/generated-client/models/subtitle-delivery-method';
 
-export default {
+const BaseProfile: DeviceProfile = {
 	Name: 'Expo Base Video Profile',
-	MaxStaticBitrate: 100000000,
-	MaxStreamingBitrate: 120000000,
-	MusicStreamingTranscodingBitrate: 384000,
+	MaxStaticBitrate: 100_000_000, // 100 Mbps
+	MaxStreamingBitrate: 120_000_000, // 120 Mbps
+	MusicStreamingTranscodingBitrate: 384_000, // 384 kbps
 	CodecProfiles: [
 		{
 			Codec: 'h264',
 			Conditions: [
 				{
-					Condition: 'NotEquals',
+					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
-					Property: 'IsAnamorphic',
+					Property: ProfileConditionValue.IsAnamorphic,
 					Value: 'true'
 				},
 				{
-					Condition: 'EqualsAny',
+					Condition: ProfileConditionType.EqualsAny,
 					IsRequired: false,
-					Property: 'VideoProfile',
+					Property: ProfileConditionValue.VideoProfile,
 					Value: 'high|main|baseline|constrained baseline'
 				},
 				{
-					Condition: 'LessThanEqual',
+					Condition: ProfileConditionType.LessThanEqual,
 					IsRequired: false,
-					Property: 'VideoLevel',
+					Property: ProfileConditionValue.VideoLevel,
 					Value: '51'
 				},
 				{
-					Condition: 'NotEquals',
+					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
-					Property: 'IsInterlaced',
+					Property: ProfileConditionValue.IsInterlaced,
 					Value: 'true'
 				}
 			],
@@ -48,27 +52,27 @@ export default {
 			Codec: 'hevc',
 			Conditions: [
 				{
-					Condition: 'NotEquals',
+					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
-					Property: 'IsAnamorphic',
+					Property: ProfileConditionValue.IsAnamorphic,
 					Value: 'true'
 				},
 				{
-					Condition: 'EqualsAny',
+					Condition: ProfileConditionType.EqualsAny,
 					IsRequired: false,
-					Property: 'VideoProfile',
+					Property: ProfileConditionValue.VideoProfile,
 					Value: 'main|main 10'
 				},
 				{
-					Condition: 'LessThanEqual',
+					Condition: ProfileConditionType.LessThanEqual,
 					IsRequired: false,
-					Property: 'VideoLevel',
+					Property: ProfileConditionValue.VideoLevel,
 					Value: '183'
 				},
 				{
-					Condition: 'NotEquals',
+					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
-					Property: 'IsInterlaced',
+					Property: ProfileConditionValue.IsInterlaced,
 					Value: 'true'
 				}
 			],
@@ -77,18 +81,13 @@ export default {
 	],
 	ContainerProfiles: [],
 	DirectPlayProfiles: [],
-	ResponseProfiles: [
-		{
-			Container: 'm4v',
-			MimeType: 'video/mp4',
-			Type: DlnaProfileType.Video
-		}
-	],
 	SubtitleProfiles: [
 		{
 			Format: 'vtt',
-			Method: 'Hls'
+			Method: SubtitleDeliveryMethod.Hls
 		}
 	],
 	TranscodingProfiles: []
 };
+
+export default BaseProfile;
