@@ -6,7 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { CodecType } from '@jellyfin/sdk/lib/generated-client/models/codec-type';
 import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
+import { ProfileConditionType } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-type';
+import { ProfileConditionValue } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-value';
 
 import iOSProfile from './ios';
 
@@ -22,32 +25,32 @@ const Ios12Profile: DeviceProfile = {
 			Codec: 'h264',
 			Conditions: [
 				{
-					Condition: 'NotEquals',
+					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
-					Property: 'IsAnamorphic',
+					Property: ProfileConditionValue.IsAnamorphic,
 					Value: 'true'
 				},
 				{
-					Condition: 'EqualsAny',
+					Condition: ProfileConditionType.EqualsAny,
 					IsRequired: false,
-					Property: 'VideoProfile',
+					Property: ProfileConditionValue.VideoProfile,
 					Value: 'high|main|baseline|constrained baseline'
 				},
 				{
-					Condition: 'NotEquals',
+					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
-					Property: 'IsInterlaced',
+					Property: ProfileConditionValue.IsInterlaced,
 					Value: 'true'
 				},
 				{
-					Condition: 'LessThanEqual',
+					Condition: ProfileConditionType.LessThanEqual,
 					IsRequired: false,
-					Property: 'VideoLevel',
+					Property: ProfileConditionValue.VideoLevel,
 					Value: '42'
 				}
 			],
 			Container: 'ts',
-			Type: 'Video'
+			Type: CodecType.Video
 		},
 		...(iOSProfile.CodecProfiles ?? [])
 	]
