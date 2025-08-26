@@ -16,12 +16,12 @@ import iOSProfile from './ios';
 /**
  * Device profile for Expo Video player on iOS 13+ with fMP4 support
  */
-const IosFmp4Profile: DeviceProfile = {
+const IosFmp4Profile = {
 	...iOSProfile,
 	Name: 'Expo iOS fMP4 Video Profile',
 	TranscodingProfiles: [
 		// Add all audio profiles from default profile
-		...(iOSProfile.TranscodingProfiles ?? []).filter(profile => profile.Type === DlnaProfileType.Audio),
+		...iOSProfile.TranscodingProfiles.filter(profile => profile.Type === DlnaProfileType.Audio),
 		// Add fMP4 profile
 		{
 			AudioCodec: 'aac,mp3,flac,alac',
@@ -35,8 +35,8 @@ const IosFmp4Profile: DeviceProfile = {
 			VideoCodec: 'hevc,h264'
 		},
 		// Add all video profiles from default profile
-		...(iOSProfile.TranscodingProfiles ?? []).filter(profile => profile.Type === DlnaProfileType.Video)
+		...iOSProfile.TranscodingProfiles.filter(profile => profile.Type === DlnaProfileType.Video)
 	]
-};
+} satisfies DeviceProfile;
 
 export default IosFmp4Profile;

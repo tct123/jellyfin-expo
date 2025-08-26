@@ -16,7 +16,7 @@ import BaseProfile from './base';
 /**
  * Device profile for Expo Video player on iOS 13+
  */
-const IosProfile: DeviceProfile = {
+const IosProfile = {
 	...BaseProfile,
 	Name: 'Expo iOS Video Profile',
 	DirectPlayProfiles: [
@@ -152,6 +152,6 @@ const IosProfile: DeviceProfile = {
 			VideoCodec: 'h264'
 		}
 	]
-};
+} satisfies DeviceProfile;
 
 export default IosProfile;

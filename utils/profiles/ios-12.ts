@@ -16,7 +16,7 @@ import iOSProfile from './ios';
 /**
  * Device profile for Expo Video player on iOS 11-12
  */
-const Ios12Profile: DeviceProfile = {
+const Ios12Profile = {
 	...iOSProfile,
 	Name: 'Expo iOS 12 Video Profile',
 	CodecProfiles: [
@@ -52,8 +52,8 @@ const Ios12Profile: DeviceProfile = {
 			Container: 'ts',
 			Type: CodecType.Video
 		},
-		...(iOSProfile.CodecProfiles ?? [])
+		...iOSProfile.CodecProfiles
 	]
-};
+} satisfies DeviceProfile;
 
 export default Ios12Profile;

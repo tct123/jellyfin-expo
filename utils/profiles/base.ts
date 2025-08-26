@@ -12,7 +12,7 @@ import { ProfileConditionType } from '@jellyfin/sdk/lib/generated-client/models/
 import { ProfileConditionValue } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-value';
 import { SubtitleDeliveryMethod } from '@jellyfin/sdk/lib/generated-client/models/subtitle-delivery-method';
 
-const BaseProfile: DeviceProfile = {
+const BaseProfile = {
 	Name: 'Expo Base Video Profile',
 	MaxStaticBitrate: 100_000_000, // 100 Mbps
 	MaxStreamingBitrate: 120_000_000, // 120 Mbps
@@ -88,6 +88,6 @@ const BaseProfile: DeviceProfile = {
 		}
 	],
 	TranscodingProfiles: []
-};
+} satisfies DeviceProfile;
 
 export default BaseProfile;

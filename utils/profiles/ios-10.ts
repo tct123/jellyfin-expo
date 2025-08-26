@@ -19,7 +19,7 @@ import BaseProfile from './base';
 /**
  * Device profile for Expo Video player on iOS 10
  */
-const Ios10Profile: DeviceProfile = {
+const Ios10Profile = {
 	...BaseProfile,
 	Name: 'Expo iOS 10 Video Profile',
 	CodecProfiles: [
@@ -55,7 +55,7 @@ const Ios10Profile: DeviceProfile = {
 			Container: 'ts',
 			Type: CodecType.Video
 		},
-		...(BaseProfile.CodecProfiles ?? [])
+		...BaseProfile.CodecProfiles
 	],
 	DirectPlayProfiles: [
 		{
@@ -186,6 +186,6 @@ const Ios10Profile: DeviceProfile = {
 			VideoCodec: 'h264'
 		}
 	]
-};
+} satisfies DeviceProfile;
 
 export default Ios10Profile;
