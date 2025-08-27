@@ -209,4 +209,7 @@ true;
 	);
 };
 
-export default React.forwardRef(NativeShellWebView);
+const ForwardRefNativeShellWebview = React.forwardRef(NativeShellWebView);
+ForwardRefNativeShellWebview.displayName = 'NativeShellWebView';
+
+export default ForwardRefNativeShellWebview;

@@ -68,4 +68,6 @@ const styles = StyleSheet.create({
 	}
 });
 
+RefreshWebView.displayName = 'RefreshWebView';
+
 export default RefreshWebView;
