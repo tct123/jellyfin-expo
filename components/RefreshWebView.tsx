@@ -11,7 +11,7 @@ import { Dimensions, RefreshControl, type RefreshControlProps, StyleSheet } from
 import { ScrollView } from 'react-native-gesture-handler';
 import { WebView, type WebViewProps } from 'react-native-webview';
 
-interface RefreshWebViewProps extends WebViewProps {
+export interface RefreshWebViewProps extends WebViewProps {
 	isRefreshing: boolean;
 	onRefresh?: () => void;
 	refreshControlProps: Omit<RefreshControlProps, 'refreshing'>;
