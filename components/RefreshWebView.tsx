@@ -14,14 +14,14 @@ import { WebView, type WebViewProps } from 'react-native-webview';
 export interface RefreshWebViewProps extends WebViewProps {
 	isRefreshing: boolean;
 	onRefresh?: () => void;
-	refreshControlProps: Omit<RefreshControlProps, 'enabled' | 'onRefresh' | 'refreshing'>;
+	refreshControlProps?: Omit<RefreshControlProps, 'enabled' | 'onRefresh' | 'refreshing'>;
 }
 
 /**
  * A WebView component that supports pulling to refresh.
  */
 const RefreshWebView = React.forwardRef<WebView, RefreshWebViewProps>(
-	function RefreshWebView({ isRefreshing, onRefresh, refreshControlProps, ...webViewProps }, ref) {
+	function RefreshWebView({ isRefreshing, onRefresh, refreshControlProps = {}, ...webViewProps }, ref) {
 		const [ height, setHeight ] = useState(Dimensions.get('screen').height);
 		const [ isEnabled, setEnabled ] = useState(typeof onRefresh === 'function');
 
@@ -30,10 +30,10 @@ const RefreshWebView = React.forwardRef<WebView, RefreshWebViewProps>(
 				onLayout={(e) => setHeight(e.nativeEvent.layout.height)}
 				refreshControl={
 					<RefreshControl
+						{...refreshControlProps}
 						enabled={isEnabled}
 						onRefresh={onRefresh}
 						refreshing={isRefreshing}
-						{...refreshControlProps}
 					/>
 				}
 				showsVerticalScrollIndicator={false}
@@ -45,7 +45,7 @@ const RefreshWebView = React.forwardRef<WebView, RefreshWebViewProps>(
 					onScroll={(e) =>
 						setEnabled(
 							typeof onRefresh === 'function' &&
-								e.nativeEvent.contentOffset.y === 0
+								e.nativeEvent.contentOffset.y <= 0
 						)
 					}
 					style={

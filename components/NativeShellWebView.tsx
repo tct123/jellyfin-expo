@@ -13,7 +13,7 @@ import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import React, { ForwardRefRenderFunction, useImperativeHandle, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, Platform } from 'react-native';
-import type { WebView } from 'react-native-webview';
+import type { WebView, WebViewMessageEvent } from 'react-native-webview';
 
 import { useStores } from '../hooks/useStores';
 import DownloadModel from '../models/DownloadModel';
@@ -30,8 +30,7 @@ type NativeShellWebViewProps = Omit<RefreshWebViewProps, 'isRefreshing' | 'onRef
  */
 const NativeShellWebView: ForwardRefRenderFunction<WebView, NativeShellWebViewProps> = (props, outerRef) => {
 	const innerRef = useRef<WebView>(null);
-	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-	useImperativeHandle(outerRef, () => innerRef.current!, []);
+	useImperativeHandle(outerRef, () => innerRef.current as WebView, []);
 
 	const { rootStore, downloadStore, serverStore, mediaStore, settingStore } = useStores();
 	const [ isRefreshing, setIsRefreshing ] = useState(false);
@@ -88,7 +87,7 @@ true;
 		setIsRefreshing(false);
 	};
 
-	const onMessage = ({ nativeEvent: state }: { nativeEvent: { data: string } }) => {
+	const onMessage = ({ nativeEvent: state }: WebViewMessageEvent) => {
 		try {
 			const { event, data } = JSON.parse(state.data);
 			switch (event) {
