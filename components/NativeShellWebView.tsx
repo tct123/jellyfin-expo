@@ -21,12 +21,14 @@ import { getAppName, getDeviceProfile, getSafeDeviceName } from '../utils/Device
 import StaticScriptLoader from '../utils/StaticScriptLoader';
 import { openBrowser } from '../utils/WebBrowser';
 
-import RefreshWebView, { RefreshWebViewProps } from './RefreshWebView';
+import RefreshWebView, { type RefreshWebViewProps } from './RefreshWebView';
+
+type NativeShellWebViewProps = Omit<RefreshWebViewProps, 'isRefreshing' | 'onRefresh'>;
 
 /**
  * A RefreshWebView with NativeShell script injection and message handling.
  */
-const NativeShellWebView: ForwardRefRenderFunction<WebView, RefreshWebViewProps> = (props, outerRef) => {
+const NativeShellWebView: ForwardRefRenderFunction<WebView, NativeShellWebViewProps> = (props, outerRef) => {
 	const innerRef = useRef<WebView>(null);
 	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	useImperativeHandle(outerRef, () => innerRef.current!, []);

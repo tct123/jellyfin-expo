@@ -14,7 +14,7 @@ import { WebView, type WebViewProps } from 'react-native-webview';
 export interface RefreshWebViewProps extends WebViewProps {
 	isRefreshing: boolean;
 	onRefresh?: () => void;
-	refreshControlProps: Omit<RefreshControlProps, 'refreshing'>;
+	refreshControlProps: Omit<RefreshControlProps, 'enabled' | 'onRefresh' | 'refreshing'>;
 }
 
 /**
@@ -30,9 +30,9 @@ const RefreshWebView = React.forwardRef<WebView, RefreshWebViewProps>(
 				onLayout={(e) => setHeight(e.nativeEvent.layout.height)}
 				refreshControl={
 					<RefreshControl
+						enabled={isEnabled}
 						onRefresh={onRefresh}
 						refreshing={isRefreshing}
-						enabled={isEnabled}
 						{...refreshControlProps}
 					/>
 				}
