@@ -6,14 +6,22 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Dimensions, RefreshControl, StyleSheet } from 'react-native';
+import { Dimensions, RefreshControl, type RefreshControlProps, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { WebView } from 'react-native-webview';
+import { WebView, type WebViewProps } from 'react-native-webview';
 
-const RefreshWebView = React.forwardRef(
-	function RefreshWebView({ isRefreshing, onRefresh, refreshControlProps, ...webViewProps }, ref) {
+export interface RefreshWebViewProps extends WebViewProps {
+	isRefreshing: boolean;
+	onRefresh?: () => void;
+	refreshControlProps?: Omit<RefreshControlProps, 'enabled' | 'onRefresh' | 'refreshing'>;
+}
+
+/**
+ * A WebView component that supports pulling to refresh.
+ */
+const RefreshWebView = React.forwardRef<WebView, RefreshWebViewProps>(
+	function RefreshWebView({ isRefreshing, onRefresh, refreshControlProps = {}, ...webViewProps }, ref) {
 		const [ height, setHeight ] = useState(Dimensions.get('screen').height);
 		const [ isEnabled, setEnabled ] = useState(typeof onRefresh === 'function');
 
@@ -22,10 +30,10 @@ const RefreshWebView = React.forwardRef(
 				onLayout={(e) => setHeight(e.nativeEvent.layout.height)}
 				refreshControl={
 					<RefreshControl
+						{...refreshControlProps}
+						enabled={isEnabled}
 						onRefresh={onRefresh}
 						refreshing={isRefreshing}
-						enabled={isEnabled}
-						{...refreshControlProps}
 					/>
 				}
 				showsVerticalScrollIndicator={false}
@@ -37,25 +45,21 @@ const RefreshWebView = React.forwardRef(
 					onScroll={(e) =>
 						setEnabled(
 							typeof onRefresh === 'function' &&
-								e.nativeEvent.contentOffset.y === 0
+								e.nativeEvent.contentOffset.y <= 0
 						)
 					}
-					style={{
-						...styles.view,
-						height,
-						...webViewProps.style
-					}}
+					style={
+						StyleSheet.flatten([
+							styles.view,
+							{ height },
+							webViewProps.style
+						])
+					}
 				/>
 			</ScrollView>
 		);
 	}
 );
-
-RefreshWebView.propTypes = {
-	isRefreshing: PropTypes.bool.isRequired,
-	onRefresh: PropTypes.func,
-	refreshControlProps: PropTypes.any
-};
 
 const styles = StyleSheet.create({
 	view: {
@@ -63,5 +67,7 @@ const styles = StyleSheet.create({
 		height: '100%'
 	}
 });
+
+RefreshWebView.displayName = 'RefreshWebView';
 
 export default RefreshWebView;

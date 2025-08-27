@@ -10,9 +10,10 @@ import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type'
 import compareVersions from 'compare-versions';
 import { nativeApplicationVersion } from 'expo-application';
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
-import React, { useState } from 'react';
+import React, { ForwardRefRenderFunction, useImperativeHandle, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, BackHandler, Platform } from 'react-native';
+import type { WebView, WebViewMessageEvent } from 'react-native-webview';
 
 import { useStores } from '../hooks/useStores';
 import DownloadModel from '../models/DownloadModel';
@@ -20,9 +21,17 @@ import { getAppName, getDeviceProfile, getSafeDeviceName } from '../utils/Device
 import StaticScriptLoader from '../utils/StaticScriptLoader';
 import { openBrowser } from '../utils/WebBrowser';
 
-import RefreshWebView from './RefreshWebView';
+import RefreshWebView, { type RefreshWebViewProps } from './RefreshWebView';
 
-const NativeShellWebView = (props, ref) => {
+type NativeShellWebViewProps = Omit<RefreshWebViewProps, 'isRefreshing' | 'onRefresh'>;
+
+/**
+ * A RefreshWebView with NativeShell script injection and message handling.
+ */
+const NativeShellWebView: ForwardRefRenderFunction<WebView, NativeShellWebViewProps> = (props, outerRef) => {
+	const innerRef = useRef<WebView>(null);
+	useImperativeHandle(outerRef, () => innerRef.current as WebView, []);
+
 	const { rootStore, downloadStore, serverStore, mediaStore, settingStore } = useStores();
 	const [ isRefreshing, setIsRefreshing ] = useState(false);
 	const { t } = useTranslation();
@@ -74,11 +83,11 @@ true;
 		mediaStore.set({ shouldStop: true });
 
 		setIsRefreshing(true);
-		ref.current?.reload();
+		innerRef.current?.reload();
 		setIsRefreshing(false);
 	};
 
-	const onMessage = ({ nativeEvent: state }) => {
+	const onMessage = ({ nativeEvent: state }: WebViewMessageEvent) => {
 		try {
 			const { event, data } = JSON.parse(state.data);
 			switch (event) {
@@ -107,7 +116,9 @@ true;
 						data.item.itemId,
 						data.item.serverId,
 						server.urlString,
-						apiKey,
+						// FIXME: Add error handling if the API key cannot be parsed from the URL
+						// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+						apiKey!,
 						data.item.title,
 						data.item.filename,
 						data.item.url
@@ -173,31 +184,32 @@ true;
 
 	return (
 		<RefreshWebView
-			ref={ref}
+			ref={innerRef}
+			// Pass through additional props
+			{...props}
 			// Allow any origin blocking can break various things like book playback
 			originWhitelist={[ '*' ]}
 			source={{ uri: server.urlString }}
 			// Inject javascript for NativeShell
 			// This method is preferred, but only supported on iOS currently
-			injectedJavaScriptBeforeContentLoaded={Platform.OS === 'ios' ? injectedJavaScript : null}
+			injectedJavaScriptBeforeContentLoaded={Platform.OS === 'ios' ? injectedJavaScript : undefined}
 			// Fallback for non-iOS
-			injectedJavaScript={Platform.OS !== 'ios' ? injectedJavaScript : null}
+			injectedJavaScript={Platform.OS !== 'ios' ? injectedJavaScript : undefined}
 			onMessage={onMessage}
 			isRefreshing={isRefreshing}
 			onRefresh={onRefresh}
-			// Pass through additional props
-			{...props}
 			// Make scrolling feel faster
 			decelerationRate='normal'
 			// Media playback options to fix video player
 			allowsInlineMediaPlayback={true}
 			mediaPlaybackRequiresUserAction={false}
-			// Use WKWebView on iOS
-			useWebKit={true}
 			showsVerticalScrollIndicator={false}
 			showsHorizontalScrollIndicator={false}
 		/>
 	);
 };
 
-export default React.forwardRef(NativeShellWebView);
+const ForwardRefNativeShellWebview = React.forwardRef(NativeShellWebView);
+ForwardRefNativeShellWebview.displayName = 'NativeShellWebView';
+
+export default ForwardRefNativeShellWebview;

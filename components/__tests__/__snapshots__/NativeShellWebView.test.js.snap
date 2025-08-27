@@ -41,7 +41,6 @@ exports[`NativeShellWebView should render correctly 1`] = `
         allowsInlineMediaPlayback={true}
         cacheEnabled={true}
         decelerationRate={0.998}
-        injectedJavaScript={null}
         injectedJavaScriptBeforeContentLoaded="
 window.ExpoAppInfo = {
 	appName: 'Jellyfin (iOS)',
@@ -115,7 +114,6 @@ true;
         }
         textInteractionEnabled={true}
         useSharedProcessPool={true}
-        useWebKit={true}
       />
     </View>
   </View>
