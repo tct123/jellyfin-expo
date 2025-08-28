@@ -705,7 +705,7 @@ exports[`SettingsScreen should render correctly 1`] = `
             }
             testID="app-name"
           >
-            Jellyfin (mock)
+            Jellyfin for mock
           </Text>
           <Text
             onLongPress={[Function]}

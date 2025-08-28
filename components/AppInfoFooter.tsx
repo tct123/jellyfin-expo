@@ -13,7 +13,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text, ThemeContext } from 'react-native-elements';
 
 import { Screens } from '../constants/Screens';
-import { getAppName } from '../utils/Device';
+import { getAppDisplayName } from '../utils/Device';
 import { openBrowser } from '../utils/WebBrowser';
 
 // NOTE: eslint randomly started blowing up with this inline in the JSX
@@ -36,7 +36,7 @@ const AppInfoFooter = () => {
 				testID='app-name'
 				style={textStyle}
 			>
-				{getAppName()}
+				{getAppDisplayName()}
 			</Text>
 			<Text
 				testID='app-version'
