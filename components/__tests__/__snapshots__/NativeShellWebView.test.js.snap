@@ -43,7 +43,7 @@ exports[`NativeShellWebView should render correctly 1`] = `
         decelerationRate={0.998}
         injectedJavaScriptBeforeContentLoaded="
 window.ExpoAppInfo = {
-	appName: 'Jellyfin (iOS)',
+	appName: 'Jellyfin iOS',
 	appVersion: 'mock',
 	deviceId: 'undefined',
 	deviceName: 'Test Device'

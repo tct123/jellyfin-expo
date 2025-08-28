@@ -17,8 +17,14 @@ import iOS10Profile from './profiles/ios-10';
 import iOS12Profile from './profiles/ios-12';
 import iOSFmp4Profile from './profiles/ios-fmp4';
 
+/** Gets the app name used for API requests. */
 export function getAppName() {
-	return `Jellyfin (${Device.osName})`;
+	return `Jellyfin ${Device.osName}`;
+}
+
+/** Gets the app name used for display within the app. */
+export function getAppDisplayName() {
+	return `Jellyfin for ${Device.osName}`;
 }
 
 export function getSafeDeviceName() {

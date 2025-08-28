@@ -7,7 +7,7 @@ import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 
-import { getAppName, getDeviceProfile, getSafeDeviceName, isCompact, isSystemThemeSupported } from '../Device';
+import { getAppName, getAppDisplayName, getDeviceProfile, getSafeDeviceName, isCompact, isSystemThemeSupported } from '../Device';
 import iOSProfile from '../profiles/ios';
 import iOS10Profile from '../profiles/ios-10';
 import iOS12Profile from '../profiles/ios-12';
@@ -22,7 +22,13 @@ describe('Device', () => {
 
 	describe('getAppName()', () => {
 		it('should return the app name including the os name', () => {
-			expect(getAppName()).toBe('Jellyfin (mock)');
+			expect(getAppName()).toBe('Jellyfin mock');
+		});
+	});
+
+	describe('getAppDisplayName()', () => {
+		it('should return the app display name including the os name', () => {
+			expect(getAppDisplayName()).toBe('Jellyfin for mock');
 		});
 	});
 

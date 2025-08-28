@@ -44,7 +44,7 @@ describe('AppInfoFooter', () => {
 			</NavigationContainer>
 		);
 
-		expect(getByTestId('app-name')).toHaveTextContent('Jellyfin (Test OS)');
+		expect(getByTestId('app-name')).toHaveTextContent('Jellyfin for Test OS');
 
 		const appVersion = getByTestId('app-version');
 		expect(appVersion).toHaveTextContent('1.0.0 (1.0.0.0)');
