@@ -8,8 +8,6 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import compareVersions from 'compare-versions';
-// TODO: Fix this import, this is a bandaid; issue #365
-// eslint-disable-next-line import/namespace
 import { Platform } from 'react-native';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
