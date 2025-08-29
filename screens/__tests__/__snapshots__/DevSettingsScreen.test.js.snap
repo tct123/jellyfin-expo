@@ -40,7 +40,7 @@ exports[`DevSettingsScreen should render correctly 1`] = `
           },
           "key": "experimental-downloads-switch",
           "onValueChange": [Function],
-          "title": "File Download Support",
+          "title": "Transcoded Downloads",
           "value": false,
         },
       ]
@@ -348,7 +348,7 @@ exports[`DevSettingsScreen should render correctly 1`] = `
                   }
                   testID="title"
                 >
-                  File Download Support
+                  Transcoded Downloads
                 </Text>
                 <View
                   style={
