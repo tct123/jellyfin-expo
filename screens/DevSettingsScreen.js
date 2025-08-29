@@ -44,7 +44,7 @@ const DevSettingsScreen = () => {
 					},
 					{
 						key: 'experimental-downloads-switch',
-						title: 'File Download Support',
+						title: 'Transcoded Downloads',
 						badge: {
 							value: 'Experimental',
 							status: 'error'
