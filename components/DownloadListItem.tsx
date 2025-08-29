@@ -24,6 +24,11 @@ interface DownloadListItemProps {
 	isSelected?: boolean;
 }
 
+const MenuAction = {
+	Delete: 'delete',
+	PlayInApp: 'play_in_app'
+} as const;
+
 const DownloadListItem: FC<DownloadListItemProps> = ({
 	item,
 	index,
@@ -37,12 +42,12 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 
 	const menuActions = useMemo(() => [
 		{
-			id: 'play_in_app',
+			id: MenuAction.PlayInApp,
 			title: t('common.play'),
 			image: 'play'
 		},
 		{
-			id: 'delete',
+			id: MenuAction.Delete,
 			title: t('common.delete'),
 			attributes: {
 				destructive: true
@@ -53,10 +58,12 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 
 	const onMenuPress = useCallback(({ nativeEvent }: NativeActionEvent) => {
 		switch (nativeEvent.event) {
-			case 'play_in_app':
+			case MenuAction.PlayInApp:
 				return onPlay();
-			case 'delete':
+			case MenuAction.Delete:
 				return onDelete();
+			default:
+				console.warn('[DownloadListItem.onMenuPress] unhandled menu press action', nativeEvent.event);
 		}
 	}, [ onDelete, onPlay ]);
 

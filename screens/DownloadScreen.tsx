@@ -131,10 +131,12 @@ const DownloadScreen = () => {
 							item={item}
 							index={index}
 							isEditMode={isEditMode}
-							isSelected={selectedItems.includes(item)}
+							isSelected={selectedItems.some(s => s.key === item.key)}
 							onSelect={() => {
 								setSelectedItems(prev => (
-									prev.includes(item) ? prev.filter(s => s !== item) : [ ...prev, item ]
+									prev.some(s => s.key === item.key)
+										? prev.filter(s => s.key !== item.key)
+										: [ ...prev, item ]
 								));
 							}}
 							onPlay={() => {
@@ -151,7 +153,7 @@ const DownloadScreen = () => {
 							}}
 						/>
 					)}
-					keyExtractor={(item, index) => `download-${index}-${item.key}`}
+					keyExtractor={item => `download-${item.key}`}
 					contentContainerStyle={styles.listContainer}
 				/>
 			) : (
