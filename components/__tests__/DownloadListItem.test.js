@@ -10,21 +10,25 @@ import React from 'react';
 import DownloadModel from '../../models/DownloadModel';
 import DownloadListItem from '../DownloadListItem';
 
-const TEST_MODEL = new DownloadModel(
-	'item-id',
-	'server-id',
-	'https://example.com/',
-	'api-key',
-	'title',
-	'file name.mkv',
-	'https://example.com/download'
-);
-
 describe('DownloadListItem', () => {
+	let model;
+
+	beforeEach(() => {
+		model = new DownloadModel(
+			'item-id',
+			'server-id',
+			'https://example.com/',
+			'api-key',
+			'title',
+			'file name.mkv',
+			'https://example.com/download'
+		);
+	});
+
 	it('should render correctly', () => {
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
-				item={TEST_MODEL}
+				item={model}
 				index={0}
 				onSelect={() => { /* no-op */ }}
 				onPlay={() => { /* no-op */ }}
@@ -45,11 +49,11 @@ describe('DownloadListItem', () => {
 		const onPlay = jest.fn();
 		const onDelete = jest.fn();
 
-		TEST_MODEL.isComplete = true;
+		model.isComplete = true;
 
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
-				item={TEST_MODEL}
+				item={model}
 				index={0}
 				onSelect={() => { /* no-op */ }}
 				onPlay={onPlay}
@@ -83,9 +87,11 @@ describe('DownloadListItem', () => {
 	it('should display the select checkbox and handle presses', () => {
 		const onSelect = jest.fn();
 
+		model.isComplete = true;
+
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
-				item={TEST_MODEL}
+				item={model}
 				index={0}
 				onSelect={onSelect}
 				onPlay={() => { /* no-op */ }}

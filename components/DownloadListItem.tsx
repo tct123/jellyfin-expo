@@ -50,13 +50,22 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 				testID='select-checkbox'
 				onPress={onSelect}
 				checked={isSelected}
+				accessibilityRole='checkbox'
 			/>
 			}
 			<ListItem.Content>
-				<ListItem.Title testID='title'>
+				<ListItem.Title
+					testID='title'
+					numberOfLines={1}
+					ellipsizeMode='tail'
+				>
 					{item.title}
 				</ListItem.Title>
-				<ListItem.Subtitle testID='subtitle'>
+				<ListItem.Subtitle
+					testID='subtitle'
+					numberOfLines={1}
+					ellipsizeMode='tail'
+				>
 					{item.localFilename}
 				</ListItem.Subtitle>
 			</ListItem.Content>

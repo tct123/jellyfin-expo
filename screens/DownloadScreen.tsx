@@ -29,10 +29,10 @@ const DownloadScreen = () => {
 	const [ isEditMode, setIsEditMode ] = useState(false);
 	const [ selectedItems, setSelectedItems ] = useState<DownloadModel[]>([]);
 
-	function exitEditMode() {
+	const exitEditMode = useCallback(() => {
 		setIsEditMode(false);
 		setSelectedItems([]);
-	}
+	}, []);
 
 	const deleteItem = useCallback(async (download: DownloadModel) => {
 		// TODO: Add user messaging on errors
@@ -43,7 +43,7 @@ const DownloadScreen = () => {
 		} catch (e) {
 			console.error('[DownloadScreen] Failed to delete download', e);
 		}
-	}, []);
+	}, [ downloadStore ]);
 
 	const onDeleteItems = useCallback((downloads: DownloadModel[]) => {
 		Alert.alert(
@@ -57,18 +57,14 @@ const DownloadScreen = () => {
 				{
 					text: t('alerts.deleteDownloads.confirm', { downloadCount: downloads.length }),
 					onPress: () => {
-						// eslint-disable-next-line promise/catch-or-return
-						Promise.all(downloads.map(deleteItem))
-							.catch(err => {
-								console.error('[DownloadScreen] failed to delete download', err);
-							})
+						return Promise.allSettled(downloads.map(deleteItem))
 							.finally(exitEditMode);
 					},
 					style: 'destructive'
 				}
 			]
 		);
-	}, [ deleteItem ]);
+	}, [ deleteItem, exitEditMode, t ]);
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
@@ -145,6 +141,7 @@ const DownloadScreen = () => {
 							}}
 							onPlay={() => {
 								item.isNew = false;
+								downloadStore.update(item);
 								mediaStore.set({
 									isLocalFile: true,
 									type: MediaType.Video,

@@ -202,6 +202,8 @@ exports[`DownloadScreen should render correctly 1`] = `
               }
             >
               <Text
+                ellipsizeMode="tail"
+                numberOfLines={1}
                 style={
                   Object {
                     "backgroundColor": "transparent",
@@ -214,6 +216,8 @@ exports[`DownloadScreen should render correctly 1`] = `
                 title
               </Text>
               <Text
+                ellipsizeMode="tail"
+                numberOfLines={1}
                 style={
                   Object {
                     "backgroundColor": "transparent",
@@ -342,6 +346,8 @@ exports[`DownloadScreen should render correctly 1`] = `
               }
             >
               <Text
+                ellipsizeMode="tail"
+                numberOfLines={1}
                 style={
                   Object {
                     "backgroundColor": "transparent",
@@ -354,6 +360,8 @@ exports[`DownloadScreen should render correctly 1`] = `
                 other title
               </Text>
               <Text
+                ellipsizeMode="tail"
+                numberOfLines={1}
                 style={
                   Object {
                     "backgroundColor": "transparent",
