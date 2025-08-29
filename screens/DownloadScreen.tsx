@@ -34,43 +34,43 @@ const DownloadScreen = () => {
 		setSelectedItems([]);
 	}
 
-	React.useLayoutEffect(() => {
-		async function deleteItem(download: DownloadModel) {
-			// TODO: Add user messaging on errors
-			try {
-				await FileSystem.deleteAsync(download.localPath);
-				downloadStore.delete(download);
-				console.log('[DownloadScreen] download "%s" deleted', download.title);
-			} catch (e) {
-				console.error('[DownloadScreen] Failed to delete download', e);
-			}
+	const deleteItem = useCallback(async (download: DownloadModel) => {
+		// TODO: Add user messaging on errors
+		try {
+			await FileSystem.deleteAsync(download.localPath);
+			downloadStore.delete(download);
+			console.log('[DownloadScreen] download "%s" deleted', download.title);
+		} catch (e) {
+			console.error('[DownloadScreen] Failed to delete download', e);
 		}
+	}, []);
 
-		function onDeleteItems(downloads: DownloadModel[]) {
-			Alert.alert(
-				t('alerts.deleteDownloads.title'),
-				t('alerts.deleteDownloads.description'),
-				[
-					{
-						text: t('common.cancel'),
-						onPress: exitEditMode
+	const onDeleteItems = useCallback((downloads: DownloadModel[]) => {
+		Alert.alert(
+			t('alerts.deleteDownloads.title'),
+			t('alerts.deleteDownloads.description'),
+			[
+				{
+					text: t('common.cancel'),
+					onPress: exitEditMode
+				},
+				{
+					text: t('alerts.deleteDownloads.confirm', { downloadCount: downloads.length }),
+					onPress: () => {
+						// eslint-disable-next-line promise/catch-or-return
+						Promise.all(downloads.map(deleteItem))
+							.catch(err => {
+								console.error('[DownloadScreen] failed to delete download', err);
+							})
+							.finally(exitEditMode);
 					},
-					{
-						text: t('alerts.deleteDownloads.confirm', { downloadCount: downloads.length }),
-						onPress: () => {
-							// eslint-disable-next-line promise/catch-or-return
-							Promise.all(downloads.map(deleteItem))
-								.catch(err => {
-									console.error('[DownloadScreen] failed to delete download', err);
-								})
-								.finally(exitEditMode);
-						},
-						style: 'destructive'
-					}
-				]
-			);
-		}
+					style: 'destructive'
+				}
+			]
+		);
+	}, [ deleteItem ]);
 
+	React.useLayoutEffect(() => {
 		navigation.setOptions({
 			headerLeft: () => (
 				isEditMode ?
@@ -104,7 +104,7 @@ const DownloadScreen = () => {
 					/>
 			)
 		});
-	}, [ navigation, isEditMode, selectedItems, downloadStore.downloads ]);
+	}, [ navigation, isEditMode, onDeleteItems, selectedItems, downloadStore.downloads ]);
 
 	useFocusEffect(
 		useCallback(() => {
@@ -143,13 +143,16 @@ const DownloadScreen = () => {
 									setSelectedItems([ ...selectedItems, item ]);
 								}
 							}}
-							onPlay={async () => {
+							onPlay={() => {
 								item.isNew = false;
 								mediaStore.set({
 									isLocalFile: true,
 									type: MediaType.Video,
 									uri: item.uri
 								});
+							}}
+							onDelete={() => {
+								onDeleteItems([ item ]);
 							}}
 						/>
 					)}

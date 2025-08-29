@@ -6,18 +6,20 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import React, { FC } from 'react';
+import { MenuView } from '@react-native-menu/menu';
+import React, { type FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 
 import type DownloadModel from '../models/DownloadModel';
-import { getIconName } from '../utils/Icons';
 
 interface DownloadListItemProps {
 	item: DownloadModel;
 	index: number;
-	onSelect: (item: DownloadModel) => void;
-	onPlay: (item: DownloadModel) => void;
+	onSelect: () => void;
+	onPlay: () => void;
+	onDelete: () => void;
 	isEditMode?: boolean;
 	isSelected?: boolean;
 }
@@ -27,43 +29,82 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 	index,
 	onSelect,
 	onPlay,
+	onDelete,
 	isEditMode = false,
 	isSelected = false
-}) => (
-	<ListItem
-		topDivider={index === 0}
-		bottomDivider
-	>
-		{isEditMode &&
+}) => {
+	const { t } = useTranslation();
+
+	return (
+		<ListItem
+			testID='list-item'
+			topDivider={index === 0}
+			bottomDivider
+			onPress={() => {
+				if (isEditMode) onSelect();
+				else onPlay();
+			}}
+		>
+			{isEditMode &&
 			<ListItem.CheckBox
 				testID='select-checkbox'
-				onPress={() => onSelect(item)}
+				onPress={onSelect}
 				checked={isSelected}
 			/>
-		}
-		<ListItem.Content>
-			<ListItem.Title testID='title'>
-				{item.title}
-			</ListItem.Title>
-			<ListItem.Subtitle testID='subtitle'>
-				{item.localFilename}
-			</ListItem.Subtitle>
-		</ListItem.Content>
-		{item.isComplete ?
-			<Button
-				testID='play-button'
-				type='clear'
-				icon={{
-					name: getIconName('play'),
-					type: 'ionicon'
-				}}
-				disabled={isEditMode}
-				onPress={() => onPlay(item)}
-			/> :
-			<ActivityIndicator testID='loading-indicator' />
-		}
-	</ListItem>
-);
+			}
+			<ListItem.Content>
+				<ListItem.Title testID='title'>
+					{item.title}
+				</ListItem.Title>
+				<ListItem.Subtitle testID='subtitle'>
+					{item.localFilename}
+				</ListItem.Subtitle>
+			</ListItem.Content>
+			{item.isComplete ? (
+				<MenuView
+					testID='menu-view'
+					actions={[
+						{
+							id: 'play_in_app',
+							title: t('common.play'),
+							image: 'play'
+						},
+						{
+							id: 'delete',
+							title: t('common.delete'),
+							attributes: {
+								destructive: true
+							},
+							image: 'trash'
+						}
+					]}
+					onPressAction={({ nativeEvent }) => {
+						switch (nativeEvent.event) {
+							case 'play_in_app':
+								return onPlay();
+							case 'delete':
+								return onDelete();
+						}
+					}}
+					shouldOpenOnLongPress={false}
+					themeVariant='dark'
+				>
+					<Button
+						testID='menu-button'
+						type='clear'
+						icon={{
+							name: 'ellipsis-horizontal',
+							type: 'ionicon'
+						}}
+						disabled={isEditMode}
+					/>
+				</MenuView>
+			) :
+				<ActivityIndicator testID='loading-indicator' />
+			}
+		</ListItem>
+	);
+};
 
 DownloadListItem.displayName = 'DownloadListItem';
 

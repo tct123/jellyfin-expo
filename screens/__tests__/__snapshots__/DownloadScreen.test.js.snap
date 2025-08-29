@@ -102,7 +102,18 @@ exports[`DownloadScreen should render correctly 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="list-item"
+        >
           <View
             style={
               Object {
@@ -232,7 +243,18 @@ exports[`DownloadScreen should render correctly 1`] = `
         onLayout={[Function]}
         style={null}
       >
-        <View>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="list-item"
+        >
           <View
             style={
               Object {
