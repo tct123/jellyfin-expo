@@ -5,7 +5,8 @@
         "ok": "OK",
         "beta": "BETA",
         "delete": "Slet",
-        "edit": "Rediger"
+        "edit": "Rediger",
+        "play": "Afspil"
     },
     "headings": {
         "addServer": "Tilføj server",
