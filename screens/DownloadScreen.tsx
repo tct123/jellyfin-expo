@@ -100,7 +100,7 @@ const DownloadScreen = () => {
 					/>
 			)
 		});
-	}, [ navigation, isEditMode, onDeleteItems, selectedItems, downloadStore.downloads ]);
+	}, [ navigation, isEditMode, onDeleteItems, selectedItems, downloadStore.downloads, t ]);
 
 	useFocusEffect(
 		useCallback(() => {
@@ -133,11 +133,9 @@ const DownloadScreen = () => {
 							isEditMode={isEditMode}
 							isSelected={selectedItems.includes(item)}
 							onSelect={() => {
-								if (selectedItems.includes(item)) {
-									setSelectedItems(selectedItems.filter(selected => selected !== item));
-								} else {
-									setSelectedItems([ ...selectedItems, item ]);
-								}
+								setSelectedItems(prev => (
+									prev.includes(item) ? prev.filter(s => s !== item) : [ ...prev, item ]
+								));
 							}}
 							onPlay={() => {
 								item.isNew = false;

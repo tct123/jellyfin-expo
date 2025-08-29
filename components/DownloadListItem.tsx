@@ -6,8 +6,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { MenuView } from '@react-native-menu/menu';
-import React, { type FC } from 'react';
+import { MenuView, type NativeActionEvent } from '@react-native-menu/menu';
+import React, { useCallback, useMemo, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
@@ -34,6 +34,31 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 	isSelected = false
 }) => {
 	const { t } = useTranslation();
+
+	const menuActions = useMemo(() => [
+		{
+			id: 'play_in_app',
+			title: t('common.play'),
+			image: 'play'
+		},
+		{
+			id: 'delete',
+			title: t('common.delete'),
+			attributes: {
+				destructive: true
+			},
+			image: 'trash'
+		}
+	], [ t ]);
+
+	const onMenuPress = useCallback(({ nativeEvent }: NativeActionEvent) => {
+		switch (nativeEvent.event) {
+			case 'play_in_app':
+				return onPlay();
+			case 'delete':
+				return onDelete();
+		}
+	}, [ onDelete, onPlay ]);
 
 	return (
 		<ListItem
@@ -72,29 +97,8 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			{item.isComplete ? (
 				<MenuView
 					testID='menu-view'
-					actions={[
-						{
-							id: 'play_in_app',
-							title: t('common.play'),
-							image: 'play'
-						},
-						{
-							id: 'delete',
-							title: t('common.delete'),
-							attributes: {
-								destructive: true
-							},
-							image: 'trash'
-						}
-					]}
-					onPressAction={({ nativeEvent }) => {
-						switch (nativeEvent.event) {
-							case 'play_in_app':
-								return onPlay();
-							case 'delete':
-								return onDelete();
-						}
-					}}
+					actions={menuActions}
+					onPressAction={onMenuPress}
 					shouldOpenOnLongPress={false}
 					themeVariant='dark'
 				>
