@@ -257,6 +257,8 @@ PODS:
     - glog
   - react-native-get-random-values (1.8.0):
     - React-Core
+  - react-native-menu (1.2.4):
+    - React
   - react-native-safe-area-context (4.3.1):
     - RCT-Folly
     - RCTRequired
@@ -437,6 +439,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
+  - "react-native-menu (from `../node_modules/@react-native-menu/menu`)"
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -533,6 +536,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/logger"
   react-native-get-random-values:
     :path: "../node_modules/react-native-get-random-values"
+  react-native-menu:
+    :path: "../node_modules/@react-native-menu/menu"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-webview:
@@ -611,6 +616,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 5b92a5a30e02e1a21802f293cc71e05d887c7378
   React-logger: 52038e064f4ec6897bd820f3bdcc09d2d7aa40bb
   react-native-get-random-values: 0fd2b6a3129988d701d10e30f0622d5f039531bc
+  react-native-menu: 475e400d9b57949c076a0844e130044b45f2aa3d
   react-native-safe-area-context: 3147a84d005125c9b38b59a32807db4bb28115b0
   react-native-webview: 5c84c9e56ab8cdfc211da7d59fa038a9ceed9738
   React-perflogger: f6f4b3c63629ead2e8a5a22eaedd06368c31617a

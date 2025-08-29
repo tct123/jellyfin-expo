@@ -1,7 +1,9 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
 // import '@testing-library/jest-dom'
@@ -57,3 +59,36 @@ jest.mock('uuid', () => {
 		v4: () => `uuid-${value++}`
 	};
 });
+
+/* React Native Menu Mocks */
+jest.mock('@react-native-menu/menu', () => ({
+	MenuView: jest.fn((props) => {
+		const React = require('react');
+
+		class MockMenuView extends React.Component {
+			render() {
+				return React.createElement(
+					'View',
+					{ testID: props.testID },
+					// Dynamically mock each action
+					props.actions.map(action =>
+						React.createElement('Button', {
+							key: action.id,
+							title: action.title,
+							onPress: () => {
+								if (action.id && props?.onPressAction) {
+									props.onPressAction({ nativeEvent: { event: action.id } });
+								}
+							},
+							testID: action.id
+						})
+					),
+					// eslint-disable-next-line react/prop-types
+					this.props.children
+				);
+			}
+		}
+
+		return React.createElement(MockMenuView, props);
+	})
+}));

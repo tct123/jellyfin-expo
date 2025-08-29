@@ -29,48 +29,44 @@ const DownloadScreen = () => {
 	const [ isEditMode, setIsEditMode ] = useState(false);
 	const [ selectedItems, setSelectedItems ] = useState<DownloadModel[]>([]);
 
-	function exitEditMode() {
+	const exitEditMode = useCallback(() => {
 		setIsEditMode(false);
 		setSelectedItems([]);
-	}
+	}, []);
+
+	const deleteItem = useCallback(async (download: DownloadModel) => {
+		// TODO: Add user messaging on errors
+		try {
+			await FileSystem.deleteAsync(download.localPath);
+			downloadStore.delete(download);
+			console.log('[DownloadScreen] download "%s" deleted', download.title);
+		} catch (e) {
+			console.error('[DownloadScreen] Failed to delete download', e);
+		}
+	}, [ downloadStore ]);
+
+	const onDeleteItems = useCallback((downloads: DownloadModel[]) => {
+		Alert.alert(
+			t('alerts.deleteDownloads.title'),
+			t('alerts.deleteDownloads.description'),
+			[
+				{
+					text: t('common.cancel'),
+					onPress: exitEditMode
+				},
+				{
+					text: t('alerts.deleteDownloads.confirm', { downloadCount: downloads.length }),
+					onPress: () => {
+						return Promise.allSettled(downloads.map(deleteItem))
+							.finally(exitEditMode);
+					},
+					style: 'destructive'
+				}
+			]
+		);
+	}, [ deleteItem, exitEditMode, t ]);
 
 	React.useLayoutEffect(() => {
-		async function deleteItem(download: DownloadModel) {
-			// TODO: Add user messaging on errors
-			try {
-				await FileSystem.deleteAsync(download.localPath);
-				downloadStore.delete(download);
-				console.log('[DownloadScreen] download "%s" deleted', download.title);
-			} catch (e) {
-				console.error('[DownloadScreen] Failed to delete download', e);
-			}
-		}
-
-		function onDeleteItems(downloads: DownloadModel[]) {
-			Alert.alert(
-				t('alerts.deleteDownloads.title'),
-				t('alerts.deleteDownloads.description'),
-				[
-					{
-						text: t('common.cancel'),
-						onPress: exitEditMode
-					},
-					{
-						text: t('alerts.deleteDownloads.confirm', { downloadCount: downloads.length }),
-						onPress: () => {
-							// eslint-disable-next-line promise/catch-or-return
-							Promise.all(downloads.map(deleteItem))
-								.catch(err => {
-									console.error('[DownloadScreen] failed to delete download', err);
-								})
-								.finally(exitEditMode);
-						},
-						style: 'destructive'
-					}
-				]
-			);
-		}
-
 		navigation.setOptions({
 			headerLeft: () => (
 				isEditMode ?
@@ -104,7 +100,7 @@ const DownloadScreen = () => {
 					/>
 			)
 		});
-	}, [ navigation, isEditMode, selectedItems, downloadStore.downloads ]);
+	}, [ navigation, isEditMode, onDeleteItems, selectedItems, downloadStore.downloads, t ]);
 
 	useFocusEffect(
 		useCallback(() => {
@@ -135,25 +131,29 @@ const DownloadScreen = () => {
 							item={item}
 							index={index}
 							isEditMode={isEditMode}
-							isSelected={selectedItems.includes(item)}
+							isSelected={selectedItems.some(s => s.key === item.key)}
 							onSelect={() => {
-								if (selectedItems.includes(item)) {
-									setSelectedItems(selectedItems.filter(selected => selected !== item));
-								} else {
-									setSelectedItems([ ...selectedItems, item ]);
-								}
+								setSelectedItems(prev => (
+									prev.some(s => s.key === item.key)
+										? prev.filter(s => s.key !== item.key)
+										: [ ...prev, item ]
+								));
 							}}
-							onPlay={async () => {
+							onPlay={() => {
 								item.isNew = false;
+								downloadStore.update(item);
 								mediaStore.set({
 									isLocalFile: true,
 									type: MediaType.Video,
 									uri: item.uri
 								});
 							}}
+							onDelete={() => {
+								onDeleteItems([ item ]);
+							}}
 						/>
 					)}
-					keyExtractor={(item, index) => `download-${index}-${item.key}`}
+					keyExtractor={item => `download-${item.key}`}
 					contentContainerStyle={styles.listContainer}
 				/>
 			) : (

@@ -10,24 +10,29 @@ import React from 'react';
 import DownloadModel from '../../models/DownloadModel';
 import DownloadListItem from '../DownloadListItem';
 
-const TEST_MODEL = new DownloadModel(
-	'item-id',
-	'server-id',
-	'https://example.com/',
-	'api-key',
-	'title',
-	'file name.mkv',
-	'https://example.com/download'
-);
-
 describe('DownloadListItem', () => {
+	let model;
+
+	beforeEach(() => {
+		model = new DownloadModel(
+			'item-id',
+			'server-id',
+			'https://example.com/',
+			'api-key',
+			'title',
+			'file name.mkv',
+			'https://example.com/download'
+		);
+	});
+
 	it('should render correctly', () => {
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
-				item={TEST_MODEL}
+				item={model}
 				index={0}
 				onSelect={() => { /* no-op */ }}
 				onPlay={() => { /* no-op */ }}
+				onDelete={() => { /* no-op */ }}
 			/>
 		);
 
@@ -36,21 +41,23 @@ describe('DownloadListItem', () => {
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
 
-		expect(queryByTestId('play-button')).toBeNull();
+		expect(queryByTestId('menu-button')).toBeNull();
 		expect(queryByTestId('loading-indicator')).not.toBeNull();
 	});
 
-	it('should display the play button and handle presses', () => {
+	it('should display the menu and handle presses', () => {
 		const onPlay = jest.fn();
+		const onDelete = jest.fn();
 
-		TEST_MODEL.isComplete = true;
+		model.isComplete = true;
 
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
-				item={TEST_MODEL}
+				item={model}
 				index={0}
 				onSelect={() => { /* no-op */ }}
 				onPlay={onPlay}
+				onDelete={onDelete}
 			/>
 		);
 
@@ -59,20 +66,32 @@ describe('DownloadListItem', () => {
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
 
-		expect(queryByTestId('play-button')).not.toBeNull();
+		expect(queryByTestId('menu-button')).not.toBeNull();
 		expect(queryByTestId('loading-indicator')).toBeNull();
 
+		// Pressing the list item should call onPlay when not editing
 		expect(onPlay).not.toHaveBeenCalled();
-		fireEvent.press(getByTestId('play-button'));
-		expect(onPlay).toHaveBeenCalled();
+		fireEvent.press(getByTestId('list-item'));
+		expect(onPlay).toHaveBeenCalledTimes(1);
+		// Pressing the play menu action should call onPlay
+		expect(queryByTestId('play_in_app')).not.toBeNull();
+		fireEvent.press(getByTestId('play_in_app'));
+		expect(onPlay).toHaveBeenCalledTimes(2);
+		// Pressing the delete menu action should call onDelete
+		expect(onDelete).not.toHaveBeenCalled();
+		expect(queryByTestId('delete')).not.toBeNull();
+		fireEvent.press(getByTestId('delete'));
+		expect(onDelete).toHaveBeenCalled();
 	});
 
 	it('should display the select checkbox and handle presses', () => {
 		const onSelect = jest.fn();
 
+		model.isComplete = true;
+
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
-				item={TEST_MODEL}
+				item={model}
 				index={0}
 				onSelect={onSelect}
 				onPlay={() => { /* no-op */ }}
@@ -85,11 +104,15 @@ describe('DownloadListItem', () => {
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
 
-		expect(queryByTestId('play-button')).not.toBeNull();
+		expect(queryByTestId('menu-button')).not.toBeNull();
 		expect(queryByTestId('loading-indicator')).toBeNull();
 
 		expect(onSelect).not.toHaveBeenCalled();
+
+		// Pressing the list item and checkbox should call select
+		fireEvent.press(getByTestId('list-item'));
+		expect(onSelect).toHaveBeenCalledTimes(1);
 		fireEvent.press(getByTestId('select-checkbox'));
-		expect(onSelect).toHaveBeenCalled();
+		expect(onSelect).toHaveBeenCalledTimes(2);
 	});
 });
