@@ -24,7 +24,8 @@
         "ok": "OK",
         "beta": "BÊTA",
         "edit": "Modifier",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "play": "Lire"
     },
     "alerts": {
         "resetApplication": {
