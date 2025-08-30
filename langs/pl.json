@@ -5,7 +5,8 @@
         "ok": "OK",
         "beta": "Wersja Beta",
         "edit": "Edytuj",
-        "delete": "Usuń"
+        "delete": "Usuń",
+        "play": "Odtwarzaj"
     },
     "headings": {
         "addServer": "Dodaj serwer",
