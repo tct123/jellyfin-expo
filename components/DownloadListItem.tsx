@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
 import { Button, ListItem } from 'react-native-elements';
 
+import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
 
 interface DownloadListItemProps {
@@ -38,6 +39,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 	isEditMode = false,
 	isSelected = false
 }) => {
+	const { settingStore } = useStores();
 	const { t } = useTranslation();
 
 	const menuActions = useMemo(() => [
@@ -107,7 +109,9 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 					actions={menuActions}
 					onPressAction={onMenuPress}
 					shouldOpenOnLongPress={false}
-					themeVariant='dark'
+					themeVariant={
+						settingStore.getTheme().dark ? 'dark' : 'light'
+					}
 				>
 					<Button
 						testID='menu-button'
