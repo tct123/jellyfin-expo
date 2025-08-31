@@ -15,11 +15,13 @@ describe('DownloadListItem', () => {
 
 	beforeEach(() => {
 		model = new DownloadModel(
-			'item-id',
-			'server-id',
+			{
+				Id: 'item-id',
+				ServerId: 'server-id',
+				Name: 'title'
+			},
 			'https://example.com/',
 			'api-key',
-			'title',
 			'file name.mkv',
 			'https://example.com/download'
 		);

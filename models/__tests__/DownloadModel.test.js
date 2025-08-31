@@ -15,11 +15,13 @@ jest.mock('expo-file-system', () => ({
 describe('DownloadModel', () => {
 	it('should create a DownloadModel with computed properties', () => {
 		const download = new DownloadModel(
-			'item-id',
-			'server-id',
+			{
+				Id: 'item-id',
+				ServerId: 'server-id',
+				Name: 'title'
+			},
 			'https://example.com/',
 			'api-key',
-			'title',
 			'file name.mkv',
 			'https://example.com/download'
 		);

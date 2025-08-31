@@ -42,12 +42,17 @@ export const deserialize = (valueString: string | null): StorageValue<State> => 
 
 	if (Array.isArray(value.state.downloads)) {
 		value.state.downloads.forEach(([ key, obj ]: [ string, DownloadModel ]) => {
+			// The base item was not saved in previous versions, so reconstruct it from the available information.
+			const item = obj.item || {
+				Id: obj.itemId,
+				ServerId: obj.serverId,
+				Name: obj.title
+			};
+
 			const model = new DownloadModel(
-				obj.itemId,
-				obj.serverId,
+				item,
 				obj.serverUrl,
 				obj.apiKey,
-				obj.title,
 				obj.filename,
 				obj.downloadUrl
 			);

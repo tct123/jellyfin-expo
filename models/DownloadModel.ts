@@ -1,11 +1,19 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import type { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models/base-item-dto';
 import * as FileSystem from 'expo-file-system';
 import { v4 as uuidv4 } from 'uuid';
+
+interface BaseItem extends BaseItemDto {
+	Id: string;
+	ServerId: string;
+}
 
 export default class DownloadModel {
 	isComplete = false
@@ -14,30 +22,30 @@ export default class DownloadModel {
 
 	apiKey: string
 	itemId: string
+	item: BaseItem
 	/** The "play" session ID for reporting a download has stopped. */
 	sessionId = uuidv4()
 	serverId: string
 	serverUrl: string
 
-	title: string
+	title?: string
 	filename: string
 
 	downloadUrl: string
 
 	constructor(
-		itemId: string,
-		serverId: string,
+		item: BaseItem,
 		serverUrl: string,
 		apiKey: string,
-		title: string,
 		filename: string,
 		downloadUrl: string
 	) {
-		this.itemId = itemId;
-		this.serverId = serverId;
+		this.item = item;
+		this.itemId = item.Id;
+		this.serverId = item.ServerId;
 		this.serverUrl = serverUrl;
 		this.apiKey = apiKey;
-		this.title = title;
+		this.title = item.Name || undefined;
 		this.filename = filename;
 		this.downloadUrl = downloadUrl;
 	}
@@ -87,11 +95,13 @@ export function fromStorageObject(value: {
 	isNew: boolean
 }): DownloadModel {
 	const model = new DownloadModel(
-		value.itemId,
-		value.serverId,
+		{
+			Id: value.itemId,
+			ServerId: value.serverId,
+			Name: value.title
+		},
 		value.serverUrl,
 		value.apiKey,
-		value.title,
 		value.filename,
 		value.downloadUrl
 	);

@@ -14,21 +14,25 @@ import DownloadModel from '../../models/DownloadModel';
 import { deserialize, useDownloadStore } from '../DownloadStore';
 
 const TEST_MODEL = new DownloadModel(
-	'item-id',
-	'server-id',
+	{
+		Id: 'item-id',
+		ServerId: 'server-id',
+		Name: 'title'
+	},
 	'https://example.com/',
 	'api-key',
-	'title',
 	'file name.mkv',
 	'https://example.com/download'
 );
 
 const TEST_MODEL_2 = new DownloadModel(
-	'item-id-2',
-	'server-id',
+	{
+		Id: 'item-id-2',
+		ServerId: 'server-id',
+		Name: 'other title'
+	},
 	'https://test2.example.com/',
 	'api-key',
-	'other title',
 	'other file name.mkv',
 	'https://test2.example.com/download'
 );
