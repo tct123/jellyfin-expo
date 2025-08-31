@@ -5,7 +5,8 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Modifica",
-        "delete": "Elimina"
+        "delete": "Elimina",
+        "play": "Riproduci"
     },
     "headings": {
         "addServer": "Aggiungi Server",
@@ -85,9 +86,9 @@
             "confirm": "Ripristina"
         },
         "deleteDownloads": {
-            "title": "Elimina Download",
+            "title": "Elimina Downloads",
             "description": "Questi elementi verranno permanentemente eliminati da questo dispositivo.",
-            "confirm": "Elimina {{downloadCount}} Download"
+            "confirm": "Elimina {{downloadCount}} Downloads"
         },
         "downloadFailed": {
             "title": "Download fallito",
@@ -95,7 +96,7 @@
         },
         "downloadUnsupported": {
             "title": "Tipo non supportato",
-            "description": "Download di contenuti di questo tipo non sono al momento supportati."
+            "description": "Il download di contenuti di questo tipo non è al momento supportato."
         }
     },
     "serverHelp": {
@@ -106,7 +107,7 @@
     "downloads": {
         "noDownloads": {
             "heading": "Nessun download",
-            "description": "Contenuti scaricati appariranno qui."
+            "description": "I contenuti scaricati appariranno qui."
         }
     }
 }
