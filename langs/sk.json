@@ -5,7 +5,8 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Upraviť",
-        "delete": "Vymazať"
+        "delete": "Vymazať",
+        "play": "Prehrať"
     },
     "headings": {
         "addServer": "Pridať server",
