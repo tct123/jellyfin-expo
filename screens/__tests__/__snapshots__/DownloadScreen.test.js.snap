@@ -35,11 +35,8 @@ exports[`DownloadScreen should render correctly 1`] = `
             "Name": "title",
             "ServerId": "server-id",
           },
-          "itemId": "item-id",
-          "serverId": "server-id",
           "serverUrl": "https://example.com/",
           "sessionId": "uuid-0",
-          "title": "title",
         },
         DownloadModel {
           "apiKey": "api-key",
@@ -53,11 +50,8 @@ exports[`DownloadScreen should render correctly 1`] = `
             "Name": "other title",
             "ServerId": "server-id",
           },
-          "itemId": "item-id-2",
-          "serverId": "server-id",
           "serverUrl": "https://test2.example.com/",
           "sessionId": "uuid-1",
-          "title": "other title",
         },
       ]
     }
@@ -75,11 +69,8 @@ exports[`DownloadScreen should render correctly 1`] = `
             "Name": "title",
             "ServerId": "server-id",
           },
-          "itemId": "item-id",
-          "serverId": "server-id",
           "serverUrl": "https://example.com/",
           "sessionId": "uuid-0",
-          "title": "title",
         },
         "server-id_item-id-2" => DownloadModel {
           "apiKey": "api-key",
@@ -93,11 +84,8 @@ exports[`DownloadScreen should render correctly 1`] = `
             "Name": "other title",
             "ServerId": "server-id",
           },
-          "itemId": "item-id-2",
-          "serverId": "server-id",
           "serverUrl": "https://test2.example.com/",
           "sessionId": "uuid-1",
-          "title": "other title",
         },
       }
     }
