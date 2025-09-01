@@ -87,6 +87,25 @@
             "title": "Ponovno postavljanje aplikacije",
             "description": "Jeste li sigurni da želite poništiti sve postavke?",
             "confirm": "Resetiraj"
+        },
+        "deleteDownloads": {
+            "title": "Izbriši preuzimanja",
+            "description": "Ove će se stavke trajno izbrisati s ovog uređaja.",
+            "confirm": "Izbriši {{downloadCount}} preuzimanja"
+        },
+        "downloadFailed": {
+            "title": "Preuzimanje neuspjelo",
+            "description": "Naslov ‚{{title}}‘ se nije uspio pruzeti."
+        },
+        "downloadUnsupported": {
+            "description": "Preuzimanje sadržaja ove vrste trenutačno nije podržano.",
+            "title": "Nepodržana vrsta"
+        }
+    },
+    "downloads": {
+        "noDownloads": {
+            "description": "Preuzeti sadržaj će se ovdje prikazati.",
+            "heading": "Ne preuzimanja"
         }
     }
 }
