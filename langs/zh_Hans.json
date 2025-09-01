@@ -5,7 +5,8 @@
         "ok": "确定",
         "beta": "BETA",
         "edit": "编辑",
-        "delete": "删除"
+        "delete": "删除",
+        "play": "播放"
     },
     "headings": {
         "addServer": "添加服务器",
