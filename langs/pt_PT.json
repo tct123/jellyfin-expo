@@ -5,7 +5,8 @@
         "ok": "OK",
         "unknown": "Desconhecido",
         "delete": "Eliminar",
-        "edit": "Editar"
+        "edit": "Editar",
+        "play": "Reproduzir"
     },
     "headings": {
         "addServer": "Adicionar servidor",
