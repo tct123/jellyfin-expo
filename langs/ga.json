@@ -5,7 +5,8 @@
         "delete": "Scrios",
         "edit": "Cuir in eagar",
         "ok": "Ceart go leor",
-        "unknown": "Anaithnid"
+        "unknown": "Anaithnid",
+        "play": "Seinn"
     },
     "headings": {
         "addServer": "Cuir Freastalaí leis",
