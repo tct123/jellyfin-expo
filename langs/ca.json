@@ -5,7 +5,8 @@
         "delete": "Elimina",
         "edit": "Edita",
         "ok": "D'acord",
-        "unknown": "Desconegut"
+        "unknown": "Desconegut",
+        "play": "Reprodueix"
     },
     "headings": {
         "addServer": "Afegeix un servidor",
