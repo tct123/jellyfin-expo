@@ -5,7 +5,8 @@
         "delete": "Dzēst",
         "edit": "Rediģēt",
         "ok": "OK",
-        "unknown": "Nezināms"
+        "unknown": "Nezināms",
+        "play": "Atskaņot"
     },
     "headings": {
         "addServer": "Pievienot Serveri",
