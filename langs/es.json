@@ -62,7 +62,8 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Editar",
-        "delete": "Eliminar"
+        "delete": "Eliminar",
+        "play": "Play"
     },
     "alerts": {
         "resetApplication": {
