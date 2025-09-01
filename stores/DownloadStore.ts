@@ -56,7 +56,12 @@ export const deserialize = (valueString: string | null): StorageValue<State> => 
 	if (Array.isArray(value.state.downloads)) {
 		value.state.downloads.forEach(([ key, obj ]: [ string, SerializedDownload ]) => {
 			if (!obj.item && (!obj.itemId || !obj.serverId)) {
-				throw new Error('Invalid serialized download. Missing item or server id.');
+				console.error(
+					`[${STORE_NAME}] Skipping invalid serialized download (missing itemId/serverId).`,
+					key,
+					obj
+				);
+				return;
 			}
 
 			// The base item was not saved in previous versions, so reconstruct it from the available information.
