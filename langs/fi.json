@@ -5,10 +5,11 @@
         "ok": "OK",
         "unknown": "Tuntematon",
         "edit": "Muokkaa",
-        "delete": "Poista"
+        "delete": "Poista",
+        "play": "Toista"
     },
     "headings": {
-        "addServer": "Lisää palvelin",
+        "addServer": "Lisää Palvelin",
         "appearance": "Ulkoasu",
         "home": "Koti",
         "links": "Linkit",
