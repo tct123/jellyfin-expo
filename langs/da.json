@@ -24,7 +24,7 @@
             "empty": "$t(addServer.address) kan ikke være tom",
             "invalid": "$t(addServer.address) er ugyldig",
             "invalidProduct": "Ikke en Jellyfin server",
-            "noConnection": "Kunne ikke få forbindelse til serveren"
+            "noConnection": "Kunne ikke oprette forbindelse til serveren"
         }
     },
     "home": {
