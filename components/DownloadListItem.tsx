@@ -14,6 +14,7 @@ import { Button, ListItem } from 'react-native-elements';
 
 import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
+import { getItemSubtitle } from '../utils/baseItem';
 
 interface DownloadListItemProps {
 	item: DownloadModel;
@@ -107,7 +108,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 					numberOfLines={1}
 					ellipsizeMode='tail'
 				>
-					{item.localFilename}
+					{getItemSubtitle(item.item) || item.localFilename}
 				</ListItem.Subtitle>
 			</ListItem.Content>
 			{item.isComplete ? (
