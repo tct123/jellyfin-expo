@@ -28,12 +28,15 @@ describe('DownloadListItem', () => {
 	});
 
 	it('should render correctly', () => {
+		const onPlay = jest.fn();
+		const onSelect = jest.fn();
+
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
 				item={model}
 				index={0}
-				onSelect={() => { /* no-op */ }}
-				onPlay={() => { /* no-op */ }}
+				onSelect={onSelect}
+				onPlay={onPlay}
 				onDelete={() => { /* no-op */ }}
 			/>
 		);
