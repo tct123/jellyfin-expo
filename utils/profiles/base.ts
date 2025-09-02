@@ -14,9 +14,9 @@ import { SubtitleDeliveryMethod } from '@jellyfin/sdk/lib/generated-client/model
 
 const BaseProfile = {
 	Name: 'Expo Base Video Profile',
-	MaxStaticBitrate: 100_000_000, // 100 Mbps
-	MaxStreamingBitrate: 120_000_000, // 120 Mbps
-	MusicStreamingTranscodingBitrate: 384_000, // 384 kbps
+	MaxStaticBitrate: 100000000, // 100 Mbps
+	MaxStreamingBitrate: 120000000, // 120 Mbps
+	MusicStreamingTranscodingBitrate: 384000, // 384 kbps
 	CodecProfiles: [
 		{
 			Codec: 'h264',
