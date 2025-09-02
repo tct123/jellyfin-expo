@@ -110,16 +110,38 @@ true;
 						break;
 					}
 
-					const url = new URL(data.item.url);
-					const apiKey = url.searchParams.get('api_key');
+					// Get the API key from the download URL
+					let apiKey;
+					try {
+						const url = new URL(data.item.url);
+						apiKey = url.searchParams.get('api_key');
+					} catch (e) {
+						console.error('[NativeShellWebView] downloadFile: failed to get api key from download url', data.item?.url);
+						Alert.alert(
+							t('alerts.downloadFailed.title'),
+							t('alerts.downloadFailed.description')
+						);
+						break;
+					}
+
+					// Validate that required fields are present
+					if (!apiKey || !data.item?.filename || !data.item?.item) {
+						console.error('[NativeShellWebView] downloadFile: missing required fields', {
+							hasApiKey: !!apiKey,
+							hasFilename: !!data?.item?.filename,
+							hasItem: !!data?.item?.item
+						});
+						Alert.alert(
+							t('alerts.downloadFailed.title'),
+							t('alerts.downloadFailed.description')
+						);
+						break;
+					}
+
 					downloadStore.add(new DownloadModel(
-						data.item.itemId,
-						data.item.serverId,
+						data.item.item,
 						server.urlString,
-						// FIXME: Add error handling if the API key cannot be parsed from the URL
-						// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-						apiKey!,
-						data.item.title,
+						apiKey,
 						data.item.filename,
 						data.item.url
 					));

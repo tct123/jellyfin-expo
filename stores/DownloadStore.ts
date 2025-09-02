@@ -10,13 +10,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { persist, type PersistStorage, type StorageValue } from 'zustand/middleware';
 
-import DownloadModel from '../models/DownloadModel';
+import DownloadModel, { type DownloadItem } from '../models/DownloadModel';
 
 import { logger } from './middleware/logger';
 
 type State = {
 	downloads: Map<string, DownloadModel>,
-}
+};
 
 type Actions = {
 	set: (value: Partial<State>) => void,
@@ -25,9 +25,22 @@ type Actions = {
 	delete: (download: DownloadModel) => boolean,
 	update: (download: DownloadModel) => void,
 	reset: () => void
-}
+};
 
-export type DownloadStore = State & Actions
+export type DownloadStore = State & Actions;
+
+interface SerializedDownload {
+	item?: DownloadItem
+	itemId?: string;
+	serverId?: string;
+	serverUrl: string;
+	apiKey: string;
+	title?: string;
+	filename: string;
+	downloadUrl: string;
+	isComplete: boolean;
+	isNew: boolean;
+}
 
 const STORE_NAME = 'DownloadStore';
 
@@ -41,13 +54,29 @@ export const deserialize = (valueString: string | null): StorageValue<State> => 
 	const downloads = new Map<string, DownloadModel>();
 
 	if (Array.isArray(value.state.downloads)) {
-		value.state.downloads.forEach(([ key, obj ]: [ string, DownloadModel ]) => {
+		value.state.downloads.forEach(([ key, obj ]: [ string, SerializedDownload ]) => {
+			if (!obj.item && (!obj.itemId || !obj.serverId)) {
+				console.error(
+					`[${STORE_NAME}] Skipping invalid serialized download (missing itemId/serverId).`,
+					key,
+					obj
+				);
+				return;
+			}
+
+			// The base item was not saved in previous versions, so reconstruct it from the available information.
+			const item: DownloadItem = obj.item || {
+				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+				Id: obj.itemId!,
+				// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+				ServerId: obj.serverId!,
+				Name: obj.title
+			};
+
 			const model = new DownloadModel(
-				obj.itemId,
-				obj.serverId,
+				item,
 				obj.serverUrl,
 				obj.apiKey,
-				obj.title,
 				obj.filename,
 				obj.downloadUrl
 			);

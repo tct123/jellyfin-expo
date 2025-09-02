@@ -30,11 +30,13 @@ exports[`DownloadScreen should render correctly 1`] = `
           "isComplete": false,
           "isDownloading": false,
           "isNew": true,
-          "itemId": "item-id",
-          "serverId": "server-id",
+          "item": Object {
+            "Id": "item-id",
+            "Name": "title",
+            "ServerId": "server-id",
+          },
           "serverUrl": "https://example.com/",
           "sessionId": "uuid-0",
-          "title": "title",
         },
         DownloadModel {
           "apiKey": "api-key",
@@ -43,11 +45,13 @@ exports[`DownloadScreen should render correctly 1`] = `
           "isComplete": false,
           "isDownloading": false,
           "isNew": true,
-          "itemId": "item-id-2",
-          "serverId": "server-id",
+          "item": Object {
+            "Id": "item-id-2",
+            "Name": "other title",
+            "ServerId": "server-id",
+          },
           "serverUrl": "https://test2.example.com/",
           "sessionId": "uuid-1",
-          "title": "other title",
         },
       ]
     }
@@ -60,11 +64,13 @@ exports[`DownloadScreen should render correctly 1`] = `
           "isComplete": false,
           "isDownloading": false,
           "isNew": true,
-          "itemId": "item-id",
-          "serverId": "server-id",
+          "item": Object {
+            "Id": "item-id",
+            "Name": "title",
+            "ServerId": "server-id",
+          },
           "serverUrl": "https://example.com/",
           "sessionId": "uuid-0",
-          "title": "title",
         },
         "server-id_item-id-2" => DownloadModel {
           "apiKey": "api-key",
@@ -73,11 +79,13 @@ exports[`DownloadScreen should render correctly 1`] = `
           "isComplete": false,
           "isDownloading": false,
           "isNew": true,
-          "itemId": "item-id-2",
-          "serverId": "server-id",
+          "item": Object {
+            "Id": "item-id-2",
+            "Name": "other title",
+            "ServerId": "server-id",
+          },
           "serverUrl": "https://test2.example.com/",
           "sessionId": "uuid-1",
-          "title": "other title",
         },
       }
     }
