@@ -5,85 +5,107 @@
         "ok": "За",
         "unknown": "Тодорхойгүй",
         "delete": "Устгах",
-        "edit": "Засварлах"
+        "edit": "Засварлах",
+        "play": "Тоглуулах"
     },
     "headings": {
-        "addServer": "",
-        "appearance": "",
-        "home": "",
-        "links": "",
+        "addServer": "Сервер нэмэх",
+        "appearance": "Харагдах байдал",
+        "home": "Нүүр",
+        "links": "Холбоос",
         "playback": "Тоглуулах",
-        "servers": "",
-        "settings": "Тохиргоо"
+        "servers": "Серверүүд",
+        "settings": "Тохиргоо",
+        "downloads": "Таталт"
     },
     "addServer": {
-        "address": "",
+        "address": "Cервер-н хаяг",
         "validation": {
-            "empty": "",
-            "invalid": "",
-            "invalidProduct": "",
-            "noConnection": ""
+            "empty": "$t(addServer.address) хоосон байна",
+            "invalid": "$t(addServer.address) хаяг буруу байна",
+            "invalidProduct": "Jellyfin сервер биш байна",
+            "noConnection": "Сервер-рүү холбогдох боломжгүй"
         }
     },
     "home": {
         "errors": {
             "502": {
-                "description": ""
+                "description": "Jellyfin серверт холбогдож чадсангүй. Ихэвчлэн энэ нь прокси тохиргооны алдаа эсвэл Jellyfin сервер ажиллахгүй байгаатай холбоотой."
             },
             "504": {
-                "description": ""
+                "description": "Jellyfin серверт холбогдож чадсангүй. Ихэвчлэн энэ нь прокси сервер Jellyfin-т холбогдох үед хугацаа хэтэрсэнтэй холбоотой."
             },
             "http": {
                 "heading": "Ямар нэгэн зүйл буруугаар эргэсэн!",
-                "description": ""
+                "description": "Jellyfin сервер алдаа буцаав."
             },
             "invalidServer": {
-                "heading": "",
-                "description": ""
+                "heading": "Сервер ажиллахгүй байна",
+                "description": "Ямар нэг зүйл тохиолдож, хадгалагдсан серверийн мэдээлэл хүчин төгөлдөргүй боллоо. Серверийг Тохиргооноос устгаад дахин нэмэхийг оролдоно уу."
             },
             "offline": {
-                "heading": "",
-                "description": ""
+                "heading": "Сервер ажиллахгүй байна уу?",
+                "description": "Jellyfin сервертэй холбогдоход алдаа гарлаа."
             }
         },
-        "errorCode": "",
+        "errorCode": "Алдааны код: {{errorCode}}",
         "errorUrl": "URL: {{url}}",
-        "retry": ""
+        "retry": "Дахин оролдох уу?"
     },
     "serverHelp": {
-        "heading": "",
-        "description": "",
-        "learnMore": ""
+        "heading": "Jellyfin гэж юу вэ?",
+        "description": "Jellyfin нь сайн дурынхан бүтээсэн медиа шийдэл юм. Энэ нь таны өөрийн медиа файлыг хадгалах, хаанаас ч хандах боломжийг олгодог.\n\n\nЭнэхүү клиент програмыг ашиглахын тулд та өөрийн Jellyfin серверийг ажиллуулсан байх шаардлагатай.",
+        "learnMore": "Өөрийн серверээ хэрхэн ажиллуулахыг дэлгэрэнгүй үзэх"
     },
     "settings": {
         "version": "Хувилбар: {{version}}",
-        "keepAwake": "",
-        "nativeVideoPlayer": "",
+        "keepAwake": "Дэлгэцийг унтрахгүй байлгах",
+        "nativeVideoPlayer": "Дотоод тоглуулагч ашиглах",
         "minimumServerVersion": "",
-        "fmp4Support": "",
-        "lightTheme": "",
-        "systemTheme": "",
-        "rotationLock": "",
-        "tabLabels": "",
+        "fmp4Support": "HLS-д fMP4-ийг илүүд үзэх",
+        "lightTheme": "Гэрэлтэй горим",
+        "systemTheme": "Системийн горим ашиглах",
+        "rotationLock": "Эргэлтийн түгжих",
+        "tabLabels": "Таб шошгыг харуулах",
         "expoVersion": "Expo Хувилбар: {{version}}"
     },
     "links": {
-        "website": "",
-        "documentation": "",
-        "source": "",
-        "translate": "",
-        "issue": ""
+        "website": "Jellyfin вэбсайт",
+        "documentation": "Баримт бичиг",
+        "source": "Эх код",
+        "translate": "Орчуулах",
+        "issue": "",
+        "help": "Тусламж хүсэх"
     },
     "alerts": {
         "deleteServer": {
-            "title": "",
-            "description": "",
-            "confirm": ""
+            "title": "Сервер устгах",
+            "description": "Та {{serverName}} серверийг устгахдаа итгэлтэй байна уу?",
+            "confirm": "Устгах"
         },
         "resetApplication": {
-            "title": "",
-            "description": "",
-            "confirm": ""
+            "title": "Програмыг дахин тохируулах",
+            "description": "Та бүх тохиргоог анхны байдалд оруулахдаа итгэлтэй байна уу?",
+            "confirm": "Дахин тохируулах"
+        },
+        "downloadUnsupported": {
+            "description": "Энэ төрлийн агуулгыг одоогоор татаж авахыг дэмждэггүй.",
+            "title": "Дэмжигдээгүй төрөл"
+        },
+        "deleteDownloads": {
+            "confirm": "{{downloadCount}} татан авалтыг устгах",
+            "title": "Татаж авалтыг устгах",
+            "description": "Эдгээр зүйлс төхөөрөмжөөс үүрд устгагдах болно."
+        },
+        "downloadFailed": {
+            "title": "Устгах амжилтгүй",
+            "description": "“{{title}}” татаж авч чадсангүй."
+        }
+    },
+    "downloads": {
+        "noDownloads": {
+            "heading": "Татаж авалт байхгүй",
+            "description": "Таны татаж авсан агуулга энд харагдана."
         }
     }
 }
