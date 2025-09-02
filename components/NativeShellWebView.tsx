@@ -113,13 +113,11 @@ true;
 					const url = new URL(data.item.url);
 					const apiKey = url.searchParams.get('api_key');
 					downloadStore.add(new DownloadModel(
-						data.item.itemId,
-						data.item.serverId,
+						data.item.item,
 						server.urlString,
 						// FIXME: Add error handling if the API key cannot be parsed from the URL
 						// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 						apiKey!,
-						data.item.title,
 						data.item.filename,
 						data.item.url
 					));
