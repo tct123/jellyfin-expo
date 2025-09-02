@@ -48,11 +48,6 @@ describe('DownloadListItem', () => {
 
 		expect(queryByTestId('menu-button')).toBeNull();
 		expect(queryByTestId('loading-indicator')).not.toBeNull();
-
-		// Pressing the list item and checkbox should call select
-		fireEvent.press(getByTestId('list-item'));
-		expect(onPlay).not.toHaveBeenCalled();
-		expect(onSelect).not.toHaveBeenCalled();
 	});
 
 	it('should display the menu and handle presses', () => {

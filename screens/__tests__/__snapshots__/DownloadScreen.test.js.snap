@@ -111,15 +111,11 @@ exports[`DownloadScreen should render correctly 1`] = `
         style={null}
       >
         <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+          accessibilityState={
+            Object {
+              "disabled": true,
+            }
+          }
           testID="list-item"
         >
           <View
@@ -256,15 +252,11 @@ exports[`DownloadScreen should render correctly 1`] = `
         style={null}
       >
         <View
-          accessible={true}
-          focusable={true}
-          onClick={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
+          accessibilityState={
+            Object {
+              "disabled": true,
+            }
+          }
           testID="list-item"
         >
           <View
