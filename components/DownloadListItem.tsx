@@ -85,12 +85,14 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			accessibilityState={{ disabled: !item.isComplete }}
 		>
 			{isEditMode &&
-			<ListItem.CheckBox
-				testID='select-checkbox'
-				onPress={onSelect}
-				checked={isSelected}
-				accessibilityRole='checkbox'
-			/>
+				<ListItem.CheckBox
+					testID='select-checkbox'
+					onPress={onSelect}
+					checked={isSelected}
+					disabled={!item.isComplete}
+					accessibilityRole='checkbox'
+					accessibilityState={{ checked: isSelected, disabled: !item.isComplete }}
+				/>
 			}
 			<ListItem.Content>
 				<ListItem.Title
