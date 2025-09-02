@@ -58,6 +58,15 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 		}
 	], [ t ]);
 
+	const onItemPress = useCallback(() => {
+		// Do nothing if the download is incomplete
+		if (!item.isComplete) return;
+		// Call select callback if in edit mode
+		if (isEditMode) onSelect();
+		// Otherwise call play callback
+		else onPlay();
+	}, [ isEditMode, item.isComplete, onPlay, onSelect ]);
+
 	const onMenuPress = useCallback(({ nativeEvent }: NativeActionEvent) => {
 		switch (nativeEvent.event) {
 			case MenuAction.PlayInApp:
@@ -74,10 +83,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			testID='list-item'
 			topDivider={index === 0}
 			bottomDivider
-			onPress={() => {
-				if (isEditMode) onSelect();
-				else onPlay();
-			}}
+			onPress={onItemPress}
 		>
 			{isEditMode &&
 			<ListItem.CheckBox
