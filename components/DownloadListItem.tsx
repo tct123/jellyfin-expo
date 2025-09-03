@@ -14,6 +14,7 @@ import { Button, ListItem } from 'react-native-elements';
 
 import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
+import { getItemSubtitle } from '../utils/baseItem';
 
 interface DownloadListItemProps {
 	item: DownloadModel;
@@ -57,6 +58,8 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			image: 'trash'
 		}
 	], [ t ]);
+
+	const subtitle = useMemo(() => item.item && getItemSubtitle(item.item), [ item.item ]);
 
 	const onItemPress = useCallback(() => {
 		// Call select callback if in edit mode
@@ -107,7 +110,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 					numberOfLines={1}
 					ellipsizeMode='tail'
 				>
-					{item.localFilename}
+					{subtitle || item.localFilename}
 				</ListItem.Subtitle>
 			</ListItem.Content>
 			{item.isComplete ? (
