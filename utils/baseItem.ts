@@ -8,13 +8,19 @@
 
 import type { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models/base-item-dto';
 
-export const getItemSubtitle = (item: BaseItemDto) => {
+export const getItemSubtitle = (item: BaseItemDto): string | undefined => {
 	// Episodes will show: Series Name S1E5-6
 	if (item.SeriesName) {
 		let episode = '';
-		if (item.ParentIndexNumber) episode += `S${item.ParentIndexNumber}`;
-		if (item.IndexNumber) episode += `E${item.IndexNumber}`;
-		if (item.IndexNumberEnd) episode += `-${item.IndexNumberEnd}`;
+		if (typeof item.ParentIndexNumber !== 'undefined') {
+			episode += `S${item.ParentIndexNumber}`;
+		}
+		if (typeof item.IndexNumber !== 'undefined') {
+			episode += `E${item.IndexNumber}`;
+			if (typeof item.IndexNumberEnd !== 'undefined') {
+				episode += `-${item.IndexNumberEnd}`;
+			}
+		}
 		return episode ? `${item.SeriesName} ${episode}` : item.SeriesName;
 	}
 

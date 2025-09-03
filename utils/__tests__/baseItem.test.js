@@ -27,6 +27,10 @@ describe('getItemSubtitle', () => {
 		delete item.ParentIndexNumber;
 		delete item.IndexNumberEnd;
 		expect(getItemSubtitle(item)).toBe('Series Name E11');
+
+		item.ParentIndexNumber = 0;
+		item.IndexNumber = 0;
+		expect(getItemSubtitle(item)).toBe('Series Name S0E0');
 	});
 
 	it('should handle songs correctly', () => {
@@ -42,5 +46,9 @@ describe('getItemSubtitle', () => {
 	it('should fallback to production year for other types', () => {
 		const item = { ProductionYear: 2025 };
 		expect(getItemSubtitle(item)).toBe('2025');
+	});
+
+	it('should return undefined when production year is unavailable', () => {
+		expect(getItemSubtitle({})).toBeUndefined();
 	});
 });

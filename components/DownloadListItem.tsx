@@ -59,6 +59,8 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 		}
 	], [ t ]);
 
+	const subtitle = useMemo(() => item.item && getItemSubtitle(item.item), [ item.item ]);
+
 	const onItemPress = useCallback(() => {
 		// Call select callback if in edit mode
 		if (isEditMode) onSelect();
@@ -108,7 +110,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 					numberOfLines={1}
 					ellipsizeMode='tail'
 				>
-					{getItemSubtitle(item.item) || item.localFilename}
+					{subtitle || item.localFilename}
 				</ListItem.Subtitle>
 			</ListItem.Content>
 			{item.isComplete ? (
