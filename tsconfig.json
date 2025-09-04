@@ -3,6 +3,11 @@
     "typeRoots": [
       "./types"
     ],
+    "moduleSuffixes": [
+      ".ios",
+      ".android",
+      ""
+    ],
     "noImplicitAny": true,
     "strict": true
   },
