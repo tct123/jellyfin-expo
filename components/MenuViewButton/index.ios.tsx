@@ -28,20 +28,22 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 	const { t } = useTranslation();
 
 	const onPress = useCallback(() => {
-		if (isMenuSupported) return;
+		if (isMenuSupported || disabled) return;
+		const actions = menuProps.actions || [];
+		if (!actions.length) return;
 
 		ActionSheetIOS.showActionSheetWithOptions(
 			{
 				options: [
-					...menuProps.actions.map(a => a.title),
+					...actions.map(a => a.title),
 					t('common.cancel')
 				],
-				destructiveButtonIndex: menuProps.actions.findIndex(a => a.attributes?.destructive),
-				cancelButtonIndex: menuProps.actions.length,
+				destructiveButtonIndex: actions.findIndex(a => a.attributes?.destructive),
+				cancelButtonIndex: actions.length,
 				userInterfaceStyle: menuProps.themeVariant
 			},
 			index => {
-				const action = menuProps.actions[index];
+				const action = actions[index];
 				if (!action) return;
 
 				return menuProps.onPressAction?.({
@@ -51,7 +53,7 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 				});
 			}
 		);
-	}, [ t ]);
+	}, [ disabled, menuProps.actions, menuProps.onPressAction, menuProps.themeVariant, t ]);
 
 	const button = (
 		<Button

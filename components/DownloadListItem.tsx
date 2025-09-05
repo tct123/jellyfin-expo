@@ -6,7 +6,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { type NativeActionEvent } from '@react-native-menu/menu';
 import React, { useCallback, useMemo, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
@@ -17,6 +16,7 @@ import type DownloadModel from '../models/DownloadModel';
 import { getItemSubtitle } from '../utils/baseItem';
 
 import MenuViewButton from './MenuViewButton';
+import type { MenuPressEvent } from './MenuViewButton/types';
 
 interface DownloadListItemProps {
 	item: DownloadModel;
@@ -70,7 +70,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 		else onPlay();
 	}, [ isEditMode, onPlay, onSelect ]);
 
-	const onMenuPress = useCallback(({ nativeEvent }: NativeActionEvent) => {
+	const onMenuPress = useCallback(({ nativeEvent }: MenuPressEvent) => {
 		switch (nativeEvent.event) {
 			case MenuAction.PlayInApp:
 				return onPlay();
