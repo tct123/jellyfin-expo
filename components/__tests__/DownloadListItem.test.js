@@ -14,6 +14,8 @@ describe('DownloadListItem', () => {
 	let model;
 
 	beforeEach(() => {
+		jest.resetModules();
+
 		model = new DownloadModel(
 			{
 				Id: 'item-id',
@@ -46,7 +48,6 @@ describe('DownloadListItem', () => {
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
 
-		expect(queryByTestId('menu-button')).toBeNull();
 		expect(queryByTestId('loading-indicator')).not.toBeNull();
 	});
 
@@ -71,7 +72,6 @@ describe('DownloadListItem', () => {
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
 
-		expect(queryByTestId('menu-button')).not.toBeNull();
 		expect(queryByTestId('loading-indicator')).toBeNull();
 
 		// Pressing the list item should call onPlay when not editing
@@ -109,7 +109,6 @@ describe('DownloadListItem', () => {
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
 
-		expect(queryByTestId('menu-button')).not.toBeNull();
 		expect(queryByTestId('loading-indicator')).toBeNull();
 
 		expect(onSelect).not.toHaveBeenCalled();

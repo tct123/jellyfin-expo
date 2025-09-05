@@ -6,15 +6,17 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { MenuView, type NativeActionEvent } from '@react-native-menu/menu';
 import React, { useCallback, useMemo, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
-import { Button, ListItem } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 
 import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
 import { getItemSubtitle } from '../utils/baseItem';
+
+import MenuViewButton from './MenuViewButton';
+import type { MenuPressEvent } from './MenuViewButton/types';
 
 interface DownloadListItemProps {
 	item: DownloadModel;
@@ -68,7 +70,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 		else onPlay();
 	}, [ isEditMode, onPlay, onSelect ]);
 
-	const onMenuPress = useCallback(({ nativeEvent }: NativeActionEvent) => {
+	const onMenuPress = useCallback(({ nativeEvent }: MenuPressEvent) => {
 		switch (nativeEvent.event) {
 			case MenuAction.PlayInApp:
 				return onPlay();
@@ -114,7 +116,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 				</ListItem.Subtitle>
 			</ListItem.Content>
 			{item.isComplete ? (
-				<MenuView
+				<MenuViewButton
 					testID='menu-view'
 					actions={menuActions}
 					onPressAction={onMenuPress}
@@ -122,17 +124,8 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 					themeVariant={
 						settingStore.getTheme().dark ? 'dark' : 'light'
 					}
-				>
-					<Button
-						testID='menu-button'
-						type='clear'
-						icon={{
-							name: 'ellipsis-horizontal',
-							type: 'ionicon'
-						}}
-						disabled={isEditMode}
-					/>
-				</MenuView>
+					disabled={isEditMode}
+				/>
 			) :
 				<ActivityIndicator testID='loading-indicator' />
 			}
