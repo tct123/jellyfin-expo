@@ -7,6 +7,7 @@
 import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
+import { DownloadStatus } from '../../constants/DownloadStatus';
 import DownloadModel from '../../models/DownloadModel';
 import DownloadListItem from '../DownloadListItem';
 
@@ -33,6 +34,8 @@ describe('DownloadListItem', () => {
 		const onPlay = jest.fn();
 		const onSelect = jest.fn();
 
+		model.status = DownloadStatus.Downloading;
+
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
 				item={model}
@@ -55,7 +58,7 @@ describe('DownloadListItem', () => {
 		const onPlay = jest.fn();
 		const onDelete = jest.fn();
 
-		model.isComplete = true;
+		model.status = DownloadStatus.Complete;
 
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
@@ -92,7 +95,7 @@ describe('DownloadListItem', () => {
 	it('should display the select checkbox and handle presses', () => {
 		const onSelect = jest.fn();
 
-		model.isComplete = true;
+		model.status = DownloadStatus.Complete;
 
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem

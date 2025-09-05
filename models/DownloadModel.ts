@@ -10,6 +10,8 @@ import type { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models/base
 import * as FileSystem from 'expo-file-system';
 import { v4 as uuidv4 } from 'uuid';
 
+import { DownloadStatus } from '../constants/DownloadStatus';
+
 export interface DownloadItem extends BaseItemDto {
 	Id: string;
 	ServerId: string;
@@ -28,8 +30,7 @@ interface MobxDownloadModel {
 }
 
 export default class DownloadModel {
-	isComplete = false
-	isDownloading = false
+	status: DownloadStatus = DownloadStatus.Pending
 	isNew = true
 
 	apiKey: string
@@ -54,6 +55,10 @@ export default class DownloadModel {
 		this.apiKey = apiKey;
 		this.filename = filename;
 		this.downloadUrl = downloadUrl;
+	}
+
+	get isComplete() {
+		return this.status === DownloadStatus.Complete;
 	}
 
 	/** @deprecated Use item.Id instead. */
@@ -126,7 +131,7 @@ export function fromStorageObject({
 		filename,
 		downloadUrl
 	);
-	model.isComplete = isComplete;
+	if (isComplete) model.status = DownloadStatus.Complete;
 	model.isNew = isNew;
 	return model;
 }

@@ -27,8 +27,6 @@ exports[`DownloadScreen should render correctly 1`] = `
           "apiKey": "api-key",
           "downloadUrl": "https://example.com/download",
           "filename": "file name.mkv",
-          "isComplete": false,
-          "isDownloading": false,
           "isNew": true,
           "item": Object {
             "Id": "item-id",
@@ -37,13 +35,12 @@ exports[`DownloadScreen should render correctly 1`] = `
           },
           "serverUrl": "https://example.com/",
           "sessionId": "uuid-0",
+          "status": "pending",
         },
         DownloadModel {
           "apiKey": "api-key",
           "downloadUrl": "https://test2.example.com/download",
           "filename": "other file name.mkv",
-          "isComplete": false,
-          "isDownloading": false,
           "isNew": true,
           "item": Object {
             "Id": "item-id-2",
@@ -52,6 +49,7 @@ exports[`DownloadScreen should render correctly 1`] = `
           },
           "serverUrl": "https://test2.example.com/",
           "sessionId": "uuid-1",
+          "status": "pending",
         },
       ]
     }
@@ -61,8 +59,6 @@ exports[`DownloadScreen should render correctly 1`] = `
           "apiKey": "api-key",
           "downloadUrl": "https://example.com/download",
           "filename": "file name.mkv",
-          "isComplete": false,
-          "isDownloading": false,
           "isNew": true,
           "item": Object {
             "Id": "item-id",
@@ -71,13 +67,12 @@ exports[`DownloadScreen should render correctly 1`] = `
           },
           "serverUrl": "https://example.com/",
           "sessionId": "uuid-0",
+          "status": "pending",
         },
         "server-id_item-id-2" => DownloadModel {
           "apiKey": "api-key",
           "downloadUrl": "https://test2.example.com/download",
           "filename": "other file name.mkv",
-          "isComplete": false,
-          "isDownloading": false,
           "isNew": true,
           "item": Object {
             "Id": "item-id-2",
@@ -86,6 +81,7 @@ exports[`DownloadScreen should render correctly 1`] = `
           },
           "serverUrl": "https://test2.example.com/",
           "sessionId": "uuid-1",
+          "status": "pending",
         },
       }
     }
