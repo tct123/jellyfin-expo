@@ -5,7 +5,8 @@
         "delete": "Delete",
         "edit": "Edit",
         "ok": "OK",
-        "unknown": "Unknown"
+        "unknown": "Unknown",
+        "play": "Play"
     },
     "headings": {
         "addServer": "Add Server",
