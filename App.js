@@ -27,6 +27,7 @@ import { ThemeContext, ThemeProvider } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import ThemeSwitcher from './components/ThemeSwitcher';
+import { DownloadStatus } from './constants/DownloadStatus';
 import { useIsHydrated } from './hooks/useHydrated';
 import { useStores } from './hooks/useStores';
 import { fromStorageObject } from './models/DownloadModel';
@@ -213,11 +214,10 @@ const App = ({ skipLoadingScreen }) => {
 
 			// Download the file
 			try {
-				download.isDownloading = true;
+				download.status = DownloadStatus.Downloading;
 				downloadStore.update(download);
 				await resumable.downloadAsync();
-				download.isComplete = true;
-				download.isDownloading = false;
+				download.status = DownloadStatus.Complete;
 			} catch (e) {
 				console.error('[App] Download failed', e);
 				Alert.alert(
@@ -226,7 +226,7 @@ const App = ({ skipLoadingScreen }) => {
 				);
 
 				// TODO: If a download fails, we should probably remove it from the queue
-				download.isDownloading = false;
+				download.status = DownloadStatus.Failed;
 			}
 
 			// Push the state update to the store
@@ -249,7 +249,7 @@ const App = ({ skipLoadingScreen }) => {
 
 		downloadStore.downloads
 			.forEach(download => {
-				if (!download.isComplete && !download.isDownloading) {
+				if (download.status === DownloadStatus.Pending) {
 					downloadFile(download);
 				}
 			});

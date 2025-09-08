@@ -4,6 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+import { DownloadStatus } from '../../constants/DownloadStatus';
 import DownloadModel, { fromStorageObject } from '../DownloadModel';
 
 const DOCUMENT_DIRECTORY = '/DOC_DIR/';
@@ -38,7 +39,7 @@ describe('DownloadModel', () => {
 		expect(download.downloadUrl).toBe('https://example.com/download');
 
 		expect(download.isComplete).toBe(false);
-		expect(download.isDownloading).toBe(false);
+		expect(download.status).toBe(DownloadStatus.Pending);
 		expect(download.isNew).toBe(true);
 
 		expect(download.key).toBe('server-id_item-id');
@@ -70,6 +71,7 @@ describe('DownloadModel', () => {
 		expect(download.title).toBe(value.title);
 		expect(download.filename).toBe(value.filename);
 		expect(download.downloadUrl).toBe(value.downloadUrl);
+		expect(download.status).toBe(DownloadStatus.Complete);
 		expect(download.isComplete).toBe(value.isComplete);
 		expect(download.isNew).toBe(value.isNew);
 	});

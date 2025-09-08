@@ -7,6 +7,7 @@
 import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
+import { DownloadStatus } from '../../constants/DownloadStatus';
 import DownloadModel from '../../models/DownloadModel';
 import DownloadListItem from '../DownloadListItem';
 
@@ -33,6 +34,8 @@ describe('DownloadListItem', () => {
 		const onPlay = jest.fn();
 		const onSelect = jest.fn();
 
+		model.status = DownloadStatus.Downloading;
+
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
 				item={model}
@@ -44,6 +47,7 @@ describe('DownloadListItem', () => {
 		);
 
 		expect(queryByTestId('select-checkbox')).toBeNull();
+		expect(queryByTestId('failed-icon')).toBeNull();
 
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
@@ -55,7 +59,7 @@ describe('DownloadListItem', () => {
 		const onPlay = jest.fn();
 		const onDelete = jest.fn();
 
-		model.isComplete = true;
+		model.status = DownloadStatus.Complete;
 
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
@@ -68,6 +72,7 @@ describe('DownloadListItem', () => {
 		);
 
 		expect(queryByTestId('select-checkbox')).toBeNull();
+		expect(queryByTestId('failed-icon')).toBeNull();
 
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
@@ -92,7 +97,7 @@ describe('DownloadListItem', () => {
 	it('should display the select checkbox and handle presses', () => {
 		const onSelect = jest.fn();
 
-		model.isComplete = true;
+		model.status = DownloadStatus.Complete;
 
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
@@ -110,6 +115,7 @@ describe('DownloadListItem', () => {
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
 
 		expect(queryByTestId('loading-indicator')).toBeNull();
+		expect(queryByTestId('failed-icon')).toBeNull();
 
 		expect(onSelect).not.toHaveBeenCalled();
 
@@ -118,5 +124,27 @@ describe('DownloadListItem', () => {
 		expect(onSelect).toHaveBeenCalledTimes(1);
 		fireEvent.press(getByTestId('select-checkbox'));
 		expect(onSelect).toHaveBeenCalledTimes(2);
+	});
+
+	it('should display a warning for failed downloads', () => {
+		model.status = DownloadStatus.Failed;
+
+		const { getByTestId, queryByTestId } = render(
+			<DownloadListItem
+				item={model}
+				index={0}
+				onSelect={jest.fn()}
+				onPlay={jest.fn()}
+				onDelete={jest.fn()}
+			/>
+		);
+
+		expect(queryByTestId('select-checkbox')).toBeNull();
+		expect(queryByTestId('loading-indicator')).toBeNull();
+
+		expect(getByTestId('title')).toHaveTextContent('title');
+		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
+
+		expect(queryByTestId('failed-icon')).not.toBeNull();
 	});
 });

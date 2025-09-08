@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { persist, type PersistStorage, type StorageValue } from 'zustand/middleware';
 
+import { DownloadStatus } from '../constants/DownloadStatus';
 import DownloadModel, { type DownloadItem } from '../models/DownloadModel';
 
 import { logger } from './middleware/logger';
@@ -38,8 +39,10 @@ interface SerializedDownload {
 	title?: string;
 	filename: string;
 	downloadUrl: string;
-	isComplete: boolean;
+	/** @deprecated Use status instead. */
+	isComplete?: boolean;
 	isNew: boolean;
+	status?: DownloadStatus;
 }
 
 const STORE_NAME = 'DownloadStore';
@@ -80,7 +83,15 @@ export const deserialize = (valueString: string | null): StorageValue<State> => 
 				obj.filename,
 				obj.downloadUrl
 			);
-			model.isComplete = obj.isComplete;
+			if (obj.status) {
+				// Restore the status unless it was downloading since resuming downloads is not implemented.
+				if (obj.status !== DownloadStatus.Downloading) {
+					model.status = obj.status;
+				}
+			} else if (obj.isComplete) {
+				// Migrate legacy completed status.
+				model.status = DownloadStatus.Complete;
+			}
 			model.isNew = obj.isNew;
 
 			downloads.set(key, model);
