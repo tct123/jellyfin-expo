@@ -89,6 +89,7 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 		case DownloadStatus.Failed:
 			return (
 				<Icon
+					testID='failed-icon'
 					type='ionicon'
 					name={getIconName('warning')}
 					color={theme.colors?.error}

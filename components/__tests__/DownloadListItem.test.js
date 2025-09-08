@@ -47,6 +47,7 @@ describe('DownloadListItem', () => {
 		);
 
 		expect(queryByTestId('select-checkbox')).toBeNull();
+		expect(queryByTestId('failed-icon')).toBeNull();
 
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
@@ -71,6 +72,7 @@ describe('DownloadListItem', () => {
 		);
 
 		expect(queryByTestId('select-checkbox')).toBeNull();
+		expect(queryByTestId('failed-icon')).toBeNull();
 
 		expect(getByTestId('title')).toHaveTextContent('title');
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
@@ -113,6 +115,7 @@ describe('DownloadListItem', () => {
 		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
 
 		expect(queryByTestId('loading-indicator')).toBeNull();
+		expect(queryByTestId('failed-icon')).toBeNull();
 
 		expect(onSelect).not.toHaveBeenCalled();
 
@@ -121,5 +124,27 @@ describe('DownloadListItem', () => {
 		expect(onSelect).toHaveBeenCalledTimes(1);
 		fireEvent.press(getByTestId('select-checkbox'));
 		expect(onSelect).toHaveBeenCalledTimes(2);
+	});
+
+	it('should display a warning for failed downloads', () => {
+		model.status = DownloadStatus.Failed;
+
+		const { getByTestId, queryByTestId } = render(
+			<DownloadListItem
+				item={model}
+				index={0}
+				onSelect={jest.fn()}
+				onPlay={jest.fn()}
+				onDelete={jest.fn()}
+			/>
+		);
+
+		expect(queryByTestId('select-checkbox')).toBeNull();
+		expect(queryByTestId('loading-indicator')).toBeNull();
+
+		expect(getByTestId('title')).toHaveTextContent('title');
+		expect(getByTestId('subtitle')).toHaveTextContent('file name.mp4');
+
+		expect(queryByTestId('failed-icon')).not.toBeNull();
 	});
 });

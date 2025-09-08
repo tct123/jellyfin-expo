@@ -237,9 +237,27 @@ exports[`DownloadScreen should render correctly 1`] = `
                 }
               }
             />
-            <ActivityIndicator
-              testID="loading-indicator"
-            />
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text />
+                </View>
+              </View>
+            </View>
           </View>
         </View>
       </View>
@@ -377,9 +395,27 @@ exports[`DownloadScreen should render correctly 1`] = `
                 }
               }
             />
-            <ActivityIndicator
-              testID="loading-indicator"
-            />
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text />
+                </View>
+              </View>
+            </View>
           </View>
         </View>
       </View>
