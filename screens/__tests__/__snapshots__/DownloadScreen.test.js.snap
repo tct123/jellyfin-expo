@@ -107,11 +107,6 @@ exports[`DownloadScreen should render correctly 1`] = `
         style={null}
       >
         <View
-          accessibilityState={
-            Object {
-              "disabled": true,
-            }
-          }
           testID="list-item"
         >
           <View
@@ -266,11 +261,6 @@ exports[`DownloadScreen should render correctly 1`] = `
         style={null}
       >
         <View
-          accessibilityState={
-            Object {
-              "disabled": true,
-            }
-          }
           testID="list-item"
         >
           <View

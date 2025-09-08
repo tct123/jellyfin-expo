@@ -48,7 +48,6 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			topDivider={index === 0}
 			bottomDivider
 			onPress={item.isComplete ? onItemPress : undefined}
-			accessibilityState={{ disabled: !item.isComplete }}
 		>
 			{isEditMode &&
 				<ListItem.CheckBox

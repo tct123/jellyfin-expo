@@ -71,6 +71,7 @@ describe('DownloadModel', () => {
 		expect(download.title).toBe(value.title);
 		expect(download.filename).toBe(value.filename);
 		expect(download.downloadUrl).toBe(value.downloadUrl);
+		expect(download.status).toBe(DownloadStatus.Complete);
 		expect(download.isComplete).toBe(value.isComplete);
 		expect(download.isNew).toBe(value.isNew);
 	});

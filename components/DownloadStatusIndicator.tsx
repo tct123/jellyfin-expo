@@ -35,7 +35,7 @@ const MenuAction = {
 
 const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 	download,
-	isEditMode,
+	isEditMode = false,
 	onDelete,
 	onPlay
 }) => {
