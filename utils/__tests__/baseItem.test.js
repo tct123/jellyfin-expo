@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { getItemSubtitle } from '../baseItem';
+import { getItemDirectory, getItemFileName, getItemSubtitle } from '../baseItem';
 
 describe('getItemSubtitle', () => {
 	it('should handle episodes correctly', () => {
@@ -50,5 +50,86 @@ describe('getItemSubtitle', () => {
 
 	it('should return undefined when production year is unavailable', () => {
 		expect(getItemSubtitle({})).toBeUndefined();
+	});
+});
+
+describe('getItemDirectory', () => {
+	it('should handle songs correctly', () => {
+		const item = {
+			Album: 'Album Name'
+		};
+		expect(getItemDirectory(item)).toBe('Unknown Artist/Album Name/');
+
+		item.AlbumArtist = 'Ozzy Osbourne';
+		expect(getItemDirectory(item)).toBe('Ozzy Osbourne/Album Name/');
+	});
+
+	it('should handle episodes correctly', () => {
+		const item = {
+			SeriesName: 'Series Name',
+			ParentIndexNumber: 3,
+			ProductionYear: 2025
+		};
+		expect(getItemDirectory(item)).toBe('Series Name (2025)/Season 3/');
+	});
+
+	it('should fallback to name and year when possible', () => {
+		const item = {
+			Name: 'Item Name'
+		};
+		expect(getItemDirectory(item)).toBe('Item Name/');
+
+		item.ProductionYear = 2025;
+		expect(getItemDirectory(item)).toBe('Item Name (2025)/');
+	});
+
+	it('should return undefined when no name or year is present', () => {
+		expect(getItemDirectory({})).toBeUndefined();
+	});
+});
+
+describe('getItemFileName', () => {
+	it('should handle songs correctly', () => {
+		const item = {
+			Album: 'Album Name'
+		};
+		expect(getItemFileName(item)).toBeUndefined();
+
+		item.Name = 'Song Name';
+		expect(getItemFileName(item)).toBe('Song Name');
+
+		item.IndexNumber = 2;
+		expect(getItemFileName(item)).toBe('2 - Song Name');
+
+		delete item.Name;
+		expect(getItemFileName(item)).toBe('2');
+	});
+
+	it('should handle episodes correctly', () => {
+		const item = {
+			SeriesName: 'Series Name'
+		};
+		expect(getItemFileName(item)).toBe('Series Name');
+
+		item.ParentIndexNumber = 3;
+		item.IndexNumber = 15;
+		expect(getItemFileName(item)).toBe('Series Name - S3E15');
+
+		item.Name = 'Episode Name';
+		expect(getItemFileName(item)).toBe('Series Name - S3E15 - Episode Name');
+	});
+
+	it('should fallback to name and year when possible', () => {
+		const item = {
+			Name: 'Item Name'
+		};
+		expect(getItemFileName(item)).toBe('Item Name');
+
+		item.ProductionYear = 2025;
+		expect(getItemFileName(item)).toBe('Item Name (2025)');
+	});
+
+	it('should return undefined when no name or year is present', () => {
+		expect(getItemFileName({})).toBeUndefined();
 	});
 });

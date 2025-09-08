@@ -19,13 +19,16 @@ describe('DownloadModel', () => {
 			{
 				Id: 'item-id',
 				ServerId: 'server-id',
-				Name: 'title'
+				Name: 'title',
+				Path: 'title.mkv',
+				ProductionYear: 2025
 			},
 			'https://example.com/',
 			'api-key',
 			'file name.mkv',
 			'https://example.com/download'
 		);
+		download.extension = '.mp4';
 
 		expect(download.apiKey).toBe('api-key');
 		expect(download.itemId).toBe('item-id');
@@ -43,10 +46,55 @@ describe('DownloadModel', () => {
 		expect(download.isNew).toBe(true);
 
 		expect(download.key).toBe('server-id_item-id');
-		expect(download.localFilename).toBe('file name.mp4');
-		expect(download.localPath).toBe(`${DOCUMENT_DIRECTORY}server-id/item-id/`);
-		expect(download.uri).toBe(`${DOCUMENT_DIRECTORY}server-id/item-id/file%20name.mp4`);
+		expect(download.isSharedPath).toBe(false);
+		expect(download.localFilename).toBe('title (2025).mp4');
+		expect(download.localPath).toBe(`${DOCUMENT_DIRECTORY}Downloads/title (2025)/`);
+		expect(download.uri).toBe(`${DOCUMENT_DIRECTORY}Downloads/title%20(2025)/title%20(2025).mp4`);
 		expect(download.getStreamUrl('device-id').toString()).toBe('https://example.com/Videos/item-id/stream.mp4?deviceId=device-id&api_key=api-key&playSessionId=uuid-0&videoCodec=hevc%2Ch264&audioCodec=aac%2Cmp3%2Cac3%2Ceac3%2Cflac%2Calac&maxAudioChannels=6');
+	});
+
+	it('should return true if the download\'s localPath could be shared by other downloads', () => {
+		let download = new DownloadModel(
+			{
+				Id: 'item-id',
+				ServerId: 'server-id',
+				Album: 'Album Name'
+			},
+			'https://example.com/',
+			'api-key',
+			'file name.mkv',
+			'https://example.com/download'
+		);
+		expect(download.isSharedPath).toBe(true);
+
+		download = new DownloadModel(
+			{
+				Id: 'item-id',
+				ServerId: 'server-id',
+				SeriesName: 'Series Name'
+			},
+			'https://example.com/',
+			'api-key',
+			'file name.mkv',
+			'https://example.com/download'
+		);
+		expect(download.isSharedPath).toBe(true);
+	});
+
+	it('should return fallback values for legacy downloads', () => {
+		const download = new DownloadModel(
+			{
+				Id: 'item-id',
+				ServerId: 'server-id'
+			},
+			'https://example.com/',
+			'api-key',
+			'file name.mkv',
+			'https://example.com/download'
+		);
+
+		expect(download.title).toBeUndefined();
+		expect(download.localPath).toBe(`${DOCUMENT_DIRECTORY}server-id/item-id/`);
 	});
 
 	it('should create a DownloadModel from a storage object', () => {
