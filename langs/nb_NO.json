@@ -5,7 +5,8 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Rediger",
-        "delete": "Slett"
+        "delete": "Slett",
+        "play": "Spill Av"
     },
     "headings": {
         "addServer": "Legg til server",
@@ -65,7 +66,7 @@
         "nativeVideoPlayer": "Bruk innebygget videospiller"
     },
     "links": {
-        "website": "Jellyfin nettside",
+        "website": "Jellyfin Nettside",
         "documentation": "Dokumentasjon",
         "source": "Kildekode",
         "feature": "Forespør en funksjon",
@@ -83,11 +84,30 @@
             "title": "Tilbakestill applikasjonen",
             "description": "Er du sikker på at du vil tilbakestille alle innstillinger?",
             "confirm": "Tilbakestill"
+        },
+        "deleteDownloads": {
+            "title": "Slett Nedlastinger",
+            "description": "Disse gjenstandene blir slettet permanent fra denne enheten.",
+            "confirm": "Slett {{downloadCount}} Nedlastinger"
+        },
+        "downloadFailed": {
+            "title": "Nedlastinger Mislyktes",
+            "description": "\"{{title}}\" kunne ikke lastes ned."
+        },
+        "downloadUnsupported": {
+            "description": "Nedlastning av denne typen innhold er ikke støttet for tiden.",
+            "title": "Formatet støttes ikke"
         }
     },
     "serverHelp": {
         "learnMore": "Lær mer om hvordan du drifter din egen server",
         "description": "Jellyfin er medieløsningen laget av frivillige. Den lar deg legge inn dine egne medier og få tilgang til dem fra hvor som helst.\n\n\nFor å kunne bruke denne klienten, må du drifte din egen Jellyfin-server.",
         "heading": "Hva er Jellyfin?"
+    },
+    "downloads": {
+        "noDownloads": {
+            "heading": "Ingen nedlastinger",
+            "description": "Her vises innhold du har lastet ned."
+        }
     }
 }
