@@ -14,8 +14,7 @@ import { Icon, ThemeContext } from 'react-native-elements';
 
 import { DownloadStatus } from '../constants/DownloadStatus';
 import { useStores } from '../hooks/useStores';
-import DownloadModel from '../models/DownloadModel';
-
+import type DownloadModel from '../models/DownloadModel';
 import { getIconName } from '../utils/Icons';
 
 import MenuViewButton from './MenuViewButton';
