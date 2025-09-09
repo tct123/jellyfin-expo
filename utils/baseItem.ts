@@ -8,7 +8,7 @@
 
 import type { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models/base-item-dto';
 
-import { sanitizeDirName, sanitizeFileName } from './File';
+import { sanitizeFileName } from './File';
 
 /** Gets the short episode ID for display. e.g. S2E5-6 */
 const getShortEpisodeId = (item: BaseItemDto): string | undefined => {
@@ -67,10 +67,10 @@ export const getItemDirectory = (item: BaseItemDto): string | undefined => {
 	// from the BaseItem of the song.
 	if (item.Album) {
 		const artist = item.AlbumArtist ? item.AlbumArtist : 'Unknown Artist';
-		return `${sanitizeDirName(artist)}/${sanitizeDirName(item.Album)}/`;
+		return `${sanitizeFileName(artist)}/${sanitizeFileName(item.Album)}/`;
 	}
 
-	const nameAndYear = sanitizeDirName(getNameAndYear(item));
+	const nameAndYear = sanitizeFileName(getNameAndYear(item));
 
 	// Episodes will use: Series Name (2025)/Season 1/
 	if (item.SeriesName && typeof item.ParentIndexNumber !== 'undefined') {

@@ -8,8 +8,7 @@
 
 import * as FileSystem from 'expo-file-system';
 
-const INVALID_DIR_CHARS = /[\\/:*?"<>|.]/g;
-const INVALID_FILE_CHARS = /[\\/:*?"<>|]/g;
+const INVALID_PATH_CHARS = /[\\/:*?"<>|.]/g;
 
 const reduceReplacements = (s: string) => (
 	s.replace(/-+/g, '-') // collapse runs
@@ -27,18 +26,14 @@ export async function ensurePathExists(path: string) {
 	}
 }
 
-/** Trim and replace any invalid characters in a directory name. */
-export function sanitizeDirName(name?: string) {
-	const trimmed = name?.trim();
-	if (!trimmed) return;
-
-	return reduceReplacements(trimmed.replace(INVALID_DIR_CHARS, '-'));
-}
-
-/** Trim and replace any invalid characters in a file name. */
+/** Trim and replace any invalid characters in a file/directory name (extension excluded). */
 export function sanitizeFileName(name?: string) {
 	const trimmed = name?.trim();
 	if (!trimmed) return;
 
-	return reduceReplacements(trimmed.replace(INVALID_FILE_CHARS, '-'));
+	const sanitized = reduceReplacements(
+		trimmed
+			.normalize('NFC')
+			.replace(INVALID_PATH_CHARS, '-'));
+	return sanitized || undefined;
 }
