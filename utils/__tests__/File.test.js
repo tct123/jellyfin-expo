@@ -40,7 +40,7 @@ describe('File', () => {
 	describe('sanitizeDirName', () => {
 		it('should sanitize directory names', () => {
 			let name = sanitizeDirName(' Q: A.? ');
-			expect(name).toBe('Q- A--');
+			expect(name).toBe('Q- A');
 
 			name = sanitizeDirName('AC/DC');
 			expect(name).toBe('AC-DC');
@@ -49,7 +49,7 @@ describe('File', () => {
 
 	describe('sanitizeFileName', () => {
 		it('should sanitize file names', () => {
-			let name = sanitizeFileName(' Q: A?.mp3 ');
+			let name = sanitizeFileName(' *<>Q: A?.mp3 ');
 			expect(name).toBe('Q- A-.mp3');
 
 			name = sanitizeFileName('AC/DC');

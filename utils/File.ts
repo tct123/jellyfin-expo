@@ -11,6 +11,11 @@ import * as FileSystem from 'expo-file-system';
 const INVALID_DIR_CHARS = /[\\/:*?"<>|.]/g;
 const INVALID_FILE_CHARS = /[\\/:*?"<>|]/g;
 
+const reduceReplacements = (s: string) => (
+	s.replace(/-+/g, '-') // collapse runs
+		.replace(/^-+|-+$/g, '') // trim leading/trailing
+);
+
 /**
  * Checks if a path exists, and creates a directory (including missing intermediate directories) if it does not.
  * @param path A uri of a local directory
@@ -27,7 +32,7 @@ export function sanitizeDirName(name?: string) {
 	const trimmed = name?.trim();
 	if (!trimmed) return;
 
-	return trimmed.replace(INVALID_DIR_CHARS, '-');
+	return reduceReplacements(trimmed.replace(INVALID_DIR_CHARS, '-'));
 }
 
 /** Trim and replace any invalid characters in a file name. */
@@ -35,5 +40,5 @@ export function sanitizeFileName(name?: string) {
 	const trimmed = name?.trim();
 	if (!trimmed) return;
 
-	return trimmed.replace(INVALID_FILE_CHARS, '-');
+	return reduceReplacements(trimmed.replace(INVALID_FILE_CHARS, '-'));
 }
