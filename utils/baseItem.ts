@@ -8,6 +8,8 @@
 
 import type { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models/base-item-dto';
 
+import { sanitizeDirName, sanitizeFileName } from './File';
+
 /** Gets the short episode ID for display. e.g. S2E5-6 */
 const getShortEpisodeId = (item: BaseItemDto): string | undefined => {
 	let episode = '';
@@ -65,10 +67,10 @@ export const getItemDirectory = (item: BaseItemDto): string | undefined => {
 	// from the BaseItem of the song.
 	if (item.Album) {
 		const artist = item.AlbumArtist ? item.AlbumArtist : 'Unknown Artist';
-		return `${artist}/${item.Album}/`;
+		return `${sanitizeDirName(artist)}/${sanitizeDirName(item.Album)}/`;
 	}
 
-	const nameAndYear = getNameAndYear(item);
+	const nameAndYear = sanitizeDirName(getNameAndYear(item));
 
 	// Episodes will use: Series Name (2025)/Season 1/
 	if (item.SeriesName && typeof item.ParentIndexNumber !== 'undefined') {
@@ -86,25 +88,27 @@ export const getItemFileName = (item: BaseItemDto): string | undefined => {
 	// NOTE: It would be better to include the Disc number but we have no way of identifying songs from multi-disc
 	// albums from the BaseItem of the song.
 	if (item.Album) {
-		return [
+		const name = [
 			item.IndexNumber,
 			item.Name
 		]
-			.filter(t => !!t)
-			.join(' - ') || undefined;
+			.filter(t => typeof t !== 'undefined' && t !== '')
+			.join(' - ');
+		return sanitizeFileName(name);
 	}
 
-	// Episodes will use: Series Name - S01E5-6 - Episode Name
+	// Episodes will use: Series Name - S1E5-6 - Episode Name
 	if (item.SeriesName) {
-		return [
+		const name = [
 			item.SeriesName,
 			getShortEpisodeId(item),
 			item.Name
 		]
 			.filter(t => !!t)
 			.join(' - ');
+		return sanitizeFileName(name);
 	}
 
 	// Everything else should use: Item Name (2025)
-	return getNameAndYear(item);
+	return sanitizeFileName(getNameAndYear(item));
 };

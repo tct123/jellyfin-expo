@@ -6,7 +6,7 @@
 
 import { getInfoAsync, makeDirectoryAsync } from 'expo-file-system';
 
-import { ensurePathExists } from '../File';
+import { ensurePathExists, sanitizeDirName, sanitizeFileName } from '../File';
 
 jest.mock('expo-file-system');
 
@@ -34,6 +34,26 @@ describe('File', () => {
 
 			expect(getInfoAsync).toHaveBeenCalled();
 			expect(makeDirectoryAsync).toHaveBeenCalled();
+		});
+	});
+
+	describe('sanitizeDirName', () => {
+		it('should sanitize directory names', () => {
+			let name = sanitizeDirName(' Q: A.? ');
+			expect(name).toBe('Q- A--');
+
+			name = sanitizeDirName('AC/DC');
+			expect(name).toBe('AC-DC');
+		});
+	});
+
+	describe('sanitizeFileName', () => {
+		it('should sanitize file names', () => {
+			let name = sanitizeFileName(' Q: A?.mp3 ');
+			expect(name).toBe('Q- A-.mp3');
+
+			name = sanitizeFileName('AC/DC');
+			expect(name).toBe('AC-DC');
 		});
 	});
 });

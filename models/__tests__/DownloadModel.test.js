@@ -28,7 +28,7 @@ describe('DownloadModel', () => {
 			'file name.mkv',
 			'https://example.com/download'
 		);
-		download.extension = '.mp4';
+		download.extension = 'mp4';
 
 		expect(download.apiKey).toBe('api-key');
 		expect(download.itemId).toBe('item-id');
@@ -49,6 +49,7 @@ describe('DownloadModel', () => {
 		expect(download.isSharedPath).toBe(false);
 		expect(download.localFilename).toBe('title (2025).mp4');
 		expect(download.localPath).toBe(`${DOCUMENT_DIRECTORY}Downloads/title (2025)/`);
+		expect(download.localPathUri).toBe(`${DOCUMENT_DIRECTORY}Downloads/title%20(2025)/`);
 		expect(download.uri).toBe(`${DOCUMENT_DIRECTORY}Downloads/title%20(2025)/title%20(2025).mp4`);
 		expect(download.getStreamUrl('device-id').toString()).toBe('https://example.com/Videos/item-id/stream.mp4?deviceId=device-id&api_key=api-key&playSessionId=uuid-0&videoCodec=hevc%2Ch264&audioCodec=aac%2Cmp3%2Cac3%2Ceac3%2Cflac%2Calac&maxAudioChannels=6');
 	});
@@ -79,6 +80,23 @@ describe('DownloadModel', () => {
 			'https://example.com/download'
 		);
 		expect(download.isSharedPath).toBe(true);
+	});
+
+	it('should get the extension from item.Path if not set', () => {
+		const download = new DownloadModel(
+			{
+				Id: 'item-id',
+				ServerId: 'server-id',
+				Name: 'title',
+				Path: 'file name.mkv'
+			},
+			'https://example.com/',
+			'api-key',
+			'file name.mkv',
+			'https://example.com/download'
+		);
+
+		expect(download.localFilename).toBe('title.mkv');
 	});
 
 	it('should return fallback values for legacy downloads', () => {

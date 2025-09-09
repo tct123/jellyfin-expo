@@ -88,7 +88,18 @@ export default class DownloadModel {
 	}
 
 	get localFilename() {
-		const ext = this.extension ? this.extension : this.item.Path?.slice(this.item.Path.lastIndexOf('.'));
+		let ext = this.extension;
+		// If no extension override is set, try to get the original from the item.Path
+		if (!ext) {
+			const path = this.item.Path;
+			if (path && path.lastIndexOf('.') > 0) {
+				ext = path.slice(path.lastIndexOf('.'));
+			}
+		}
+		// Ensure the extension starts with a "."
+		if (ext && ext[0] !== '.') {
+			ext = `.${ext}`;
+		}
 		const name = getItemFileName(this.item);
 		if (name && ext) return `${name}${ext}`;
 
@@ -104,6 +115,10 @@ export default class DownloadModel {
 
 		// Fallback for legacy downloads
 		return `${FileSystem.documentDirectory}${this.item.ServerId}/${this.item.Id}/`;
+	}
+
+	get localPathUri() {
+		return encodeURI(this.localPath);
 	}
 
 	/** @deprecated Use item.ServerId instead. */
