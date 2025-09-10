@@ -196,6 +196,11 @@ const App = ({ skipLoadingScreen }) => {
 	useEffect(() => {
 		const downloadFile = async (download) => {
 			console.debug('[App] downloading "%s"', download.filename);
+			// For transcoded downloads we force .mp4
+			if (!download.extension) {
+				download.extension = '.mp4';
+				downloadStore.update(download);
+			}
 			await ensurePathExists(download.localPath);
 
 			const url = download.getStreamUrl(rootStore.deviceId);

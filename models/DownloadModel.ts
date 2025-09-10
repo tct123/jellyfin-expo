@@ -11,6 +11,7 @@ import * as FileSystem from 'expo-file-system';
 import { v4 as uuidv4 } from 'uuid';
 
 import { DownloadStatus } from '../constants/DownloadStatus';
+import { getItemDirectory, getItemFileName } from '../utils/baseItem';
 
 export interface DownloadItem extends BaseItemDto {
 	Id: string;
@@ -29,6 +30,8 @@ interface MobxDownloadModel {
 	isNew: boolean;
 }
 
+const DOWNLOADS_DIRECTORY = 'Downloads/';
+
 export default class DownloadModel {
 	status: DownloadStatus = DownloadStatus.Pending
 	isNew = true
@@ -39,7 +42,13 @@ export default class DownloadModel {
 	sessionId = uuidv4()
 	serverUrl: string
 
+	/** @deprecated Use item.Path and extension instead. */
 	filename: string
+	/**
+	 * Extension override for transcoded files. e.g. `.mkv`
+	 * By default the original file extension from `item.Path` is used.
+	 */
+	extension?: string
 
 	downloadUrl: string
 
@@ -61,6 +70,14 @@ export default class DownloadModel {
 		return this.status === DownloadStatus.Complete;
 	}
 
+	/**
+	 * Returns true if the download's localPath could be shared with other downloads.
+	 * e.g. Multiple episodes or songs could exist in the same directory.
+	 */
+	get isSharedPath() {
+		return !!(this.item.SeriesName || this.item.Album);
+	}
+
 	/** @deprecated Use item.Id instead. */
 	get itemId() {
 		return this.item.Id;
@@ -71,11 +88,37 @@ export default class DownloadModel {
 	}
 
 	get localFilename() {
+		let ext = this.extension;
+		// If no extension override is set, try to get the original from the item.Path
+		if (!ext) {
+			const path = this.item.Path;
+			if (path && path.lastIndexOf('.') > 0) {
+				ext = path.slice(path.lastIndexOf('.'));
+			}
+		}
+		// Ensure the extension starts with a "."
+		if (ext && ext[0] !== '.') {
+			ext = `.${ext}`;
+		}
+		const name = getItemFileName(this.item);
+		if (name && ext) return `${name}${ext}`;
+
+		// Fallback for legacy downloads
 		return this.filename.slice(0, this.filename.lastIndexOf('.')) + '.mp4';
 	}
 
 	get localPath() {
+		const itemDirectory = getItemDirectory(this.item);
+		if (itemDirectory) {
+			return `${FileSystem.documentDirectory}${DOWNLOADS_DIRECTORY}${itemDirectory}`;
+		}
+
+		// Fallback for legacy downloads
 		return `${FileSystem.documentDirectory}${this.item.ServerId}/${this.item.Id}/`;
+	}
+
+	get localPathUri() {
+		return encodeURI(this.localPath);
 	}
 
 	/** @deprecated Use item.ServerId instead. */
@@ -88,7 +131,7 @@ export default class DownloadModel {
 	}
 
 	get uri() {
-		return this.localPath + encodeURI(this.localFilename);
+		return encodeURI(this.localPath + this.localFilename);
 	}
 
 	getStreamUrl(deviceId: string, params?: Record<string, string>): URL {

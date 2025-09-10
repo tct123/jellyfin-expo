@@ -37,7 +37,11 @@ const DownloadScreen = () => {
 	const deleteItem = useCallback(async (download: DownloadModel) => {
 		// TODO: Add user messaging on errors
 		try {
-			await FileSystem.deleteAsync(download.localPath);
+			// If the download is in a (potentially) shared directory, only delete the file
+			if (download.isSharedPath) await FileSystem.deleteAsync(download.uri, { idempotent: true });
+			// Otherwise delete the entire directory
+			else await FileSystem.deleteAsync(download.localPathUri, { idempotent: true });
+			// Delete the store value
 			downloadStore.delete(download);
 			console.log('[DownloadScreen] download "%s" deleted', download.title);
 		} catch (e) {
