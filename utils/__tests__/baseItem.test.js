@@ -62,6 +62,10 @@ describe('getItemDirectory', () => {
 
 		item.AlbumArtist = 'Ozzy Osbourne';
 		expect(getItemDirectory(item)).toBe('Ozzy Osbourne/Album Name/');
+
+		item.Album = '  ** ';
+		item.AlbumArtist = ':?\\';
+		expect(getItemDirectory(item)).toBe('Unknown Artist/Unknown Album/');
 	});
 
 	it('should handle episodes correctly', () => {
@@ -71,6 +75,11 @@ describe('getItemDirectory', () => {
 			ProductionYear: 2025
 		};
 		expect(getItemDirectory(item)).toBe('Series Name (2025)/Season 3/');
+
+		item.SeriesName = '   ';
+		delete item.ParentIndexNumber;
+		delete item.ProductionYear;
+		expect(getItemDirectory(item)).toBeUndefined();
 	});
 
 	it('should fallback to name and year when possible', () => {
@@ -130,6 +139,8 @@ describe('getItemFileName', () => {
 	});
 
 	it('should return undefined when no name or year is present', () => {
+		expect(getItemFileName({ Name: '   ' })).toBeUndefined();
+
 		expect(getItemFileName({})).toBeUndefined();
 	});
 });

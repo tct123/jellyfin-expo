@@ -38,12 +38,25 @@ describe('File', () => {
 	});
 
 	describe('sanitizeFileName', () => {
-		it('should sanitize directory names', () => {
+		it('should sanitize file names', () => {
 			let name = sanitizeFileName(' Q: A.? ');
 			expect(name).toBe('Q- A');
 
 			name = sanitizeFileName('AC/DC');
 			expect(name).toBe('AC-DC');
+		});
+
+		it('should collapse multiple invalid characters and trim safely', () => {
+			expect(sanitizeFileName('A:::B???///')).toBe('A-B');
+			expect(sanitizeFileName('---???.')).toBeUndefined();
+			expect(sanitizeFileName('   ')).toBeUndefined();
+		});
+
+		it('should normalize Unicode to NFC', () => {
+			// "e" + combining accent (NFD) should normalize equivalently
+			const nfd = 'Cafe\u0301'; // Café
+			const nfc = 'Café';
+			expect(sanitizeFileName(nfd)).toBe(nfc);
 		});
 	});
 });

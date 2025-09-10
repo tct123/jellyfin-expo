@@ -54,7 +54,7 @@ export const getItemSubtitle = (item: BaseItemDto): string | undefined => {
 			.join(' · ');
 	}
 
-	// Everything else will show the production year or fallback to the filename for legacy downloads
+	// Everything else will show the production year if available
 	return item.ProductionYear?.toString();
 };
 
@@ -66,19 +66,20 @@ export const getItemDirectory = (item: BaseItemDto): string | undefined => {
 	// NOTE: It would be better to separate by Disc but we have no way of identifying songs from multi-disc albums
 	// from the BaseItem of the song.
 	if (item.Album) {
-		const artist = item.AlbumArtist ? item.AlbumArtist : 'Unknown Artist';
-		return `${sanitizeFileName(artist)}/${sanitizeFileName(item.Album)}/`;
+		const artist = sanitizeFileName(item.AlbumArtist || undefined) || 'Unknown Artist';
+		const album = sanitizeFileName(item.Album) || 'Unknown Album';
+		return `${artist}/${album}/`;
 	}
 
 	const nameAndYear = sanitizeFileName(getNameAndYear(item));
 
-	// Episodes will use: Series Name (2025)/Season 1/
-	if (item.SeriesName && typeof item.ParentIndexNumber !== 'undefined') {
-		return `${nameAndYear}/Season ${item.ParentIndexNumber}/`;
-	}
-
-	// Everything else should use: Item Name (2025)/
 	if (nameAndYear) {
+		// Episodes will use: Series Name (2025)/Season 1/
+		if (item.SeriesName && typeof item.ParentIndexNumber !== 'undefined') {
+			return `${nameAndYear}/Season ${item.ParentIndexNumber}/`;
+		}
+
+		// Everything else should use: Item Name (2025)/
 		return `${nameAndYear}/`;
 	}
 };
