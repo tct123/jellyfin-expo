@@ -5,7 +5,8 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Redigera",
-        "delete": "Radera"
+        "delete": "Radera",
+        "play": "Spela upp"
     },
     "headings": {
         "addServer": "Lägg till server",
