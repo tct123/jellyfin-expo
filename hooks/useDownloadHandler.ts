@@ -32,8 +32,12 @@ export const useDownloadHandler = (enabled = false) => {
 				// For transcoded downloads we force .mp4
 				if (!download.extension) {
 					download.extension = '.mp4';
-					downloadStore.update(download);
 				}
+				// Update the status
+				download.status = DownloadStatus.Downloading;
+				downloadStore.update(download);
+
+				// Create the download folder if it doesn't exist
 				await ensurePathExists(download.localPath);
 
 				const url = download.getStreamUrl(rootStore.deviceId);
@@ -49,8 +53,6 @@ export const useDownloadHandler = (enabled = false) => {
 				);
 
 				// Download the file
-				download.status = DownloadStatus.Downloading;
-				downloadStore.update(download);
 				await resumable.downloadAsync();
 				download.status = DownloadStatus.Complete;
 
