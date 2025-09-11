@@ -18,67 +18,67 @@ import { ensurePathExists } from '../utils/File';
 
 import { useStores } from './useStores';
 
-export const useDownloadHandler = () => {
+export const useDownloadHandler = (enabled = false) => {
 	const { rootStore, downloadStore } = useStores();
 	const { t } = useTranslation();
 
 	useEffect(() => {
+		if (!enabled) return;
+
 		const downloadFile = async (download: DownloadModel) => {
-			console.debug('[App] downloading "%s"', download.filename);
-			// For transcoded downloads we force .mp4
-			if (!download.extension) {
-				download.extension = '.mp4';
-				downloadStore.update(download);
-			}
-			await ensurePathExists(download.localPath);
+			console.debug('[useDownloadHandler] downloading "%s"', download.item.Name || download.item.Path);
 
-			const url = download.getStreamUrl(rootStore.deviceId);
+			try {
+				// For transcoded downloads we force .mp4
+				if (!download.extension) {
+					download.extension = '.mp4';
+					downloadStore.update(download);
+				}
+				await ensurePathExists(download.localPath);
 
-			const resumable = FileSystem.createDownloadResumable(
-				url.toString(),
-				download.uri,
-				{},
-				(/*{ totalBytesWritten }*/) => {
+				const url = download.getStreamUrl(rootStore.deviceId);
+
+				const resumable = FileSystem.createDownloadResumable(
+					url.toString(),
+					download.uri,
+					{},
+					(/*{ totalBytesWritten }*/) => {
 					// FIXME: We should save the download progress in the model for display
 					// but this needs throttling
-				}
-			);
+					}
+				);
 
-			// TODO: The resumable should be saved to allow pausing/resuming downloads
-
-			// Download the file
-			try {
+				// Download the file
 				download.status = DownloadStatus.Downloading;
 				downloadStore.update(download);
 				await resumable.downloadAsync();
 				download.status = DownloadStatus.Complete;
+
+				// Report download has stopped
+				const serverUrl = download.serverUrl.endsWith('/') ? download.serverUrl.slice(0, -1) : download.serverUrl;
+				const api = rootStore.getSdk().createApi(serverUrl, download.apiKey);
+				console.debug('[useDownloadHandler] Reporting download stopped', download.sessionId);
+				await getPlaystateApi(api)
+					.reportPlaybackStopped({
+						playbackStopInfo: {
+							PlaySessionId: download.sessionId
+						}
+					})
+					.catch(err => {
+						console.warn('[useDownloadHandler] Failed reporting download stopped', err.response || err.request || err.message);
+					});
 			} catch (e) {
-				console.error('[App] Download failed', e);
+				console.error('[useDownloadHandler] Download failed', e);
 				Alert.alert(
 					t('alerts.downloadFailed.title'),
 					t('alerts.downloadFailed.description', { title: download.title })
 				);
 
-				// TODO: If a download fails, we should probably remove it from the queue
 				download.status = DownloadStatus.Failed;
+			} finally {
+				// Push the state update to the store
+				downloadStore.update(download);
 			}
-
-			// Push the state update to the store
-			downloadStore.update(download);
-
-			// Report download has stopped
-			const serverUrl = download.serverUrl.endsWith('/') ? download.serverUrl.slice(0, -1) : download.serverUrl;
-			const api = rootStore.getSdk().createApi(serverUrl, download.apiKey);
-			console.log('[App] Reporting download stopped', download.sessionId);
-			getPlaystateApi(api)
-				.reportPlaybackStopped({
-					playbackStopInfo: {
-						PlaySessionId: download.sessionId
-					}
-				})
-				.catch(err => {
-					console.error('[App] Failed reporting download stopped', err.response || err.request || err.message);
-				});
 		};
 
 		downloadStore.downloads
@@ -87,5 +87,5 @@ export const useDownloadHandler = () => {
 					downloadFile(download);
 				}
 			});
-	}, [ rootStore.deviceId, downloadStore.downloads.size ]);
+	}, [ enabled, rootStore.deviceId, downloadStore.downloads ]);
 };

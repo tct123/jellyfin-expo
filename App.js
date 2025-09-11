@@ -50,18 +50,18 @@ const App = ({ skipLoadingScreen }) => {
 	const colorScheme = useColorScheme();
 
 	// Initialize download hook
-	useDownloadHandler();
+	useDownloadHandler(isStoresReady);
 
 	// Store the system color scheme for automatic theme switching
 	useEffect(() => {
 		// Don't set state while hydrating
-		if (!isHydrated) return;
+		if (!isStoresReady) return;
 
 		console.debug('system theme changed:', colorScheme);
 		settingStore.set({
 			systemThemeId: colorScheme
 		});
-	}, [ colorScheme, isHydrated ]);
+	}, [ colorScheme, isStoresReady ]);
 
 	SplashScreen.preventAutoHideAsync();
 
