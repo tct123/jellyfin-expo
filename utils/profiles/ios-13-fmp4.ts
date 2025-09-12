@@ -11,14 +11,14 @@ import { DlnaProfileType } from '@jellyfin/sdk/lib/generated-client/models/dlna-
 import { EncodingContext } from '@jellyfin/sdk/lib/generated-client/models/encoding-context';
 import { MediaStreamProtocol } from '@jellyfin/sdk/lib/generated-client/models/media-stream-protocol';
 
-import iOSProfile from './ios';
+import iOSProfile from './ios-13';
 
 /**
  * Device profile for Expo Video player on iOS 13+ with fMP4 support
  */
 const IosFmp4Profile = {
 	...iOSProfile,
-	Name: 'Expo iOS fMP4 Video Profile',
+	Name: iOSProfile.Name + ' + fMP4',
 	TranscodingProfiles: [
 		// Add all audio profiles from default profile
 		...iOSProfile.TranscodingProfiles.filter(profile => profile.Type === DlnaProfileType.Audio),

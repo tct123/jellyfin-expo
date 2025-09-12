@@ -21,7 +21,7 @@ import BaseProfile from './base';
  */
 const Ios10Profile = {
 	...BaseProfile,
-	Name: 'Expo iOS 10 Video Profile',
+	Name: 'iOS 10+ Native Profile',
 	CodecProfiles: [
 		// iOS<13 only supports max h264 level 4.2 in ts containers
 		{
@@ -177,10 +177,19 @@ const Ios10Profile = {
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		},
+		// NOTE: Video transcoding profiles with a static context value seem ignored?
 		{
 			AudioCodec: 'aac,mp3,dca,dts,alac',
 			Container: 'mp4',
 			Context: EncodingContext.Static,
+			Protocol: MediaStreamProtocol.Http,
+			Type: DlnaProfileType.Video,
+			VideoCodec: 'h264'
+		},
+		{
+			AudioCodec: 'aac,mp3,dca,dts,alac',
+			Container: 'mp4',
+			Context: EncodingContext.Streaming,
 			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'

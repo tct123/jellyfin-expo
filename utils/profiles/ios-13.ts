@@ -18,7 +18,7 @@ import BaseProfile from './base';
  */
 const IosProfile = {
 	...BaseProfile,
-	Name: 'Expo iOS Video Profile',
+	Name: 'iOS 13+ Native Profile',
 	DirectPlayProfiles: [
 		{
 			AudioCodec: 'aac,mp3,ac3,eac3,flac,alac',
@@ -143,10 +143,19 @@ const IosProfile = {
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		},
+		// NOTE: Video transcoding profiles with a static context value seem ignored?
 		{
 			AudioCodec: 'aac,mp3,ac3,eac3,flac,alac',
 			Container: 'mp4',
 			Context: EncodingContext.Static,
+			Protocol: MediaStreamProtocol.Http,
+			Type: DlnaProfileType.Video,
+			VideoCodec: 'h264'
+		},
+		{
+			AudioCodec: 'aac,mp3,ac3,eac3,flac,alac',
+			Container: 'mp4',
+			Context: EncodingContext.Streaming,
 			Protocol: MediaStreamProtocol.Http,
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'

@@ -13,7 +13,7 @@ import { ProfileConditionValue } from '@jellyfin/sdk/lib/generated-client/models
 import { SubtitleDeliveryMethod } from '@jellyfin/sdk/lib/generated-client/models/subtitle-delivery-method';
 
 const BaseProfile = {
-	Name: 'Expo Base Video Profile',
+	Name: 'Base Native Profile',
 	MaxStaticBitrate: 100000000, // 100 Mbps
 	MaxStreamingBitrate: 120000000, // 120 Mbps
 	MusicStreamingTranscodingBitrate: 384000, // 384 kbps
