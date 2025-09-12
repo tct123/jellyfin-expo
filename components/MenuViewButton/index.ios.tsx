@@ -11,7 +11,7 @@ import compareVersions from 'compare-versions';
 import React, { useCallback, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionSheetIOS, Platform } from 'react-native';
-import { Button } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 
 import type { MenuViewButtonProps } from './types';
 
@@ -56,12 +56,9 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 	}, [ disabled, menuProps.actions, menuProps.onPressAction, menuProps.themeVariant, t ]);
 
 	const button = (
-		<Button
-			type='clear'
-			icon={{
-				name: 'ellipsis-horizontal',
-				type: 'ionicon'
-			}}
+		<ListItem.Chevron
+			name='ellipsis-horizontal'
+			type='ionicon'
 			disabled={disabled}
 			onPress={onPress}
 		/>

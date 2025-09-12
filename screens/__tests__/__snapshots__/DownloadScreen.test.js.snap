@@ -235,6 +235,7 @@ exports[`DownloadScreen should render correctly 1`] = `
             <View
               style={
                 Object {
+                  "alignSelf": "center",
                   "overflow": "hidden",
                 }
               }
@@ -388,6 +389,7 @@ exports[`DownloadScreen should render correctly 1`] = `
             <View
               style={
                 Object {
+                  "alignSelf": "center",
                   "overflow": "hidden",
                 }
               }

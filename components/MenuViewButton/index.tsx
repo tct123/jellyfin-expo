@@ -8,7 +8,7 @@
 
 import { MenuView } from '@react-native-menu/menu';
 import React, { type FC } from 'react';
-import { Button } from 'react-native-elements';
+import { ListItem } from 'react-native-elements';
 
 import type { MenuViewButtonProps } from './types';
 
@@ -21,12 +21,9 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 }) => {
 	return (
 		<MenuView {...menuProps}>
-			<Button
-				type='clear'
-				icon={{
-					name: 'ellipsis-horizontal',
-					type: 'ionicon'
-				}}
+			<ListItem.Chevron
+				name='ellipsis-horizontal'
+				type='ionicon'
 				disabled={disabled}
 				onPress={() => { /* no-op */ }}
 			/>

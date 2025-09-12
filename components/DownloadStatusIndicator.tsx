@@ -10,7 +10,7 @@ import React, { useCallback, useContext, useMemo, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
 
-import { Icon, ThemeContext } from 'react-native-elements';
+import { ListItem, ThemeContext } from 'react-native-elements';
 
 import { DownloadStatus } from '../constants/DownloadStatus';
 import { useStores } from '../hooks/useStores';
@@ -84,10 +84,18 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 				/>
 			);
 		case DownloadStatus.Downloading:
-			return <ActivityIndicator testID='loading-indicator' />;
+			return (
+				<ActivityIndicator
+					testID='loading-indicator'
+					size={24}
+					style={{
+						alignSelf: 'center'
+					}}
+				/>
+			);
 		case DownloadStatus.Failed:
 			return (
-				<Icon
+				<ListItem.Chevron
 					testID='failed-icon'
 					type='ionicon'
 					name={getIconName('warning')}
@@ -96,9 +104,10 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 			);
 		default:
 			return (
-				<Icon
+				<ListItem.Chevron
 					type='ionicon'
 					name={getIconName('help-circle')}
+					color={theme.colors?.black}
 				/>
 			);
 	}
