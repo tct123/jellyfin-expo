@@ -16,11 +16,8 @@ exports[`DownloadScreen should render correctly 1`] = `
   }
 >
   <RCTScrollView
-    contentContainerStyle={
-      Object {
-        "marginTop": 1,
-      }
-    }
+    ListFooterComponent={[Function]}
+    ListHeaderComponent={[Function]}
     data={
       Array [
         DownloadModel {
@@ -102,6 +99,17 @@ exports[`DownloadScreen should render correctly 1`] = `
     viewabilityConfigCallbackPairs={Array []}
   >
     <View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "height": 0.5,
+            }
+          }
+        />
+      </View>
       <View
         onLayout={[Function]}
         style={null}
@@ -235,6 +243,7 @@ exports[`DownloadScreen should render correctly 1`] = `
             <View
               style={
                 Object {
+                  "alignSelf": "center",
                   "overflow": "hidden",
                 }
               }
@@ -388,6 +397,7 @@ exports[`DownloadScreen should render correctly 1`] = `
             <View
               style={
                 Object {
+                  "alignSelf": "center",
                   "overflow": "hidden",
                 }
               }
@@ -408,6 +418,17 @@ exports[`DownloadScreen should render correctly 1`] = `
             </View>
           </View>
         </View>
+      </View>
+      <View
+        onLayout={[Function]}
+      >
+        <View
+          style={
+            Object {
+              "height": 0.5,
+            }
+          }
+        />
       </View>
     </View>
   </RCTScrollView>

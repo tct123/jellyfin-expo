@@ -34,6 +34,9 @@ export default {
 			marginRight: 15
 		}
 	},
+	ListItemChevron: {
+		size: 24
+	},
 	ListItemSubtitle: {
 		style: {
 			color: colors.grey1,
