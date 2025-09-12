@@ -120,6 +120,38 @@ const DownloadScreen = () => {
 		}, [ downloadStore.downloads ])
 	);
 
+	const toggleSelectedItem = useCallback((item: DownloadModel) => (
+		setSelectedItems(prev => (
+			prev.some(s => s.key === item.key)
+				? prev.filter(s => s.key !== item.key)
+				: [ ...prev, item ])
+		)
+	), []);
+
+	const renderDownloadItem = useCallback(({ item, index }: { item: DownloadModel, index: number }) => (
+		<DownloadListItem
+			item={item}
+			index={index}
+			isEditMode={isEditMode}
+			isSelected={selectedItems.some(s => s.key === item.key)}
+			onSelect={() => {
+				toggleSelectedItem(item);
+			}}
+			onPlay={() => {
+				item.isNew = false;
+				downloadStore.update(item);
+				mediaStore.set({
+					isLocalFile: true,
+					type: MediaType.Video,
+					uri: item.uri
+				});
+			}}
+			onDelete={() => {
+				onDeleteItems([ item ]);
+			}}
+		/>
+	), [ downloadStore, isEditMode, mediaStore, onDeleteItems, selectedItems ]);
+
 	return (
 		<SafeAreaView
 			style={{
@@ -132,33 +164,7 @@ const DownloadScreen = () => {
 				<FlatList
 					data={Array.from(downloadStore.downloads.values())}
 					extraData={downloadStore.downloads}
-					renderItem={({ item, index }) => (
-						<DownloadListItem
-							item={item}
-							index={index}
-							isEditMode={isEditMode}
-							isSelected={selectedItems.some(s => s.key === item.key)}
-							onSelect={() => {
-								setSelectedItems(prev => (
-									prev.some(s => s.key === item.key)
-										? prev.filter(s => s.key !== item.key)
-										: [ ...prev, item ]
-								));
-							}}
-							onPlay={() => {
-								item.isNew = false;
-								downloadStore.update(item);
-								mediaStore.set({
-									isLocalFile: true,
-									type: MediaType.Video,
-									uri: item.uri
-								});
-							}}
-							onDelete={() => {
-								onDeleteItems([ item ]);
-							}}
-						/>
-					)}
+					renderItem={renderDownloadItem}
 					keyExtractor={item => `download-${item.key}`}
 					// Add header/footer spacing to avoid list item border overlap
 					ListHeaderComponent={Hairline}
