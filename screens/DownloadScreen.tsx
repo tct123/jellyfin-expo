@@ -63,8 +63,11 @@ const DownloadScreen = () => {
 				{
 					text: t('alerts.deleteDownloads.confirm', { downloadCount: downloads.length }),
 					onPress: () => {
-						return Promise.allSettled(downloads.map(deleteItem))
-							.finally(exitEditMode);
+						Promise.allSettled(downloads.map(deleteItem))
+							.finally(exitEditMode)
+							.catch(err => {
+								console.warn('[DownloadScreen] failed deleting items', err);
+							});
 					},
 					style: 'destructive'
 				}
