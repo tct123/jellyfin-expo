@@ -11,7 +11,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import * as FileSystem from 'expo-file-system';
 import React, { useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, FlatList, StyleSheet } from 'react-native';
+import { Alert, FlatList, StyleSheet, View } from 'react-native';
 import { Button, ThemeContext } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -20,6 +20,8 @@ import ErrorView from '../components/ErrorView';
 import { Screens } from '../constants/Screens';
 import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
+
+const Hairline = () => <View style={{ height: StyleSheet.hairlineWidth }} />;
 
 const DownloadScreen = () => {
 	const navigation = useNavigation();
@@ -158,7 +160,9 @@ const DownloadScreen = () => {
 						/>
 					)}
 					keyExtractor={item => `download-${item.key}`}
-					contentContainerStyle={styles.listContainer}
+					// Add header/footer spacing to avoid list item border overlap
+					ListHeaderComponent={Hairline}
+					ListFooterComponent={Hairline}
 				/>
 			) : (
 				<ErrorView
@@ -177,11 +181,6 @@ const DownloadScreen = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1
-	},
-	listContainer: {
-		// Add margin/padding for list item borders
-		marginTop: 1,
-		paddingBottom: 1
 	},
 	leftButton: {
 		marginLeft: 8
