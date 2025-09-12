@@ -7,8 +7,8 @@
  */
 
 import { MenuView } from '@react-native-menu/menu';
-import React, { type FC } from 'react';
-import { ListItem } from 'react-native-elements';
+import React, { useContext, type FC } from 'react';
+import { ListItem, ThemeContext } from 'react-native-elements';
 
 import type { MenuViewButtonProps } from './types';
 
@@ -19,11 +19,14 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 	disabled,
 	...menuProps
 }) => {
+	const { theme } = useContext(ThemeContext);
+
 	return (
 		<MenuView {...menuProps}>
 			<ListItem.Chevron
 				name='ellipsis-horizontal'
 				type='ionicon'
+				color={theme.colors?.black}
 				disabled={disabled}
 				onPress={() => { /* no-op */ }}
 			/>

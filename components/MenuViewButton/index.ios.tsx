@@ -8,10 +8,10 @@
 
 import { MenuView } from '@react-native-menu/menu';
 import compareVersions from 'compare-versions';
-import React, { useCallback, type FC } from 'react';
+import React, { useCallback, useContext, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActionSheetIOS, Platform } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { ListItem, ThemeContext } from 'react-native-elements';
 
 import type { MenuViewButtonProps } from './types';
 
@@ -25,6 +25,7 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 	disabled,
 	...menuProps
 }) => {
+	const { theme } = useContext(ThemeContext);
 	const { t } = useTranslation();
 
 	const onPress = useCallback(() => {
@@ -59,6 +60,7 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 		<ListItem.Chevron
 			name='ellipsis-horizontal'
 			type='ionicon'
+			color={theme.colors?.black}
 			disabled={disabled}
 			onPress={onPress}
 		/>
