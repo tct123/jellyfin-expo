@@ -29,7 +29,6 @@ describe('WebBrowser', () => {
 		});
 
 		it('should call dismiss reopen when already presented', async () => {
-			WebBrowser.dismissBrowser.mockResolvedValue('success');
 			WebBrowser.openBrowserAsync.mockRejectedValueOnce(new Error('Another WebBrowser is already being presented.'));
 			WebBrowser.openBrowserAsync.mockResolvedValue('success');
 
@@ -40,7 +39,9 @@ describe('WebBrowser', () => {
 		});
 
 		it('should catch errors dismissing the browser', async () => {
-			WebBrowser.dismissBrowser.mockRejectedValue('fail');
+			WebBrowser.dismissBrowser.mockImplementation(() => {
+				throw new Error('fail');
+			});
 			WebBrowser.openBrowserAsync.mockRejectedValue(new Error('Another WebBrowser is already being presented.'));
 
 			await openBrowser('https://foobar');
