@@ -8,10 +8,10 @@ import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 
 import { getAppName, getAppDisplayName, getDeviceProfile, getSafeDeviceName, isCompact, isSystemThemeSupported } from '../Device';
-import iOSProfile from '../profiles/ios';
 import iOS10Profile from '../profiles/ios-10';
-import iOS12Profile from '../profiles/ios-12';
-import iOSFmp4Profile from '../profiles/ios-fmp4';
+import iOS11Profile from '../profiles/ios-11';
+import iOSProfile from '../profiles/ios-13';
+import iOSFmp4Profile from '../profiles/ios-13-fmp4';
 
 jest.mock('react-native/Libraries/Utilities/Platform');
 
@@ -61,12 +61,12 @@ describe('Device', () => {
 
 		it('should return the correct profile for iOS 11 devices', () => {
 			Platform.Version = '11';
-			expect(getDeviceProfile()).toBe(iOS12Profile);
+			expect(getDeviceProfile()).toBe(iOS11Profile);
 		});
 
 		it('should return the correct profile for iOS 12 devices', () => {
 			Platform.Version = '12';
-			expect(getDeviceProfile()).toBe(iOS12Profile);
+			expect(getDeviceProfile()).toBe(iOS11Profile);
 		});
 
 		it('should return the correct profile for iOS 13 devices', () => {

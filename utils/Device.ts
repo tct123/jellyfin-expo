@@ -12,10 +12,10 @@ import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 import { Platform } from 'react-native';
 
-import iOSProfile from './profiles/ios';
 import iOS10Profile from './profiles/ios-10';
-import iOS12Profile from './profiles/ios-12';
-import iOSFmp4Profile from './profiles/ios-fmp4';
+import iOS11Profile from './profiles/ios-11';
+import iOS13Profile from './profiles/ios-13';
+import iOS13Fmp4Profile from './profiles/ios-13-fmp4';
 
 /** Gets the app name used for API requests. */
 export function getAppName() {
@@ -50,11 +50,11 @@ export function getDeviceProfile({ enableFmp4 = false } = {}): DeviceProfile {
 		if (compareVersions.compare(Platform.Version, '11', '<')) {
 			return iOS10Profile;
 		} else if (compareVersions.compare(Platform.Version, '13', '<')) {
-			return iOS12Profile;
+			return iOS11Profile;
 		} else if (enableFmp4) {
-			return iOSFmp4Profile;
+			return iOS13Fmp4Profile;
 		} else {
-			return iOSProfile;
+			return iOS13Profile;
 		}
 	}
 	// NOTE: Other platforms are not supported

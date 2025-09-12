@@ -11,14 +11,14 @@ import type { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/de
 import { ProfileConditionType } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-type';
 import { ProfileConditionValue } from '@jellyfin/sdk/lib/generated-client/models/profile-condition-value';
 
-import iOSProfile from './ios';
+import iOSProfile from './ios-13';
 
 /**
  * Device profile for Expo Video player on iOS 11-12
  */
-const Ios12Profile = {
+const Ios11Profile = {
 	...iOSProfile,
-	Name: 'Expo iOS 12 Video Profile',
+	Name: 'iOS 11+ Native Profile',
 	CodecProfiles: [
 		// iOS<13 only supports max h264 level 4.2 in ts containers
 		{
@@ -56,4 +56,4 @@ const Ios12Profile = {
 	]
 } satisfies DeviceProfile;
 
-export default Ios12Profile;
+export default Ios11Profile;
