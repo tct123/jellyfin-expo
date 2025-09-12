@@ -12,7 +12,7 @@ const INVALID_PATH_CHARS = /[\\/:*?"<>|.]/g;
 
 const reduceReplacements = (s: string) => (
 	s.replace(/-+/g, '-') // collapse runs
-		.replace(/^-+|-+$/g, '') // trim leading/trailing
+		.replace(/(^-+)|(-+$)/g, '') // trim leading/trailing
 );
 
 /**

@@ -1,8 +1,11 @@
 /**
+ * Copyright (c) 2025 Jellyfin Contributors
+ *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
+
 import * as WebBrowser from 'expo-web-browser';
 
 import Colors from '../constants/Colors';
@@ -20,7 +23,7 @@ export async function openBrowser(url, options) {
 		// https://github.com/expo/expo/issues/6918
 		if (err.message === 'Another WebBrowser is already being presented.') {
 			try {
-				await WebBrowser.dismissBrowser();
+				WebBrowser.dismissBrowser();
 				return WebBrowser.openBrowserAsync(url, finalOptions);
 			} catch (retryErr) {
 				console.warn('Could not dismiss and reopen browser', retryErr);
