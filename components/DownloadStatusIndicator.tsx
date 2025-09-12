@@ -87,7 +87,6 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 			return (
 				<ActivityIndicator
 					testID='loading-indicator'
-					size={24}
 					style={{
 						alignSelf: 'center'
 					}}

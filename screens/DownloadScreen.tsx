@@ -179,7 +179,9 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	listContainer: {
-		marginTop: 1
+		// Add margin/padding for list item borders
+		marginTop: 1,
+		paddingBottom: 1
 	},
 	leftButton: {
 		marginLeft: 8
