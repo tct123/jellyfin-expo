@@ -109,9 +109,11 @@ export const useDownloadHandler = (enabled = false) => {
 
 					download.extension = `.${firstMediaSource.TranscodingContainer || ''}`;
 				} else {
-					// If we can't direct play or transcode, then we can't play it (maybe we should just fallback to the download url)
-					console.warn('[useDownloadHandler] server returned incompatible media source', firstMediaSource);
-					throw new Error('No compatible media source found');
+					// If we can't direct play or transcode, then we will fallback to using the default download URL
+					console.warn(
+						'[useDownloadHandler] server returned incompatible media source; using default download URL',
+						firstMediaSource
+					);
 				}
 			}
 
@@ -168,5 +170,5 @@ export const useDownloadHandler = (enabled = false) => {
 					downloadFile(download);
 				}
 			});
-	}, [ enabled, downloadStore.downloads ]);
+	}, [ enabled, downloadFile, downloadStore.downloads ]);
 };
