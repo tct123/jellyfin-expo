@@ -38,7 +38,9 @@
         "UIBackgroundModes": [
           "audio",
           "fetch"
-        ]
+        ],
+        "LSSupportsOpeningDocumentsInPlace": true,
+        "UIFileSharingEnabled": true
       }
     },
     "description": "Jellyfin"
