@@ -44,7 +44,7 @@ export const useDownloadHandler = (enabled = false) => {
 			const serverUrl = download.serverUrl.endsWith('/') ? download.serverUrl.slice(0, -1) : download.serverUrl;
 			const api = rootStore.getSdk().createApi(serverUrl, download.apiKey);
 
-			let url = new URL(download.downloadUrl);
+			let url = new URL(download.downloadUrl, serverUrl);
 			let isTranscoding = false;
 
 			if (
@@ -97,12 +97,15 @@ export const useDownloadHandler = (enabled = false) => {
 						Static: 'true'
 					});
 
-					url = new URL(`${serverUrl}/${endpoint}/${download.item.Id}/stream${download.extension}?${streamParams.toString()}`);
+					url = new URL(
+						`/${endpoint}/${download.item.Id}/stream${download.extension}?${streamParams.toString()}`,
+						serverUrl
+					);
 				} else if (firstMediaSource.SupportsTranscoding && firstMediaSource.TranscodingUrl) {
 					// For transcoding the server returns the URL
 					console.debug('[useDownloadHandler] media source will transcode', firstMediaSource);
 					isTranscoding = true;
-					url = new URL(`${serverUrl}${firstMediaSource.TranscodingUrl}`);
+					url = new URL(firstMediaSource.TranscodingUrl, serverUrl);
 
 					download.extension = `.${firstMediaSource.TranscodingContainer || ''}`;
 				} else {
@@ -154,7 +157,7 @@ export const useDownloadHandler = (enabled = false) => {
 			// Push the state update to the store
 			downloadStore.update(download);
 		}
-	}, [ rootStore.deviceId ]);
+	}, [ rootStore.deviceId, rootStore.getSdk, settingStore.isExperimentalDownloadsEnabled, t ]);
 
 	useEffect(() => {
 		if (!enabled) return;
