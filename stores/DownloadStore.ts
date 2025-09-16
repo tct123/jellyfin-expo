@@ -42,6 +42,7 @@ interface SerializedDownload {
 	/** @deprecated Use status instead. */
 	isComplete?: boolean;
 	isNew: boolean;
+	canPlay?: boolean;
 	status?: DownloadStatus;
 }
 
@@ -93,6 +94,8 @@ export const deserialize = (valueString: string | null): StorageValue<State> => 
 				model.status = DownloadStatus.Complete;
 			}
 			model.isNew = obj.isNew;
+			// Any pre-existing download without canPlay defined should be playable
+			if (typeof obj.canPlay === 'undefined') model.canPlay = true;
 
 			downloads.set(key, model);
 		});

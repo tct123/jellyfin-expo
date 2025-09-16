@@ -6,10 +6,10 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import type { MenuAction } from '@react-native-menu/menu';
 import React, { useCallback, useContext, useMemo, type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
-
 import { ListItem, ThemeContext } from 'react-native-elements';
 
 import { DownloadStatus } from '../constants/DownloadStatus';
@@ -22,18 +22,20 @@ import { MenuPressEvent } from './MenuViewButton/types';
 
 interface DownloadStatusIndicatorProps {
 	download: DownloadModel;
+	canPlay: boolean;
 	isEditMode?: boolean;
 	onDelete: () => void;
 	onPlay: () => void;
 }
 
-const MenuAction = {
+const DownloadAction = {
 	Delete: 'delete',
 	PlayInApp: 'play_in_app'
 } as const;
 
 const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 	download,
+	canPlay,
 	isEditMode = false,
 	onDelete,
 	onPlay
@@ -42,27 +44,35 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 	const { theme } = useContext(ThemeContext);
 	const { t } = useTranslation();
 
-	const menuActions = useMemo(() => [
-		{
-			id: MenuAction.PlayInApp,
-			title: t('common.play'),
-			image: 'play'
-		},
-		{
-			id: MenuAction.Delete,
-			title: t('common.delete'),
-			attributes: {
-				destructive: true
-			},
-			image: 'trash'
+	const menuActions = useMemo<MenuAction[]>(() => {
+		const actions: MenuAction[] = [];
+
+		if (canPlay) {
+			actions.push({
+				id: DownloadAction.PlayInApp,
+				title: t('common.play'),
+				image: 'play'
+			});
 		}
-	], [ t ]);
+
+		return [
+			...actions,
+			{
+				id: DownloadAction.Delete,
+				title: t('common.delete'),
+				attributes: {
+					destructive: true
+				},
+				image: 'trash'
+			}
+		];
+	}, [ canPlay, t ]);
 
 	const onMenuPress = useCallback(({ nativeEvent }: MenuPressEvent) => {
 		switch (nativeEvent.event) {
-			case MenuAction.PlayInApp:
+			case DownloadAction.PlayInApp:
 				return onPlay();
-			case MenuAction.Delete:
+			case DownloadAction.Delete:
 				return onDelete();
 			default:
 				console.warn('[DownloadStatusIndicator.onMenuPress] unhandled menu press action', nativeEvent.event);

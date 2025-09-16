@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import React, { useCallback, useMemo, type FC } from 'react';
 import { ListItem } from 'react-native-elements';
 
@@ -33,14 +34,17 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 	isEditMode = false,
 	isSelected = false
 }) => {
+	// NOTE: Currently only video has a native UI to play within the app.
+	// The media type check should be removed when we have a native audio player UI available.
+	const canPlay = useMemo(() => item.canPlay && item.item.MediaType === MediaType.Video, [ item.canPlay, item.item.MediaType ]);
 	const subtitle = useMemo(() => item.item && getItemSubtitle(item.item), [ item.item ]);
 
 	const onItemPress = useCallback(() => {
 		// Call select callback if in edit mode
 		if (isEditMode) onSelect();
 		// Otherwise call play callback
-		else onPlay();
-	}, [ isEditMode, onPlay, onSelect ]);
+		else if (canPlay) onPlay();
+	}, [ canPlay, isEditMode, onPlay, onSelect ]);
 
 	return (
 		<ListItem
@@ -78,6 +82,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 
 			<DownloadStatusIndicator
 				download={item}
+				canPlay={canPlay}
 				isEditMode={isEditMode}
 				onDelete={onDelete}
 				onPlay={onPlay}

@@ -44,6 +44,7 @@ describe('DownloadModel', () => {
 		expect(download.isComplete).toBe(false);
 		expect(download.status).toBe(DownloadStatus.Pending);
 		expect(download.isNew).toBe(true);
+		expect(download.canPlay).toBe(false);
 
 		expect(download.key).toBe('server-id_item-id');
 		expect(download.isSharedPath).toBe(false);
@@ -139,5 +140,6 @@ describe('DownloadModel', () => {
 		expect(download.status).toBe(DownloadStatus.Complete);
 		expect(download.isComplete).toBe(value.isComplete);
 		expect(download.isNew).toBe(value.isNew);
+		expect(download.canPlay).toBe(true);
 	});
 });

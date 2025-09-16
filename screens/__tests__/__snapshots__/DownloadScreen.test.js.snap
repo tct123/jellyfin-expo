@@ -22,6 +22,7 @@ exports[`DownloadScreen should render correctly 1`] = `
       Array [
         DownloadModel {
           "apiKey": "api-key",
+          "canPlay": false,
           "downloadUrl": "https://example.com/download",
           "filename": "file name.mkv",
           "isNew": true,
@@ -36,6 +37,7 @@ exports[`DownloadScreen should render correctly 1`] = `
         },
         DownloadModel {
           "apiKey": "api-key",
+          "canPlay": false,
           "downloadUrl": "https://test2.example.com/download",
           "filename": "other file name.mkv",
           "isNew": true,
@@ -54,6 +56,7 @@ exports[`DownloadScreen should render correctly 1`] = `
       Map {
         "server-id_item-id" => DownloadModel {
           "apiKey": "api-key",
+          "canPlay": false,
           "downloadUrl": "https://example.com/download",
           "filename": "file name.mkv",
           "isNew": true,
@@ -68,6 +71,7 @@ exports[`DownloadScreen should render correctly 1`] = `
         },
         "server-id_item-id-2" => DownloadModel {
           "apiKey": "api-key",
+          "canPlay": false,
           "downloadUrl": "https://test2.example.com/download",
           "filename": "other file name.mkv",
           "isNew": true,
