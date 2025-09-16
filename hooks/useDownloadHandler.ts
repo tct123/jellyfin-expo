@@ -86,6 +86,7 @@ export const useDownloadHandler = (enabled = false) => {
 					// For direct play we must build the URL ourselves
 					console.debug('[useDownloadHandler] media source will direct play/stream', firstMediaSource);
 					const endpoint = download.item.MediaType === MediaType.Video ? 'Videos' : 'Audio';
+					download.canPlay = true;
 					download.extension = `.${firstMediaSource.Container || ''}`;
 
 					const streamParams = new URLSearchParams({
@@ -107,6 +108,7 @@ export const useDownloadHandler = (enabled = false) => {
 					isTranscoding = true;
 					url = new URL(firstMediaSource.TranscodingUrl, serverUrl);
 
+					download.canPlay = true;
 					download.extension = `.${firstMediaSource.TranscodingContainer || ''}`;
 				} else {
 					// If we can't direct play or transcode, then we will fallback to using the default download URL

@@ -35,6 +35,7 @@ const DOWNLOADS_DIRECTORY = 'Downloads/';
 export default class DownloadModel {
 	status: DownloadStatus = DownloadStatus.Pending
 	isNew = true
+	canPlay = false
 
 	apiKey: string
 	readonly item: Readonly<DownloadItem>
@@ -160,5 +161,7 @@ export function fromStorageObject({
 	);
 	if (isComplete) model.status = DownloadStatus.Complete;
 	model.isNew = isNew;
+	// Any downloads from the mobx store should be playable
+	model.canPlay = true;
 	return model;
 }

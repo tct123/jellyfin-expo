@@ -102,13 +102,6 @@ true;
 					break;
 				case 'downloadFile': {
 					console.log('Download item', data);
-					if (data.item.item?.MediaType !== MediaType.Video) {
-						Alert.alert(
-							t('alerts.downloadUnsupported.title'),
-							t('alerts.downloadUnsupported.description')
-						);
-						break;
-					}
 
 					// Get the API key from the download URL
 					let apiKey;

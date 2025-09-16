@@ -62,11 +62,15 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 			type='ionicon'
 			color={theme.colors?.black}
 			disabled={disabled}
+			// eslint-disable-next-line react-native/no-color-literals
+			disabledStyle={{
+				backgroundColor: 'transparent'
+			}}
 			onPress={onPress}
 		/>
 	);
 
-	if (isMenuSupported) {
+	if (isMenuSupported && !disabled) {
 		return (
 			<MenuView {...menuProps}>
 				{button}

@@ -21,17 +21,29 @@ const MenuViewButton: FC<MenuViewButtonProps> = ({
 }) => {
 	const { theme } = useContext(ThemeContext);
 
-	return (
-		<MenuView {...menuProps}>
-			<ListItem.Chevron
-				name='ellipsis-horizontal'
-				type='ionicon'
-				color={theme.colors?.black}
-				disabled={disabled}
-				onPress={() => { /* no-op */ }}
-			/>
-		</MenuView>
+	const button = (
+		<ListItem.Chevron
+			name='ellipsis-horizontal'
+			type='ionicon'
+			color={theme.colors?.black}
+			disabled={disabled}
+			// eslint-disable-next-line react-native/no-color-literals
+			disabledStyle={{
+				backgroundColor: 'transparent'
+			}}
+			onPress={() => { /* no-op */ }}
+		/>
 	);
+
+	if (!disabled) {
+		return (
+			<MenuView {...menuProps}>
+				{button}
+			</MenuView>
+		);
+	}
+
+	return button;
 };
 
 MenuViewButton.displayName = 'MenuViewButton';

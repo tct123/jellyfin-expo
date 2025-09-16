@@ -4,6 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
@@ -21,7 +22,8 @@ describe('DownloadListItem', () => {
 			{
 				Id: 'item-id',
 				ServerId: 'server-id',
-				Name: 'title'
+				Name: 'title',
+				MediaType: MediaType.Video
 			},
 			'https://example.com/',
 			'api-key',
@@ -59,6 +61,7 @@ describe('DownloadListItem', () => {
 		const onPlay = jest.fn();
 		const onDelete = jest.fn();
 
+		model.canPlay = true;
 		model.status = DownloadStatus.Complete;
 
 		const { getByTestId, queryByTestId } = render(
