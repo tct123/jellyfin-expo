@@ -95,7 +95,7 @@ export const deserialize = (valueString: string | null): StorageValue<State> => 
 			}
 			model.isNew = obj.isNew;
 			// Any pre-existing download without canPlay defined should be playable
-			if (typeof obj.canPlay === 'undefined') model.canPlay = true;
+			model.canPlay = typeof obj.canPlay === 'boolean' ? obj.canPlay : true;
 
 			downloads.set(key, model);
 		});

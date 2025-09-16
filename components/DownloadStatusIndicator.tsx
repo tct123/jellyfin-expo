@@ -22,7 +22,7 @@ import { MenuPressEvent } from './MenuViewButton/types';
 
 interface DownloadStatusIndicatorProps {
 	download: DownloadModel;
-	canPlay: boolean;
+	canPlayInApp: boolean;
 	isEditMode?: boolean;
 	onDelete: () => void;
 	onPlay: () => void;
@@ -35,7 +35,7 @@ const DownloadAction = {
 
 const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 	download,
-	canPlay,
+	canPlayInApp,
 	isEditMode = false,
 	onDelete,
 	onPlay
@@ -47,7 +47,7 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 	const menuActions = useMemo<MenuAction[]>(() => {
 		const actions: MenuAction[] = [];
 
-		if (canPlay) {
+		if (canPlayInApp) {
 			actions.push({
 				id: DownloadAction.PlayInApp,
 				title: t('common.play'),
@@ -66,7 +66,7 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 				image: 'trash'
 			}
 		];
-	}, [ canPlay, t ]);
+	}, [ canPlayInApp, t ]);
 
 	const onMenuPress = useCallback(({ nativeEvent }: MenuPressEvent) => {
 		switch (nativeEvent.event) {
