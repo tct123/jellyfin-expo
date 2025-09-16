@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
 import { MediaStreamProtocol } from '@jellyfin/sdk/lib/generated-client/models/media-stream-protocol';
 import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { getMediaInfoApi } from '@jellyfin/sdk/lib/utils/api/media-info-api';
@@ -36,6 +37,10 @@ export const useDownloadHandler = (enabled = false) => {
 			download.status = DownloadStatus.Downloading;
 			downloadStore.update(download);
 
+			// Create the download folder if it doesn't exist
+			await ensurePathExists(download.localPath);
+
+			// Get an API instance
 			const serverUrl = download.serverUrl.endsWith('/') ? download.serverUrl.slice(0, -1) : download.serverUrl;
 			const api = rootStore.getSdk().createApi(serverUrl, download.apiKey);
 
@@ -49,20 +54,20 @@ export const useDownloadHandler = (enabled = false) => {
 				download.item.MediaType &&
 				STREAMING_MEDIA_TYPES.includes(download.item.MediaType)
 			) {
-				// Create the download folder if it doesn't exist
-				await ensurePathExists(download.localPath);
-
 				// Filter any HLS transcoding profiles out for downloads
-				const DeviceProfile = getDeviceProfile();
-				DeviceProfile.TranscodingProfiles = [
-					...(DeviceProfile.TranscodingProfiles || []).filter(p => p.Protocol !== MediaStreamProtocol.Hls)
-				];
+				const playbackProfile = getDeviceProfile();
+				const downloadProfile: DeviceProfile = {
+					...playbackProfile,
+					Name: playbackProfile.Name?.replace(' Native Profile', ' Download Profile'),
+					TranscodingProfiles: (playbackProfile.TranscodingProfiles || [])
+						.filter(p => p.Protocol !== MediaStreamProtocol.Hls)
+				};
 
 				const { data: playbackInfo } = await getMediaInfoApi(api)
 					.getPostedPlaybackInfo({
 						itemId: download.item.Id,
 						playbackInfoDto: {
-							DeviceProfile
+							DeviceProfile: downloadProfile
 						}
 					});
 
