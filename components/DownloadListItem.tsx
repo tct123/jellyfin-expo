@@ -39,7 +39,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 	const canPlayInApp = useMemo(() => (
 		item.canPlay && item.item.MediaType === MediaType.Video
 	), [ item.canPlay, item.item.MediaType ]);
-	const subtitle = useMemo(() => item.item && getItemSubtitle(item.item), [ item.item ]);
+	const subtitle = useMemo(() => getItemSubtitle(item.item), [ item.item ]);
 
 	const onItemPress = useCallback(() => {
 		// Call select callback if in edit mode
@@ -53,7 +53,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			testID='list-item'
 			topDivider={index === 0}
 			bottomDivider
-			onPress={item.isComplete ? onItemPress : undefined}
+			onPress={item.isComplete && (isEditMode || canPlayInApp) ? onItemPress : undefined}
 		>
 			{isEditMode &&
 				<ListItem.CheckBox
