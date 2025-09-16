@@ -133,22 +133,6 @@ export default class DownloadModel {
 	get uri() {
 		return encodeURI(this.localPath + this.localFilename);
 	}
-
-	getStreamUrl(deviceId: string, params?: Record<string, string>): URL {
-		const streamParams = new URLSearchParams({
-			deviceId,
-			api_key: this.apiKey,
-			playSessionId: this.sessionId,
-			// TODO: add mediaSourceId to support alternate media versions
-			videoCodec: 'hevc,h264',
-			audioCodec: 'aac,mp3,ac3,eac3,flac,alac',
-			maxAudioChannels: '6',
-			// subtitleCodec: 'srt,vtt',
-			// subtitleMethod: 'Encode',
-			...params
-		});
-		return new URL(`${this.serverUrl}Videos/${this.item.Id}/stream.mp4?${streamParams.toString()}`);
-	}
 }
 
 /** Helper function to migrate download models saved by mobx. */

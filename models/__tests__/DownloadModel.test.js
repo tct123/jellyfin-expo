@@ -51,7 +51,6 @@ describe('DownloadModel', () => {
 		expect(download.localPath).toBe(`${DOCUMENT_DIRECTORY}Downloads/title (2025)/`);
 		expect(download.localPathUri).toBe(`${DOCUMENT_DIRECTORY}Downloads/title%20(2025)/`);
 		expect(download.uri).toBe(`${DOCUMENT_DIRECTORY}Downloads/title%20(2025)/title%20(2025).mp4`);
-		expect(download.getStreamUrl('device-id').toString()).toBe('https://example.com/Videos/item-id/stream.mp4?deviceId=device-id&api_key=api-key&playSessionId=uuid-0&videoCodec=hevc%2Ch264&audioCodec=aac%2Cmp3%2Cac3%2Ceac3%2Cflac%2Calac&maxAudioChannels=6');
 	});
 
 	it('should return true if the download\'s localPath could be shared by other downloads', () => {
