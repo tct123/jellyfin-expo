@@ -10,7 +10,7 @@ import type { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models/base
 import * as FileSystem from 'expo-file-system';
 import { v4 as uuidv4 } from 'uuid';
 
-import { DownloadStatus } from '../constants/DownloadStatus';
+import { DownloadStatus } from '../features/downloads/constants/DownloadStatus';
 import { getItemDirectory, getItemFileName } from '../utils/baseItem';
 
 export interface DownloadItem extends BaseItemDto {

@@ -16,12 +16,11 @@ import { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 
+import { useStores } from '../../../hooks/useStores';
+import type DownloadModel from '../../../models/DownloadModel';
+import { getDeviceProfile } from '../../../utils/Device';
+import { ensurePathExists } from '../../../utils/File';
 import { DownloadStatus } from '../constants/DownloadStatus';
-import type DownloadModel from '../models/DownloadModel';
-import { getDeviceProfile } from '../utils/Device';
-import { ensurePathExists } from '../utils/File';
-
-import { useStores } from './useStores';
 
 // Configurable concurrent download limit
 const MAX_CONCURRENT_DOWNLOADS = 3;
