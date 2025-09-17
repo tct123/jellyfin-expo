@@ -26,6 +26,11 @@ export async function ensurePathExists(path: string) {
 	}
 }
 
+/** Gets a URI to open the Files app on iOS from a direct file:// URI */
+export function getFilesUri(uri: string) {
+	return uri.replace(/^file:\/\//, 'shareddocuments://');
+}
+
 /** Trim and replace any invalid characters in a file/directory name (extension excluded). */
 export function sanitizeFileName(name?: string) {
 	const trimmed = name?.trim();

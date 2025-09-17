@@ -6,7 +6,7 @@
 
 import { getInfoAsync, makeDirectoryAsync } from 'expo-file-system';
 
-import { ensurePathExists, sanitizeFileName } from '../File';
+import { ensurePathExists, getFilesUri, sanitizeFileName } from '../File';
 
 jest.mock('expo-file-system');
 
@@ -34,6 +34,12 @@ describe('File', () => {
 
 			expect(getInfoAsync).toHaveBeenCalled();
 			expect(makeDirectoryAsync).toHaveBeenCalled();
+		});
+	});
+
+	describe('getFilesUri', () => {
+		it('should get a valid Files app uri', () => {
+			expect(getFilesUri('file://foobar')).toBe('shareddocuments://foobar');
 		});
 	});
 
