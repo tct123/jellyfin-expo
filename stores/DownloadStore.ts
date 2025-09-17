@@ -38,6 +38,7 @@ interface SerializedDownload {
 	apiKey: string;
 	title?: string;
 	filename: string;
+	extension?: string;
 	downloadUrl: string;
 	/** @deprecated Use status instead. */
 	isComplete?: boolean;
@@ -93,9 +94,10 @@ export const deserialize = (valueString: string | null): StorageValue<State> => 
 				// Migrate legacy completed status.
 				model.status = DownloadStatus.Complete;
 			}
-			model.isNew = obj.isNew;
 			// Any pre-existing download without canPlay defined should be playable
 			model.canPlay = typeof obj.canPlay === 'boolean' ? obj.canPlay : true;
+			model.extension = obj.extension;
+			model.isNew = obj.isNew;
 
 			downloads.set(key, model);
 		});
