@@ -9,6 +9,7 @@
 import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import * as FileSystem from 'expo-file-system';
+import * as Linking from 'expo-linking';
 import React, { useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, FlatList, StyleSheet, View } from 'react-native';
@@ -20,6 +21,7 @@ import ErrorView from '../components/ErrorView';
 import { Screens } from '../constants/Screens';
 import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
+import { getFilesUri } from '../utils/File';
 
 const Hairline = () => <View style={{ height: StyleSheet.hairlineWidth }} />;
 
@@ -139,6 +141,11 @@ const DownloadScreen = () => {
 			isSelected={selectedItems.some(s => s.key === item.key)}
 			onSelect={() => {
 				toggleSelectedItem(item);
+			}}
+			onOpen={() => {
+				const uri = getFilesUri(item.uri);
+				console.debug('[DownloadScreen] opening uri', uri);
+				Linking.openURL(uri);
 			}}
 			onPlay={() => {
 				item.isNew = false;

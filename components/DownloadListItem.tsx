@@ -19,6 +19,7 @@ interface DownloadListItemProps {
 	item: DownloadModel;
 	index: number;
 	onSelect: () => void;
+	onOpen: () => void;
 	onPlay: () => void;
 	onDelete: () => void;
 	isEditMode?: boolean;
@@ -29,6 +30,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 	item,
 	index,
 	onSelect,
+	onOpen,
 	onPlay,
 	onDelete,
 	isEditMode = false,
@@ -44,8 +46,10 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 	const onItemPress = useCallback(() => {
 		// Call select callback if in edit mode
 		if (isEditMode) onSelect();
-		// Otherwise call play callback
+		// Call play if item is playable in app
 		else if (canPlayInApp) onPlay();
+		// Otherwise open the item
+		else onOpen();
 	}, [ canPlayInApp, isEditMode, onPlay, onSelect ]);
 
 	return (
@@ -53,7 +57,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			testID='list-item'
 			topDivider={index === 0}
 			bottomDivider
-			onPress={item.isComplete && (isEditMode || canPlayInApp) ? onItemPress : undefined}
+			onPress={item.isComplete ? onItemPress : undefined}
 		>
 			{isEditMode &&
 				<ListItem.CheckBox
@@ -87,6 +91,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 				canPlayInApp={canPlayInApp}
 				isEditMode={isEditMode}
 				onDelete={onDelete}
+				onOpen={onOpen}
 				onPlay={onPlay}
 			/>
 		</ListItem>

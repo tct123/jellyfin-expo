@@ -59,6 +59,7 @@
     "expo-file-system": "~14.1.0",
     "expo-font": "~10.2.0",
     "expo-keep-awake": "~10.2.0",
+    "expo-linking": "~3.2.4",
     "expo-localization": "~13.1.0",
     "expo-screen-orientation": "~4.3.0",
     "expo-splash-screen": "~0.16.2",

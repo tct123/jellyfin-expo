@@ -25,11 +25,13 @@ interface DownloadStatusIndicatorProps {
 	canPlayInApp: boolean;
 	isEditMode?: boolean;
 	onDelete: () => void;
+	onOpen: () => void;
 	onPlay: () => void;
 }
 
 const DownloadAction = {
 	Delete: 'delete',
+	OpenInFiles: 'open_in_files',
 	PlayInApp: 'play_in_app'
 } as const;
 
@@ -38,6 +40,7 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 	canPlayInApp,
 	isEditMode = false,
 	onDelete,
+	onOpen,
 	onPlay
 }) => {
 	const { settingStore } = useStores();
@@ -58,6 +61,11 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 		return [
 			...actions,
 			{
+				id: DownloadAction.OpenInFiles,
+				title: 'Open in Files',
+				image: 'folder'
+			},
+			{
 				id: DownloadAction.Delete,
 				title: t('common.delete'),
 				attributes: {
@@ -70,6 +78,8 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 
 	const onMenuPress = useCallback(({ nativeEvent }: MenuPressEvent) => {
 		switch (nativeEvent.event) {
+			case DownloadAction.OpenInFiles:
+				return onOpen();
 			case DownloadAction.PlayInApp:
 				return onPlay();
 			case DownloadAction.Delete:
