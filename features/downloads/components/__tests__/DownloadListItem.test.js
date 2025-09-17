@@ -9,7 +9,9 @@ import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
 import DownloadModel from '../../../../models/DownloadModel';
+import { DownloadAction } from '../../constants/DownloadAction';
 import { DownloadStatus } from '../../constants/DownloadStatus';
+import { getDownloadItemActions } from '../../utils/downloadItemActions';
 import DownloadListItem from '../DownloadListItem';
 
 describe('DownloadListItem', () => {
@@ -33,19 +35,15 @@ describe('DownloadListItem', () => {
 	});
 
 	it('should render correctly', () => {
-		const onPlay = jest.fn();
-		const onSelect = jest.fn();
-
 		model.status = DownloadStatus.Downloading;
 
 		const { getByTestId, queryByTestId } = render(
 			<DownloadListItem
 				item={model}
 				index={0}
-				onSelect={onSelect}
-				onOpen={jest.fn()}
-				onPlay={onPlay}
-				onDelete={jest.fn()}
+				actions={getDownloadItemActions(model)}
+				onAction={jest.fn()}
+				onSelect={jest.fn()}
 			/>
 		);
 
@@ -59,9 +57,7 @@ describe('DownloadListItem', () => {
 	});
 
 	it('should display the menu and handle presses', () => {
-		const onDelete = jest.fn();
-		const onOpen = jest.fn();
-		const onPlay = jest.fn();
+		const onAction = jest.fn();
 
 		model.canPlay = true;
 		model.status = DownloadStatus.Complete;
@@ -70,10 +66,9 @@ describe('DownloadListItem', () => {
 			<DownloadListItem
 				item={model}
 				index={0}
+				actions={getDownloadItemActions(model)}
+				onAction={onAction}
 				onSelect={jest.fn()}
-				onOpen={onOpen}
-				onPlay={onPlay}
-				onDelete={onDelete}
 			/>
 		);
 
@@ -86,27 +81,26 @@ describe('DownloadListItem', () => {
 		expect(queryByTestId('loading-indicator')).toBeNull();
 
 		// Pressing the list item should call onPlay when not editing
-		expect(onPlay).not.toHaveBeenCalled();
+		expect(onAction).not.toHaveBeenCalled();
 		fireEvent.press(getByTestId('list-item'));
-		expect(onPlay).toHaveBeenCalledTimes(1);
+		expect(onAction).toHaveBeenLastCalledWith(DownloadAction.PlayInApp);
 		// Pressing the play menu action should call onPlay
 		expect(queryByTestId('play_in_app')).not.toBeNull();
 		fireEvent.press(getByTestId('play_in_app'));
-		expect(onPlay).toHaveBeenCalledTimes(2);
+		expect(onAction).toHaveBeenLastCalledWith(DownloadAction.PlayInApp);
+		expect(onAction).toHaveBeenCalledTimes(2);
 		// Pressing the open menu action should call onOpen
-		expect(onOpen).not.toHaveBeenCalled();
 		expect(queryByTestId('open_in_files')).not.toBeNull();
 		fireEvent.press(getByTestId('open_in_files'));
-		expect(onOpen).toHaveBeenCalled();
+		expect(onAction).toHaveBeenLastCalledWith(DownloadAction.OpenInFiles);
 		// Pressing the delete menu action should call onDelete
-		expect(onDelete).not.toHaveBeenCalled();
 		expect(queryByTestId('delete')).not.toBeNull();
 		fireEvent.press(getByTestId('delete'));
-		expect(onDelete).toHaveBeenCalled();
+		expect(onAction).toHaveBeenLastCalledWith(DownloadAction.Delete);
 	});
 
 	it('should call onOpen if the item is pressed and not playable', () => {
-		const onOpen = jest.fn();
+		const onAction = jest.fn();
 
 		model.status = DownloadStatus.Complete;
 
@@ -114,17 +108,16 @@ describe('DownloadListItem', () => {
 			<DownloadListItem
 				item={model}
 				index={0}
+				actions={getDownloadItemActions(model)}
+				onAction={onAction}
 				onSelect={jest.fn()}
-				onOpen={onOpen}
-				onPlay={jest.fn()}
-				onDelete={jest.fn()}
 			/>
 		);
 
 		// Pressing the list item should call onOpen when not playable
-		expect(onOpen).not.toHaveBeenCalled();
+		expect(onAction).not.toHaveBeenCalled();
 		fireEvent.press(getByTestId('list-item'));
-		expect(onOpen).toHaveBeenCalled();
+		expect(onAction).toHaveBeenCalledWith(DownloadAction.OpenInFiles);
 	});
 
 	it('should display the select checkbox and handle presses', () => {
@@ -136,10 +129,9 @@ describe('DownloadListItem', () => {
 			<DownloadListItem
 				item={model}
 				index={0}
+				actions={getDownloadItemActions(model)}
+				onAction={jest.fn()}
 				onSelect={onSelect}
-				onDelete={jest.fn()}
-				onOpen={jest.fn()}
-				onPlay={jest.fn()}
 				isEditMode={true}
 			/>
 		);
@@ -168,10 +160,9 @@ describe('DownloadListItem', () => {
 			<DownloadListItem
 				item={model}
 				index={0}
+				actions={getDownloadItemActions(model)}
+				onAction={jest.fn()}
 				onSelect={jest.fn()}
-				onOpen={jest.fn()}
-				onPlay={jest.fn()}
-				onDelete={jest.fn()}
 			/>
 		);
 

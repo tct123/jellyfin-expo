@@ -19,6 +19,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ErrorView from '../components/ErrorView';
 import { Screens } from '../constants/Screens';
 import DownloadListItem from '../features/downloads/components/DownloadListItem';
+import { DownloadAction } from '../features/downloads/constants/DownloadAction';
+import { getDownloadItemActions } from '../features/downloads/utils/downloadItemActions';
 import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
 import { getFilesUri } from '../utils/File';
@@ -76,6 +78,27 @@ const DownloadScreen = () => {
 			]
 		);
 	}, [ deleteItem, exitEditMode, t ]);
+
+	const onAction = useCallback((action: DownloadAction, item: DownloadModel) => {
+		switch (action) {
+			case DownloadAction.Delete:
+				return onDeleteItems([ item ]);
+			case DownloadAction.PlayInApp:
+				item.isNew = false;
+				downloadStore.update(item);
+				mediaStore.set({
+					isLocalFile: true,
+					type: MediaType.Video,
+					uri: item.uri
+				});
+				return;
+			case DownloadAction.OpenInFiles: {
+				const uri = getFilesUri(item.uri);
+				console.debug('[DownloadScreen] opening uri', uri);
+				Linking.openURL(uri);
+			}
+		}
+	}, [ downloadStore, mediaStore, onDeleteItems ]);
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
@@ -137,27 +160,12 @@ const DownloadScreen = () => {
 		<DownloadListItem
 			item={item}
 			index={index}
+			actions={getDownloadItemActions(item)}
+			onAction={a => onAction(a, item)}
 			isEditMode={isEditMode}
 			isSelected={selectedItems.some(s => s.key === item.key)}
 			onSelect={() => {
 				toggleSelectedItem(item);
-			}}
-			onOpen={() => {
-				const uri = getFilesUri(item.uri);
-				console.debug('[DownloadScreen] opening uri', uri);
-				Linking.openURL(uri);
-			}}
-			onPlay={() => {
-				item.isNew = false;
-				downloadStore.update(item);
-				mediaStore.set({
-					isLocalFile: true,
-					type: MediaType.Video,
-					uri: item.uri
-				});
-			}}
-			onDelete={() => {
-				onDeleteItems([ item ]);
 			}}
 		/>
 	), [ downloadStore, isEditMode, mediaStore, onDeleteItems, selectedItems ]);

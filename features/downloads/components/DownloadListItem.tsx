@@ -6,12 +6,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import React, { useCallback, useMemo, type FC } from 'react';
 import { ListItem } from 'react-native-elements';
 
 import type DownloadModel from '../../../models/DownloadModel';
 import { getItemSubtitle } from '../../../utils/baseItem';
+import { DownloadAction } from '../constants/DownloadAction';
+import type { DownloadItemAction } from '../types/downloadItemAction';
 
 import DownloadStatusIndicator from './DownloadStatusIndicator';
 
@@ -19,38 +20,32 @@ interface DownloadListItemProps {
 	item: DownloadModel;
 	index: number;
 	onSelect: () => void;
-	onOpen: () => void;
-	onPlay: () => void;
-	onDelete: () => void;
 	isEditMode?: boolean;
 	isSelected?: boolean;
+	actions: DownloadItemAction[];
+	onAction: (action: DownloadAction) => void;
 }
 
 const DownloadListItem: FC<DownloadListItemProps> = ({
 	item,
 	index,
+	actions,
+	onAction,
 	onSelect,
-	onOpen,
-	onPlay,
-	onDelete,
 	isEditMode = false,
 	isSelected = false
 }) => {
-	// NOTE: Currently only video has a native UI to play within the app.
-	// The media type check should be removed when we have a native audio player UI available.
-	const canPlayInApp = useMemo(() => (
-		item.canPlay && item.item.MediaType === MediaType.Video
-	), [ item.canPlay, item.item.MediaType ]);
 	const subtitle = useMemo(() => getItemSubtitle(item.item), [ item.item ]);
 
 	const onItemPress = useCallback(() => {
 		// Call select callback if in edit mode
 		if (isEditMode) onSelect();
-		// Call play if item is playable in app
-		else if (canPlayInApp) onPlay();
-		// Otherwise open the item
-		else onOpen();
-	}, [ canPlayInApp, isEditMode, onOpen, onPlay, onSelect ]);
+		// Otherwise try calling the first default action
+		else {
+			const action = actions.find(a => a.isDefault && a.isEnabled && a.isSupported);
+			if (action) onAction(action.id);
+		}
+	}, [ actions, isEditMode, onAction, onSelect ]);
 
 	return (
 		<ListItem
@@ -88,11 +83,9 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 
 			<DownloadStatusIndicator
 				download={item}
-				canPlayInApp={canPlayInApp}
 				isEditMode={isEditMode}
-				onDelete={onDelete}
-				onOpen={onOpen}
-				onPlay={onPlay}
+				actions={actions}
+				onAction={onAction}
 			/>
 		</ListItem>
 	);

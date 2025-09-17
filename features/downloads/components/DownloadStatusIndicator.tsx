@@ -19,69 +19,58 @@ import type DownloadModel from '../../../models/DownloadModel';
 import { getIconName } from '../../../utils/Icons';
 import { DownloadAction } from '../constants/DownloadAction';
 import { DownloadStatus } from '../constants/DownloadStatus';
+import type { DownloadItemAction } from '../types/downloadItemAction';
 
 interface DownloadStatusIndicatorProps {
 	download: DownloadModel;
-	canPlayInApp: boolean;
 	isEditMode?: boolean;
-	onDelete: () => void;
-	onOpen: () => void;
-	onPlay: () => void;
+	actions: DownloadItemAction[];
+	onAction: (action: DownloadAction) => void;
 }
 
 const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 	download,
-	canPlayInApp,
 	isEditMode = false,
-	onDelete,
-	onOpen,
-	onPlay
+	actions,
+	onAction
 }) => {
 	const { settingStore } = useStores();
 	const { theme } = useContext(ThemeContext);
 	const { t } = useTranslation();
 
+	/** Map DownloadItemActions to MenuActions. */
 	const menuActions = useMemo<MenuAction[]>(() => {
-		const actions: MenuAction[] = [];
+		const _menuActions: MenuAction[] = [];
 
-		if (canPlayInApp) {
-			actions.push({
-				id: DownloadAction.PlayInApp,
-				title: t('common.play'),
-				image: 'play'
-			});
-		}
-
-		return [
-			...actions,
-			{
-				id: DownloadAction.OpenInFiles,
-				title: t('common.openInFiles'),
-				image: 'folder'
-			},
-			{
-				id: DownloadAction.Delete,
-				title: t('common.delete'),
-				attributes: {
-					destructive: true
-				},
-				image: 'trash'
+		actions.forEach(({
+			id,
+			title,
+			image,
+			isEnabled,
+			isDestructive,
+			isSupported
+		}) => {
+			if (isSupported) {
+				_menuActions.push({
+					id,
+					title: t(title),
+					image,
+					attributes: {
+						disabled: !isEnabled,
+						destructive: isDestructive
+					}
+				});
 			}
-		];
-	}, [ canPlayInApp, t ]);
+		});
+
+		return _menuActions;
+	}, [ t ]);
 
 	const onMenuPress = useCallback(({ nativeEvent }: MenuPressEvent) => {
-		switch (nativeEvent.event) {
-			case DownloadAction.OpenInFiles:
-				return onOpen();
-			case DownloadAction.PlayInApp:
-				return onPlay();
-			case DownloadAction.Delete:
-				return onDelete();
-			default:
-				console.warn('[DownloadStatusIndicator.onMenuPress] unhandled menu press action', nativeEvent.event);
-		}
-	}, [ onDelete, onPlay ]);
+		const action = Object.values(DownloadAction).find(a => a === nativeEvent.event);
+		if (action) onAction(action);
+		else console.warn('[DownloadStatusIndicator.onMenuPress] unhandled menu press action', nativeEvent.event);
+	}, [ actions ]);
 
 	switch (download.status) {
 		case DownloadStatus.Complete:
