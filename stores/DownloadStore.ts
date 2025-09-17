@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { persist, type PersistStorage, type StorageValue } from 'zustand/middleware';
 
-import { DownloadStatus } from '../constants/DownloadStatus';
+import { DownloadStatus } from '../features/downloads/constants/DownloadStatus';
 import DownloadModel, { type DownloadItem } from '../models/DownloadModel';
 
 import { logger } from './middleware/logger';

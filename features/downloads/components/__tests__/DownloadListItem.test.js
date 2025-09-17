@@ -8,8 +8,8 @@ import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type'
 import { fireEvent, render } from '@testing-library/react-native';
 import React from 'react';
 
+import DownloadModel from '../../../../models/DownloadModel';
 import { DownloadStatus } from '../../constants/DownloadStatus';
-import DownloadModel from '../../models/DownloadModel';
 import DownloadListItem from '../DownloadListItem';
 
 describe('DownloadListItem', () => {

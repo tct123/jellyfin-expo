@@ -24,7 +24,7 @@ import { ThemeContext, ThemeProvider } from 'react-native-elements';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import ThemeSwitcher from './components/ThemeSwitcher';
-import { useDownloadHandler } from './hooks/useDownloadHandler';
+import { useDownloadHandler } from './features/downloads/hooks/useDownloadHandler';
 import { useIsHydrated } from './hooks/useHydrated';
 import { useStores } from './hooks/useStores';
 import { fromStorageObject } from './models/DownloadModel';

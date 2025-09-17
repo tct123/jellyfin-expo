@@ -12,13 +12,13 @@ import { useTranslation } from 'react-i18next';
 import { ActivityIndicator } from 'react-native';
 import { ListItem, ThemeContext } from 'react-native-elements';
 
+import MenuViewButton from '../../../components/MenuViewButton/index.ios';
+import { MenuPressEvent } from '../../../components/MenuViewButton/types';
+import { useStores } from '../../../hooks/useStores';
+import type DownloadModel from '../../../models/DownloadModel';
+import { getIconName } from '../../../utils/Icons';
+import { DownloadAction } from '../constants/DownloadAction';
 import { DownloadStatus } from '../constants/DownloadStatus';
-import { useStores } from '../hooks/useStores';
-import type DownloadModel from '../models/DownloadModel';
-import { getIconName } from '../utils/Icons';
-
-import MenuViewButton from './MenuViewButton';
-import { MenuPressEvent } from './MenuViewButton/types';
 
 interface DownloadStatusIndicatorProps {
 	download: DownloadModel;
@@ -28,12 +28,6 @@ interface DownloadStatusIndicatorProps {
 	onOpen: () => void;
 	onPlay: () => void;
 }
-
-const DownloadAction = {
-	Delete: 'delete',
-	OpenInFiles: 'open_in_files',
-	PlayInApp: 'play_in_app'
-} as const;
 
 const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 	download,

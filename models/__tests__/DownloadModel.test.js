@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import { DownloadStatus } from '../../constants/DownloadStatus';
+import { DownloadStatus } from '../../features/downloads/constants/DownloadStatus';
 import DownloadModel, { fromStorageObject } from '../DownloadModel';
 
 const DOCUMENT_DIRECTORY = '/DOC_DIR/';

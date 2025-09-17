@@ -16,9 +16,9 @@ import { Alert, FlatList, StyleSheet, View } from 'react-native';
 import { Button, ThemeContext } from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import DownloadListItem from '../components/DownloadListItem';
 import ErrorView from '../components/ErrorView';
 import { Screens } from '../constants/Screens';
+import DownloadListItem from '../features/downloads/components/DownloadListItem';
 import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
 import { getFilesUri } from '../utils/File';

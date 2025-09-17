@@ -10,8 +10,8 @@ import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type'
 import React, { useCallback, useMemo, type FC } from 'react';
 import { ListItem } from 'react-native-elements';
 
-import type DownloadModel from '../models/DownloadModel';
-import { getItemSubtitle } from '../utils/baseItem';
+import type DownloadModel from '../../../models/DownloadModel';
+import { getItemSubtitle } from '../../../utils/baseItem';
 
 import DownloadStatusIndicator from './DownloadStatusIndicator';
 
