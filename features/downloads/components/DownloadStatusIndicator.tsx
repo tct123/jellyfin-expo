@@ -64,13 +64,13 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 		});
 
 		return _menuActions;
-	}, [ t ]);
+	}, [ actions, t ]);
 
 	const onMenuPress = useCallback(({ nativeEvent }: MenuPressEvent) => {
 		const action = Object.values(DownloadAction).find(a => a === nativeEvent.event);
 		if (action) onAction(action);
 		else console.warn('[DownloadStatusIndicator.onMenuPress] unhandled menu press action', nativeEvent.event);
-	}, [ actions ]);
+	}, [ onAction ]);
 
 	switch (download.status) {
 		case DownloadStatus.Complete:

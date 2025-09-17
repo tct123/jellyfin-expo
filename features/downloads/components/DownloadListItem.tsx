@@ -11,7 +11,7 @@ import { ListItem } from 'react-native-elements';
 
 import type DownloadModel from '../../../models/DownloadModel';
 import { getItemSubtitle } from '../../../utils/baseItem';
-import { DownloadAction } from '../constants/DownloadAction';
+import type { DownloadAction } from '../constants/DownloadAction';
 import type { DownloadItemAction } from '../types/downloadItemAction';
 
 import DownloadStatusIndicator from './DownloadStatusIndicator';

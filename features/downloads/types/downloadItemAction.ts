@@ -6,7 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { DownloadAction } from '../constants/DownloadAction';
+import type { DownloadAction } from '../constants/DownloadAction';
 
 export interface DownloadItemAction {
 	/** The unique ID of the action. */
@@ -14,7 +14,7 @@ export interface DownloadItemAction {
 	/** The localization key to use for the UI title. */
 	title: string;
 	/** The SFSymbols image name. */
-	image: string | undefined;
+	image?: string;
 	/**
 	 * If the action should be used as the default when pressing an item.
 	 * If more than one defaults exist, the first should be used.

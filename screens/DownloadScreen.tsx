@@ -164,11 +164,9 @@ const DownloadScreen = () => {
 			onAction={a => onAction(a, item)}
 			isEditMode={isEditMode}
 			isSelected={selectedItems.some(s => s.key === item.key)}
-			onSelect={() => {
-				toggleSelectedItem(item);
-			}}
+			onSelect={() => toggleSelectedItem(item)}
 		/>
-	), [ downloadStore, isEditMode, mediaStore, onDeleteItems, selectedItems ]);
+	), [ isEditMode, onAction, selectedItems, toggleSelectedItem ]);
 
 	return (
 		<SafeAreaView
