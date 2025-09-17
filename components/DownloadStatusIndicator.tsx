@@ -62,7 +62,7 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 			...actions,
 			{
 				id: DownloadAction.OpenInFiles,
-				title: 'Open in Files',
+				title: t('common.openInFiles'),
 				image: 'folder'
 			},
 			{

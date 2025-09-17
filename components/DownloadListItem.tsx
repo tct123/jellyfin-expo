@@ -50,7 +50,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 		else if (canPlayInApp) onPlay();
 		// Otherwise open the item
 		else onOpen();
-	}, [ canPlayInApp, isEditMode, onPlay, onSelect ]);
+	}, [ canPlayInApp, isEditMode, onOpen, onPlay, onSelect ]);
 
 	return (
 		<ListItem
