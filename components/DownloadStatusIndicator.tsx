@@ -111,6 +111,14 @@ const DownloadStatusIndicator: FC<DownloadStatusIndicatorProps> = ({
 					color={theme.colors?.error}
 				/>
 			);
+		case DownloadStatus.Pending:
+			return (
+				<ListItem.Chevron
+					type='ionicon'
+					name='cloud-download-outline'
+					color={theme.colors?.black}
+				/>
+			);
 		default:
 			return (
 				<ListItem.Chevron

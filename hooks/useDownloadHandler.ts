@@ -12,7 +12,7 @@ import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type'
 import { getMediaInfoApi } from '@jellyfin/sdk/lib/utils/api/media-info-api';
 import { getPlaystateApi } from '@jellyfin/sdk/lib/utils/api/playstate-api';
 import * as FileSystem from 'expo-file-system';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 
@@ -23,11 +23,15 @@ import { ensurePathExists } from '../utils/File';
 
 import { useStores } from './useStores';
 
+// Configurable concurrent download limit
+const MAX_CONCURRENT_DOWNLOADS = 3;
+// Media types that support the stream API for download/transcoding
 const STREAMING_MEDIA_TYPES: MediaType[] = [ MediaType.Audio, MediaType.Video ];
 
 export const useDownloadHandler = (enabled = false) => {
 	const { downloadStore, rootStore, settingStore } = useStores();
 	const { t } = useTranslation();
+	const inFlightRef = useRef<Set<string>>(new Set());
 
 	const downloadFile = useCallback(async (download: DownloadModel) => {
 		console.debug('[useDownloadHandler] downloading "%s"', download.item.Name || download.item.Path);
@@ -166,11 +170,28 @@ export const useDownloadHandler = (enabled = false) => {
 	useEffect(() => {
 		if (!enabled) return;
 
-		downloadStore.downloads
-			.forEach(download => {
-				if (download.status === DownloadStatus.Pending) {
-					downloadFile(download);
-				}
+		const startNextDownload = () => {
+			// Find next pending download that's not already in flight
+			const pendingDownloads = Array.from(downloadStore.downloads.entries())
+				.filter(([ key, download ]) =>
+					download.status === DownloadStatus.Pending && !inFlightRef.current.has(key)
+				);
+
+			// Start downloads up to the limit
+			const availableSlots = MAX_CONCURRENT_DOWNLOADS - inFlightRef.current.size;
+			const downloadsToStart = pendingDownloads.slice(0, availableSlots);
+
+			downloadsToStart.forEach(([ key, download ]) => {
+				inFlightRef.current.add(key);
+				void downloadFile(download)
+					.finally(() => {
+						inFlightRef.current.delete(key);
+						// Try to start next download when this one finishes
+						startNextDownload();
+					});
 			});
+		};
+
+		startNextDownload();
 	}, [ enabled, downloadFile, downloadStore.downloads ]);
 };
