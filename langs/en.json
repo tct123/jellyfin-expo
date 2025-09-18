@@ -65,6 +65,7 @@
       "learnMore": "Learn more about how to host your own server"
   },
   "settings": {
+    "downloadTranscoding": "Transcoded Downloads",
     "version": "Version: {{version}}",
     "keepAwake": "Keep Screen Awake",
     "nativeVideoPlayer": "Use Native Video Player",

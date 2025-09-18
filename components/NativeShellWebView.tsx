@@ -50,8 +50,7 @@ window.ExpoAppInfo = {
 window.ExpoAppSettings = {
 	isPluginSupported: ${isPluginSupported},
 	isNativeVideoPlayerEnabled: ${settingStore.isNativeVideoPlayerEnabled},
-	isExperimentalNativeAudioPlayerEnabled: ${settingStore.isExperimentalNativeAudioPlayerEnabled},
-	isExperimentalDownloadsEnabled: ${settingStore.isExperimentalDownloadsEnabled}
+	isExperimentalNativeAudioPlayerEnabled: ${settingStore.isExperimentalNativeAudioPlayerEnabled}
 };
 
 window.ExpoVideoProfile = ${JSON.stringify(getDeviceProfile({ enableFmp4: settingStore.isFmp4Enabled }))};
