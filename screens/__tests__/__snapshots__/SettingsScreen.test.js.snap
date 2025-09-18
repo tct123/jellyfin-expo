@@ -80,6 +80,21 @@ exports[`SettingsScreen should render correctly 1`] = `
         Object {
           "data": Array [
             Object {
+              "badge": Object {
+                "value": "BETA",
+              },
+              "key": "experimental-downloads-switch",
+              "onValueChange": [Function],
+              "title": "Transcoded Downloads",
+              "value": undefined,
+            },
+          ],
+          "renderItem": [Function],
+          "title": "Downloads",
+        },
+        Object {
+          "data": Array [
+            Object {
               "key": "tab-labels-switch",
               "onValueChange": [Function],
               "title": "Show Tab Labels",

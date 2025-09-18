@@ -219,6 +219,22 @@ const SettingsScreen = () => {
 				renderItem: SwitchListItem
 			},
 			{
+				title: t('headings.downloads'),
+				data: [{
+					key: 'experimental-downloads-switch',
+					title: t('settings.downloadTranscoding'),
+					badge: {
+						value: t('common.beta')
+					},
+					value: settingStore.isExperimentalDownloadsEnabled,
+					onValueChange: (value) => {
+						settingStore.set({ isExperimentalDownloadsEnabled: value });
+						rootStore.set({ isReloadRequired: true });
+					}
+				}],
+				renderItem: SwitchListItem
+			},
+			{
 				title: t('headings.appearance'),
 				data: appearanceSettingsData,
 				renderItem: SwitchListItem
