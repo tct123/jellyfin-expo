@@ -30,6 +30,11 @@ interface MobxDownloadModel {
 	isNew: boolean;
 }
 
+const COMPLETE_STATUSES: DownloadStatus[] = [
+	DownloadStatus.Complete,
+	DownloadStatus.Failed
+];
+
 const DOWNLOADS_DIRECTORY = 'Downloads/';
 
 export default class DownloadModel {
@@ -68,7 +73,7 @@ export default class DownloadModel {
 	}
 
 	get isComplete() {
-		return this.status === DownloadStatus.Complete;
+		return COMPLETE_STATUSES.includes(this.status);
 	}
 
 	/**

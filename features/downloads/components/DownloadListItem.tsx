@@ -12,6 +12,7 @@ import { ListItem } from 'react-native-elements';
 import type DownloadModel from '../../../models/DownloadModel';
 import { getItemSubtitle } from '../../../utils/baseItem';
 import type { DownloadAction } from '../constants/DownloadAction';
+import { DownloadStatus } from '../constants/DownloadStatus';
 import type { DownloadItemAction } from '../types/downloadItemAction';
 
 import DownloadStatusIndicator from './DownloadStatusIndicator';
@@ -52,7 +53,7 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			testID='list-item'
 			topDivider={index === 0}
 			bottomDivider
-			onPress={item.isComplete ? onItemPress : undefined}
+			onPress={item.status === DownloadStatus.Complete ? onItemPress : undefined}
 		>
 			{isEditMode &&
 				<ListItem.CheckBox
