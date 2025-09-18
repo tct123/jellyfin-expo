@@ -6,7 +6,8 @@
         "beta": "Wersja Beta",
         "edit": "Edytuj",
         "delete": "Usuń",
-        "play": "Odtwarzaj"
+        "play": "Odtwarzaj",
+        "openInFiles": "Otwórz w plikach"
     },
     "headings": {
         "addServer": "Dodaj serwer",
