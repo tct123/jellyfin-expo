@@ -53,7 +53,11 @@ const DownloadListItem: FC<DownloadListItemProps> = ({
 			testID='list-item'
 			topDivider={index === 0}
 			bottomDivider
-			onPress={item.status === DownloadStatus.Complete ? onItemPress : undefined}
+			onPress={
+				((isEditMode && item.isComplete) || item.status === DownloadStatus.Complete)
+					? onItemPress
+					: undefined
+			}
 		>
 			{isEditMode &&
 				<ListItem.CheckBox
