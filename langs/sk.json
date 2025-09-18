@@ -6,7 +6,8 @@
         "beta": "BETA",
         "edit": "Upraviť",
         "delete": "Vymazať",
-        "play": "Prehrať"
+        "play": "Prehrať",
+        "openInFiles": "Otvoriť v Súboroch"
     },
     "headings": {
         "addServer": "Pridať server",
