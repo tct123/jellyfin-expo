@@ -6,7 +6,8 @@
         "beta": "BETA",
         "edit": "编辑",
         "delete": "删除",
-        "play": "播放"
+        "play": "播放",
+        "openInFiles": "在“文件”中打开"
     },
     "headings": {
         "addServer": "添加服务器",
