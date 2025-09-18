@@ -114,9 +114,12 @@ export default class DownloadModel {
 	}
 
 	get localPath() {
-		const itemDirectory = getItemDirectory(this.item);
-		if (itemDirectory) {
-			return `${FileSystem.documentDirectory}${DOWNLOADS_DIRECTORY}${itemDirectory}`;
+		// Legacy downloads will not have a path set
+		if (this.item.Path) {
+			const itemDirectory = getItemDirectory(this.item);
+			if (itemDirectory) {
+				return `${FileSystem.documentDirectory}${DOWNLOADS_DIRECTORY}${itemDirectory}`;
+			}
 		}
 
 		// Fallback for legacy downloads
