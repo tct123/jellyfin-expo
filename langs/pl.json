@@ -64,7 +64,8 @@
         "systemTheme": "Użyj motywu systemowego",
         "minimumServerVersion": "Wymaga serwera w wersji 10.7+",
         "nativeVideoPlayer": "Użyj natywnego odtwarzacza wideo",
-        "fmp4Support": "Preferowane fMP4 w HLS"
+        "fmp4Support": "Preferowane fMP4 w HLS",
+        "downloadTranscoding": "Transkodowane pobrania"
     },
     "links": {
         "website": "Strona Jellyfin",
