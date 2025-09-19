@@ -33,6 +33,8 @@ PODS:
   - EXScreenOrientation (4.3.0):
     - ExpoModulesCore
     - React-Core
+  - EXSharing (10.3.0):
+    - ExpoModulesCore
   - EXSplashScreen (0.16.2):
     - ExpoModulesCore
     - React-Core
@@ -419,6 +421,7 @@ DEPENDENCIES:
   - ExpoSystemUI (from `../node_modules/expo-system-ui/ios`)
   - ExpoWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - EXScreenOrientation (from `../node_modules/expo-screen-orientation/ios`)
+  - EXSharing (from `../node_modules/expo-sharing/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
@@ -498,6 +501,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-web-browser/ios"
   EXScreenOrientation:
     :path: "../node_modules/expo-screen-orientation/ios"
+  EXSharing:
+    :path: "../node_modules/expo-sharing/ios"
   EXSplashScreen:
     :path: "../node_modules/expo-splash-screen/ios"
   FBLazyVector:
@@ -596,6 +601,7 @@ SPEC CHECKSUMS:
   ExpoSystemUI: 98b3c736973da9abaeb87d2e20adeb4b306a0aa7
   ExpoWebBrowser: 5b018c2aea1934bfc82914915fbe9f0cdc35127b
   EXScreenOrientation: 608ec6bfbecc14c7ba6dd7a263a53fd6fd134cca
+  EXSharing: 02486e351adba9227d0ee3bb3ccd1dc453d29b2b
   EXSplashScreen: be364303b208e8579aecaab39a854c0976b46cb7
   FBLazyVector: d3c1d2923b1009f4e709e8f1b793dedf5b323454
   FBReactNativeSpec: d460df7d796ed4979c6cd4e092145b63eb28b5bb

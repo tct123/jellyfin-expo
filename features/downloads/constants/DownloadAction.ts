@@ -13,7 +13,9 @@ export const DownloadAction = {
 	/** Open the download in the Files app. */
 	OpenInFiles: 'open_in_files',
 	/** Play the download within this app. */
-	PlayInApp: 'play_in_app'
+	PlayInApp: 'play_in_app',
+	/** Share the download via the iOS action sheet. */
+	Share: 'share'
 } as const;
 
 export type DownloadAction = typeof DownloadAction[keyof typeof DownloadAction];
