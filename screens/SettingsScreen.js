@@ -55,18 +55,8 @@ const SettingsScreen = () => {
 				{
 					text: t('alerts.deleteServer.confirm'),
 					onPress: () => {
-						// Remove server and update active server
+						// Remove the server
 						serverStore.removeServer(index);
-						settingStore.set({ activeServer: 0 });
-
-						if (serverStore.servers.length > 0) {
-							// More servers exist, navigate home
-							navigation.replace(Screens.HomeScreen);
-							navigation.navigate(Screens.HomeTab);
-						} else {
-							// No servers are present, navigate to add server screen
-							navigation.replace(Screens.AddServerScreen);
-						}
 					},
 					style: 'destructive'
 				}
