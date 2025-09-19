@@ -6,14 +6,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { useNavigation } from '@react-navigation/native';
 import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
 import { Input, ThemeContext } from 'react-native-elements';
 
-import Screens from '../constants/Screens';
 import { useStores } from '../hooks/useStores';
 import { getIconName } from '../utils/Icons';
 import { parseUrl, validateServer } from '../utils/ServerValidator';
@@ -30,8 +28,7 @@ const ServerInput = React.forwardRef(function ServerInput({
 	const [ isValid, setIsValid ] = useState(true);
 	const [ validationMessage, setValidationMessage ] = useState('');
 
-	const { serverStore, settingStore } = useStores();
-	const navigation = useNavigation();
+	const { serverStore } = useStores();
 	const { t } = useTranslation();
 	const { theme } = useContext(ThemeContext);
 
@@ -76,21 +73,8 @@ const ServerInput = React.forwardRef(function ServerInput({
 
 		// Save the server details
 		serverStore.addServer({ url });
-		settingStore.set({ activeServer: serverStore.servers.length - 1 });
 		// Call the success callback
 		onSuccess();
-
-		// Navigate to the main screen
-		navigation.replace(
-			Screens.MainScreen,
-			{
-				screen: Screens.HomeTab,
-				params: {
-					screen: Screens.HomeScreen,
-					params: { activeServer: settingStore.activeServer }
-				}
-			}
-		);
 	};
 
 	return (

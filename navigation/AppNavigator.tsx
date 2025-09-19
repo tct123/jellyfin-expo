@@ -12,6 +12,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Screens } from '../constants/Screens';
+import { useActiveServerHandler } from '../hooks/useActiveServerHandler';
 import { useStores } from '../hooks/useStores';
 import AddServerScreen from '../screens/AddServerScreen';
 
@@ -20,6 +21,12 @@ import TabNavigator from './TabNavigator';
 export type AppStackParams = {
 	[Screens.MainScreen]: {
 		screen?: string;
+		params?: {
+			screen?: string;
+			params?: {
+				activeServer: number;
+			}
+		}
 	};
 	[Screens.AddServerScreen]: undefined;
 };
@@ -30,6 +37,9 @@ const AppNavigator = () => {
 	const { rootStore, serverStore } = useStores();
 	const { t } = useTranslation();
 	const hasSavedServer = serverStore.servers.length > 0;
+
+	// Handle active server + navigation for server changes
+	useActiveServerHandler();
 
 	// Ensure the splash screen is hidden when loading is finished
 	SplashScreen.hideAsync().catch(console.debug);
