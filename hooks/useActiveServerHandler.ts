@@ -54,7 +54,8 @@ export const useActiveServerHandler = () => {
 					{
 						screen: Screens.HomeTab,
 						params: {
-							screen: Screens.HomeScreen
+							screen: Screens.HomeScreen,
+							params: { activeServer: 0 }
 						}
 					}
 				);
@@ -65,5 +66,5 @@ export const useActiveServerHandler = () => {
 			}
 		}
 		setServerCount(serverStore.servers.length);
-	}, [ navigation, serverCount, serverStore.servers.length, settingStore ]);
+	}, [ navigation, serverCount, serverStore.servers.length ]);
 };
