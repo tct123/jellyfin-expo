@@ -6,8 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { DeviceProfile } from '@jellyfin/sdk/lib/generated-client/models/device-profile';
-import { MediaStreamProtocol } from '@jellyfin/sdk/lib/generated-client/models/media-stream-protocol';
+import { EncodingContext } from '@jellyfin/sdk/lib/generated-client/models';
 import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { getMediaInfoApi } from '@jellyfin/sdk/lib/utils/api/media-info-api';
 import { getPlaystateApi } from '@jellyfin/sdk/lib/utils/api/playstate-api';
@@ -21,6 +20,7 @@ import type DownloadModel from '../../../models/DownloadModel';
 import { getDeviceProfile } from '../../../utils/Device';
 import { ensurePathExists } from '../../../utils/File';
 import { DownloadStatus } from '../constants/DownloadStatus';
+import { toDownloadProfile } from '../utils/profile';
 
 // Configurable concurrent download limit
 const MAX_CONCURRENT_DOWNLOADS = 3;
@@ -58,19 +58,13 @@ export const useDownloadHandler = (enabled = false) => {
 				STREAMING_MEDIA_TYPES.includes(download.item.MediaType)
 			) {
 				// Filter any HLS transcoding profiles out for downloads
-				const playbackProfile = getDeviceProfile();
-				const downloadProfile: DeviceProfile = {
-					...playbackProfile,
-					Name: playbackProfile.Name?.replace(' Native Profile', ' Download Profile'),
-					TranscodingProfiles: (playbackProfile.TranscodingProfiles || [])
-						.filter(p => p.Protocol !== MediaStreamProtocol.Hls)
-				};
+				const DeviceProfile = toDownloadProfile(getDeviceProfile());
 
 				const { data: playbackInfo } = await getMediaInfoApi(api)
 					.getPostedPlaybackInfo({
 						itemId: download.item.Id,
 						playbackInfoDto: {
-							DeviceProfile: downloadProfile
+							DeviceProfile
 						}
 					});
 
@@ -145,7 +139,8 @@ export const useDownloadHandler = (enabled = false) => {
 					.reportPlaybackStopped({
 						playbackStopInfo: {
 							ItemId: download.item.Id,
-							PlaySessionId: download.sessionId
+							PlaySessionId: download.sessionId,
+							PositionTicks: download.item.UserData?.PlaybackPositionTicks || 0
 						}
 					})
 					.catch(err => {
