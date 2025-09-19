@@ -6,7 +6,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import { EncodingContext } from '@jellyfin/sdk/lib/generated-client/models';
 import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { getMediaInfoApi } from '@jellyfin/sdk/lib/utils/api/media-info-api';
 import { getPlaystateApi } from '@jellyfin/sdk/lib/utils/api/playstate-api';
@@ -57,14 +56,11 @@ export const useDownloadHandler = (enabled = false) => {
 				download.item.MediaType &&
 				STREAMING_MEDIA_TYPES.includes(download.item.MediaType)
 			) {
-				// Filter any HLS transcoding profiles out for downloads
-				const DeviceProfile = toDownloadProfile(getDeviceProfile());
-
 				const { data: playbackInfo } = await getMediaInfoApi(api)
 					.getPostedPlaybackInfo({
 						itemId: download.item.Id,
 						playbackInfoDto: {
-							DeviceProfile
+							DeviceProfile: toDownloadProfile(getDeviceProfile())
 						}
 					});
 

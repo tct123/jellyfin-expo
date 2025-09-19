@@ -19,6 +19,7 @@ export const toDownloadProfile = (playbackProfile: DeviceProfile): DeviceProfile
 	const downloadProfile = {
 		...playbackProfile,
 		Name: playbackProfile.Name?.replace(' Native Profile', ' Download Profile'),
+		// Filter any HLS transcoding profiles out for downloads
 		TranscodingProfiles: (playbackProfile.TranscodingProfiles || [])
 			.filter(p => p.Protocol !== MediaStreamProtocol.Hls),
 		SubtitleProfiles
