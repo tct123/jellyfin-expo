@@ -41,7 +41,7 @@ export const useDownloadHandler = (enabled = false) => {
 			downloadStore.update(download);
 
 			// Create the download folder if it doesn't exist
-			await ensurePathExists(download.localPath);
+			await ensurePathExists(download.localPathUri);
 
 			// Get an API instance
 			const serverUrl = download.serverUrl.endsWith('/') ? download.serverUrl.slice(0, -1) : download.serverUrl;
