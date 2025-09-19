@@ -8,6 +8,7 @@ import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { I18nManager } from 'react-native';
 
+import af from './langs/af.json';
 import ar from './langs/ar.json';
 import be from './langs/be.json';
 import bg from './langs/bg.json';
@@ -23,6 +24,7 @@ import es from './langs/es.json';
 import es_419 from './langs/es_419.json';
 import es_AR from './langs/es_AR.json';
 import et from './langs/et.json';
+import eu from './langs/eu.json';
 import fa from './langs/fa.json';
 import fi from './langs/fi.json';
 import fil from './langs/fil.json';
@@ -66,6 +68,7 @@ import zh_Hant from './langs/zh_Hant.json';
 
 export const resources = {
 	en: { translation: en },
+	af: { translation: af },
 	ar: { translation: ar },
 	be: { translation: be },
 	bg: { translation: bg },
@@ -80,6 +83,7 @@ export const resources = {
 	'es-419': { translation: es_419 },
 	'es-AR': { translation: es_AR },
 	et: { translation: et },
+	eu: { translation: eu },
 	fa: { translation: fa },
 	fi: { translation: fi },
 	fil: { translation: fil },
