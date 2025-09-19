@@ -6,7 +6,8 @@
         "beta": "БЕТА",
         "edit": "Измени",
         "delete": "Избриши",
-        "play": "Пусти"
+        "play": "Пусти",
+        "openInFiles": "Отвори у датотекама"
     },
     "headings": {
         "addServer": "Додај сервер",
@@ -62,7 +63,8 @@
         "rotationLock": "Закључавање ротације",
         "tabLabels": "Прикажи ознаке картица",
         "expoVersion": "Expo верзија: {{version}}",
-        "fmp4Support": "Преферирајте fMP4 у HLS"
+        "fmp4Support": "Преферирајте fMP4 у HLS",
+        "downloadTranscoding": "Транскодована преузимања"
     },
     "links": {
         "website": "Веб локација Jellyfin-а",
