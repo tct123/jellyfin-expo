@@ -10,6 +10,7 @@ import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type'
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import * as FileSystem from 'expo-file-system';
 import * as Linking from 'expo-linking';
+import * as Sharing from 'expo-sharing';
 import React, { useCallback, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Alert, FlatList, StyleSheet, View } from 'react-native';
@@ -92,10 +93,21 @@ const DownloadScreen = () => {
 					uri: item.uri
 				});
 				return;
+			case DownloadAction.Share: {
+				console.debug('[DownloadScreen] sharing download uri', item.uri);
+				Sharing.shareAsync(item.uri)
+					.catch(err => {
+						console.warn('[DownloadScreen] failed to share', err);
+					});
+				return;
+			}
 			case DownloadAction.OpenInFiles: {
 				const uri = getFilesUri(item.uri);
-				console.debug('[DownloadScreen] opening uri', uri);
-				Linking.openURL(uri);
+				console.debug('[DownloadScreen] opening Files uri', uri);
+				Linking.openURL(uri)
+					.catch(err => {
+						console.warn('[DownloadScreen] failed to open Files', err);
+					});
 			}
 		}
 	}, [ downloadStore, mediaStore, onDeleteItems ]);

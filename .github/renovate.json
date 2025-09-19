@@ -21,6 +21,7 @@
     "expo-linking",
     "expo-localization",
     "expo-screen-orientation",
+    "expo-sharing",
     "expo-splash-screen",
     "expo-status-bar",
     "expo-system-ui",
