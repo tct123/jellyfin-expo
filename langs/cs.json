@@ -6,7 +6,9 @@
         "beta": "BETA",
         "edit": "Upravit",
         "delete": "odstranit",
-        "play": "Přehrát"
+        "play": "Přehrát",
+        "openInFiles": "Otevřít v Souborech",
+        "share": "Sdílet"
     },
     "headings": {
         "addServer": "Přidat server",
@@ -63,7 +65,8 @@
         "systemTheme": "Použít systémový vzhled",
         "minimumServerVersion": "Vyžaduje server verze 10.7 a novější",
         "nativeVideoPlayer": "Použít nativní přehrávač videa",
-        "fmp4Support": "Upřednostňovat fMP4 v HLS"
+        "fmp4Support": "Upřednostňovat fMP4 v HLS",
+        "downloadTranscoding": "Transkódování stažený obsah"
     },
     "links": {
         "website": "Web projektu Jellyfin",
