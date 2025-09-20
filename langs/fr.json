@@ -25,7 +25,9 @@
         "beta": "BÊTA",
         "edit": "Modifier",
         "delete": "Supprimer",
-        "play": "Lire"
+        "play": "Lire",
+        "share": "Partager",
+        "openInFiles": "Ouvrir dans fichiers"
     },
     "alerts": {
         "resetApplication": {
@@ -71,7 +73,8 @@
         "systemTheme": "Utiliser le thème système",
         "minimumServerVersion": "Nécessite une version du serveur 10.7+",
         "nativeVideoPlayer": "Utiliser le lecteur vidéo natif",
-        "fmp4Support": "Préférer fMP4 dans HLS"
+        "fmp4Support": "Préférer fMP4 dans HLS",
+        "downloadTranscoding": "Téléchargements transcodés"
     },
     "home": {
         "errors": {
