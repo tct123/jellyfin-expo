@@ -5,7 +5,10 @@
         "unknown": "Bilinmeyen",
         "beta": "BETA",
         "edit": "Düzenle",
-        "delete": "Sil"
+        "delete": "Sil",
+        "share": "Paylaş",
+        "play": "Oynat",
+        "openInFiles": "Dosyalar'da Aç"
     },
     "headings": {
         "addServer": "Sunucu Ekle",
@@ -66,7 +69,8 @@
         "systemTheme": "Sistem Temasını Kullan",
         "rotationLock": "Döndürme Kilidi",
         "tabLabels": "Sekme Etiketlerini Göster",
-        "expoVersion": "Expo Sürümü: {{version}}"
+        "expoVersion": "Expo Sürümü: {{version}}",
+        "downloadTranscoding": "Dönüştürülmüş İndirmeler"
     },
     "links": {
         "website": "Jellyfin Web Sitesi",
