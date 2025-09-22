@@ -6,7 +6,9 @@
         "beta": "BETA",
         "edit": "Modifica",
         "delete": "Elimina",
-        "play": "Riproduci"
+        "play": "Riproduci",
+        "openInFiles": "Apri in File",
+        "share": "Condividi"
     },
     "headings": {
         "addServer": "Aggiungi Server",
@@ -63,7 +65,8 @@
         "lightTheme": "Usa il tema chiaro",
         "minimumServerVersion": "Richiede server con versione 10.7+",
         "nativeVideoPlayer": "Utilizza il video player nativo",
-        "fmp4Support": "Preferisci fMP4 in HLS"
+        "fmp4Support": "Preferisci fMP4 in HLS",
+        "downloadTranscoding": "Download Transcodificati"
     },
     "links": {
         "website": "Sito Web Jellyfin",
@@ -86,9 +89,9 @@
             "confirm": "Ripristina"
         },
         "deleteDownloads": {
-            "title": "Elimina Downloads",
-            "description": "Questi elementi verranno permanentemente eliminati da questo dispositivo.",
-            "confirm": "Elimina {{downloadCount}} Downloads"
+            "title": "Elimina download",
+            "description": "Questi elementi verranno permanentemente rimossi da questo dispositivo.",
+            "confirm": "Elimina {{downloadCount}} Download"
         },
         "downloadFailed": {
             "title": "Download fallito",
