@@ -5,7 +5,10 @@
         "delete": "Ezabatu",
         "edit": "Editatu",
         "ok": "OK",
-        "unknown": "Ezezaguna"
+        "unknown": "Ezezaguna",
+        "openInFiles": "Ireki Fitxategietan",
+        "share": "Partekatu",
+        "play": "Erreproduzitu"
     },
     "headings": {
         "addServer": "Zerbitzaria gehitu",
@@ -70,7 +73,8 @@
         "lightTheme": "Erabili gai argia",
         "systemTheme": "Erabili sistemaren gaia",
         "rotationLock": "Biraketa blokeoa",
-        "tabLabels": "Erakutsi fitxen etiketak"
+        "tabLabels": "Erakutsi fitxen etiketak",
+        "downloadTranscoding": "Transkodifikatutako deskargak"
     },
     "links": {
         "website": "Jellyfin webgunea",
