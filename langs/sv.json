@@ -6,7 +6,9 @@
         "beta": "BETA",
         "edit": "Redigera",
         "delete": "Radera",
-        "play": "Spela upp"
+        "play": "Spela upp",
+        "share": "Dela",
+        "openInFiles": "Öppna i filer"
     },
     "headings": {
         "addServer": "Lägg till server",
@@ -63,7 +65,8 @@
         "systemTheme": "Använd systemtema",
         "lightTheme": "Använd ljust tema",
         "fmp4Support": "Föredra fMP4 i HLS",
-        "nativeVideoPlayer": "Använd inbyggd videospelare"
+        "nativeVideoPlayer": "Använd inbyggd videospelare",
+        "downloadTranscoding": "Transkodade Nedladdningar"
     },
     "links": {
         "website": "Jellyfins hemsida",
