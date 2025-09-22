@@ -6,11 +6,13 @@
         "unknown": "Desconhecido",
         "delete": "Eliminar",
         "edit": "Editar",
-        "play": "Reproduzir"
+        "play": "Reproduzir",
+        "share": "Partilhar",
+        "openInFiles": "Abrir em ficheiros"
     },
     "headings": {
         "addServer": "Adicionar servidor",
-        "appearance": "Aparência",
+        "appearance": "Aspeto",
         "home": "Início",
         "links": "Links",
         "playback": "Reprodução",
@@ -19,7 +21,7 @@
         "downloads": "Transferências"
     },
     "addServer": {
-        "address": "Endereço do Servidor",
+        "address": "Endereço do servidor",
         "validation": {
             "empty": "$t(addServer.address) não pode estar vazio",
             "invalid": "$t(addServer.address) é inválido",
@@ -79,14 +81,14 @@
     },
     "alerts": {
         "deleteServer": {
-            "title": "Apagar servidor",
+            "title": "Eliminar servidor",
             "description": "Tem a certeza que deseja apagar o servidor {{serverName}}?",
-            "confirm": "Apagar"
+            "confirm": "Eliminar"
         },
         "resetApplication": {
-            "title": "Restablecer a aplicação",
-            "description": "Tem a certeza que deseja restaurar todas as definições?",
-            "confirm": "Restaurar"
+            "title": "Repor aplicação",
+            "description": "Tens a certeza que desejas repor todas as definições?",
+            "confirm": "Repor"
         },
         "deleteDownloads": {
             "title": "Eliminar transferências",
