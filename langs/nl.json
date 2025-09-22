@@ -5,7 +5,10 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Bewerken",
-        "delete": "Wissen"
+        "delete": "Wissen",
+        "share": "Delen",
+        "play": "Speel",
+        "openInFiles": "Open in Bestanden"
     },
     "headings": {
         "addServer": "Server toevoegen",
@@ -62,7 +65,8 @@
         "systemTheme": "Gebruik systeemthema",
         "minimumServerVersion": "Vereist serverversie 10.7+",
         "nativeVideoPlayer": "Gebruik originele videospeler",
-        "fmp4Support": "Prefereer fMP4 in HLS"
+        "fmp4Support": "Prefereer fMP4 in HLS",
+        "downloadTranscoding": "Getranscodeerde Downloads"
     },
     "links": {
         "website": "Jellyfin-website",
