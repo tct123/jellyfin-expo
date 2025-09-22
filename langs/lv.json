@@ -6,7 +6,9 @@
         "edit": "Rediģēt",
         "ok": "OK",
         "unknown": "Nezināms",
-        "play": "Atskaņot"
+        "play": "Atskaņot",
+        "openInFiles": "Atvērt failos",
+        "share": "Dalīties"
     },
     "headings": {
         "addServer": "Pievienot Serveri",
@@ -67,7 +69,8 @@
         "systemTheme": "Izmantot Sistēmas Tēmu",
         "rotationLock": "Rotācijas Bloķēšana",
         "tabLabels": "Rādīt Cilņu Etiķetes",
-        "expoVersion": "Expo Versija: {{version}}"
+        "expoVersion": "Expo Versija: {{version}}",
+        "downloadTranscoding": "Transkodētās lejuplādes"
     },
     "links": {
         "website": "Jellyfin tīmekļa vietne",
