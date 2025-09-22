@@ -5,7 +5,10 @@
         "ok": "확인",
         "delete": "삭제",
         "beta": "Beta",
-        "edit": "편집"
+        "edit": "편집",
+        "share": "공유",
+        "play": "재생",
+        "openInFiles": "파일 앱에서 열기"
     },
     "headings": {
         "addServer": "서버 추가",
@@ -85,7 +88,12 @@
             "confirm": "재설정"
         },
         "deleteDownloads": {
-            "title": "다운로드 항목 지우기"
+            "title": "다운로드 항목 지우기",
+            "description": "해당 아이템은 기기에서 영구적으로 제거됩니다."
+        },
+        "downloadFailed": {
+            "title": "다운로드 실패",
+            "description": "\"{{title}}\" 다운로드에 실패했습니다."
         }
     },
     "serverHelp": {
