@@ -6,7 +6,9 @@
         "beta": "BETA",
         "edit": "Bearbeiten",
         "delete": "Löschen",
-        "play": "Wiedergabe"
+        "play": "Wiedergabe",
+        "openInFiles": "Öffnen in Dateien",
+        "share": "Teilen"
     },
     "headings": {
         "addServer": "Server hinzufügen",
@@ -63,7 +65,8 @@
         "systemTheme": "Systemdesign verwenden",
         "minimumServerVersion": "Erfordert die Serverversion 10.7+",
         "nativeVideoPlayer": "Nativen Video-Player verwenden",
-        "fmp4Support": "fMP4 in HLS bevorzugen"
+        "fmp4Support": "fMP4 in HLS bevorzugen",
+        "downloadTranscoding": "Transkodierte Downloads"
     },
     "links": {
         "website": "Jellyfin-Webseite",
