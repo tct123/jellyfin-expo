@@ -5,7 +5,9 @@
         "delete": "Выдаліць",
         "edit": "Рэдагаваць",
         "ok": "Добра",
-        "unknown": "Невядомы"
+        "unknown": "Невядомы",
+        "share": "Абагуліць",
+        "play": "Прайграць"
     },
     "headings": {
         "addServer": "Дадаць сервер",
@@ -66,7 +68,8 @@
         "systemTheme": "Выкарыстоўваць сістэмную тэму",
         "rotationLock": "Блакаванне кручэння",
         "tabLabels": "Паказаць меткі ўкладак",
-        "expoVersion": "Версія Expo: {{version}}"
+        "expoVersion": "Версія Expo: {{version}}",
+        "downloadTranscoding": "Перакадзіраваныя спампоўкі"
     },
     "links": {
         "website": "Сайт Jellyfin",
