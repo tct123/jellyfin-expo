@@ -30,9 +30,11 @@ interface MobxDownloadModel {
 	isNew: boolean;
 }
 
+/** Statuses that a finished download can be in. */
 const COMPLETE_STATUSES: DownloadStatus[] = [
 	DownloadStatus.Complete,
-	DownloadStatus.Failed
+	DownloadStatus.Failed,
+	DownloadStatus.Missing
 ];
 
 const DOWNLOADS_DIRECTORY = 'Downloads/';
