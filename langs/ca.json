@@ -6,7 +6,9 @@
         "edit": "Edita",
         "ok": "D'acord",
         "unknown": "Desconegut",
-        "play": "Reproduir"
+        "play": "Reproduir",
+        "share": "Compartir",
+        "openInFiles": "Obrir en Arxius"
     },
     "headings": {
         "addServer": "Afegeix un servidor",
@@ -67,7 +69,8 @@
         "systemTheme": "Fes servir el tema del sistema",
         "rotationLock": "Bloqueig de rotació",
         "tabLabels": "Mostra les etiquetes de les pestanyes",
-        "expoVersion": "Versió d'Expo: {{version}}"
+        "expoVersion": "Versió d'Expo: {{version}}",
+        "downloadTranscoding": "Descàrregues Transcodificades"
     },
     "links": {
         "website": "Lloc web de Jellyfin",
