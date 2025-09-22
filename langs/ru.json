@@ -6,7 +6,9 @@
         "beta": "БЕТА",
         "edit": "Править",
         "delete": "Удалить",
-        "play": "Воспроизвести"
+        "play": "Воспроизвести",
+        "openInFiles": "Открыть в Файлах",
+        "share": "Поделиться"
     },
     "headings": {
         "addServer": "Добавить сервер",
@@ -62,7 +64,8 @@
         "systemTheme": "Использовать системную тему",
         "minimumServerVersion": "Требуется версия сервера 10.7+",
         "nativeVideoPlayer": "Использовать встроенный видеопроигрыватель",
-        "fmp4Support": "Предпочитать fMP4 в HLS"
+        "fmp4Support": "Предпочитать fMP4 в HLS",
+        "downloadTranscoding": "Перекодированные загрузки"
     },
     "links": {
         "website": "Веб-сайтJellyfin",
