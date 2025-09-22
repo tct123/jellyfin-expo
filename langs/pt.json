@@ -5,11 +5,13 @@
         "delete": "Eliminar",
         "edit": "Editar",
         "ok": "OK",
-        "unknown": "Desconhecido"
+        "unknown": "Desconhecido",
+        "openInFiles": "Abrir em ficheiros",
+        "share": "Partilhar"
     },
     "headings": {
         "addServer": "Adicionar servidor",
-        "appearance": "Aparência",
+        "appearance": "Aspeto",
         "downloads": "Transferências",
         "home": "Página inicial",
         "links": "Ligações",
@@ -83,9 +85,9 @@
             "confirm": "Eliminar"
         },
         "resetApplication": {
-            "title": "Redefinir Aplicação",
-            "description": "Tem a certeza que pretende redefinir todas as definições?",
-            "confirm": "Redefinir"
+            "title": "Repor aplicação",
+            "description": "Tens a certeza que desejas repor todas as definições?",
+            "confirm": "Repor"
         },
         "deleteDownloads": {
             "title": "Deletar Downloads",
