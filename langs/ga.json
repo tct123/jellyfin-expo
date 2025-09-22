@@ -6,7 +6,9 @@
         "edit": "Cuir in eagar",
         "ok": "Ceart go leor",
         "unknown": "Anaithnid",
-        "play": "Seinn"
+        "play": "Seinn",
+        "openInFiles": "Oscail i gComhaid",
+        "share": "Comhroinn"
     },
     "headings": {
         "addServer": "Cuir Freastalaí leis",
@@ -66,7 +68,8 @@
         "lightTheme": "Úsáid Téama Solas",
         "systemTheme": "Úsáid Téama an Chórais",
         "rotationLock": "Glas Rothlaithe",
-        "tabLabels": "Taispeáin Lipéid Cluaisíní"
+        "tabLabels": "Taispeáin Lipéid Cluaisíní",
+        "downloadTranscoding": "Íoslódálacha Traschódaithe"
     },
     "links": {
         "website": "Láithreán gréasáin Jellyfin",
