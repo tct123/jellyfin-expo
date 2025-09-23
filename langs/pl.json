@@ -100,6 +100,10 @@
         "downloadUnsupported": {
             "description": "Pobieranie treści tego typu nie jest obecnie obsługiwane.",
             "title": "Nieobsługiwany typ"
+        },
+        "missingDownload": {
+            "title": "Brakujące pobranie",
+            "description": "Wygląda na to, że ten plik do pobrania został usunięty poza aplikacją Jellyfin."
         }
     },
     "serverHelp": {
