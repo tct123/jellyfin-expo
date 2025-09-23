@@ -95,6 +95,7 @@ export default class DownloadModel {
 		return `${this.item.ServerId}_${this.item.Id}`;
 	}
 
+	/** Returns the downloads filename. */
 	get localFilename() {
 		let ext = this.extension;
 		// If no extension override is set, try to get the original from the item.Path
@@ -115,21 +116,28 @@ export default class DownloadModel {
 		return this.filename.slice(0, this.filename.lastIndexOf('.')) + '.mp4';
 	}
 
+	/** Returns the absolute directory path. */
 	get localPath() {
+		return `${FileSystem.documentDirectory}${this.relativePath}`;
+	}
+
+	/** Returns the URI encoded absolute directory path. */
+	get localPathUri() {
+		return encodeURI(this.localPath);
+	}
+
+	/** Returns the relative directory path (document directory should be the base). */
+	get relativePath() {
 		// Legacy downloads will not have a path set
 		if (this.item.Path) {
 			const itemDirectory = getItemDirectory(this.item);
 			if (itemDirectory) {
-				return `${FileSystem.documentDirectory}${DOWNLOADS_DIRECTORY}${itemDirectory}`;
+				return `${DOWNLOADS_DIRECTORY}${itemDirectory}`;
 			}
 		}
 
 		// Fallback for legacy downloads
-		return `${FileSystem.documentDirectory}${this.item.ServerId}/${this.item.Id}/`;
-	}
-
-	get localPathUri() {
-		return encodeURI(this.localPath);
+		return `${this.item.ServerId}/${this.item.Id}/`;
 	}
 
 	/** @deprecated Use item.ServerId instead. */
@@ -141,6 +149,7 @@ export default class DownloadModel {
 		return this.item.Name || undefined;
 	}
 
+	/** Returns the URI encoded absolute file path. */
 	get uri() {
 		return encodeURI(this.localPath + this.localFilename);
 	}
