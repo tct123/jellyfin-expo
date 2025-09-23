@@ -52,6 +52,10 @@
         "downloadFailed": {
             "title": "Échec du téléchargement",
             "description": "Le téléchargement de « {{title}} » a échoué."
+        },
+        "missingDownload": {
+            "title": "Téléchargement manquant",
+            "description": "Ce téléchargement semble avoir été supprimé en dehors de l'application Jellyfin."
         }
     },
     "links": {
