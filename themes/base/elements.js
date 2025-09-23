@@ -21,6 +21,9 @@ export default {
 	Badge: {
 		badgeStyle: {
 			borderWidth: 0
+		},
+		textStyle: {
+			color: Colors.black
 		}
 	},
 	Input: {

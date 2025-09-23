@@ -1,5 +1,6 @@
 {
   "common": {
+    "alpha": "ALPHA",
     "beta": "BETA",
     "cancel": "Cancel",
     "delete": "Delete",
