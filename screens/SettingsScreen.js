@@ -214,7 +214,8 @@ const SettingsScreen = () => {
 					key: 'experimental-downloads-switch',
 					title: t('settings.downloadTranscoding'),
 					badge: {
-						value: t('common.beta')
+						value: t('common.alpha'),
+						status: 'warning'
 					},
 					value: settingStore.isExperimentalDownloadsEnabled,
 					onValueChange: (value) => {
