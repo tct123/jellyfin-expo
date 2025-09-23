@@ -45,10 +45,35 @@ const DownloadScreen = () => {
 	const deleteItem = useCallback(async (download: DownloadModel) => {
 		// TODO: Add user messaging on errors
 		try {
-			// If the download is in a (potentially) shared directory, only delete the file
-			if (download.isSharedPath) await FileSystem.deleteAsync(download.uri, { idempotent: true });
-			// Otherwise delete the entire directory
-			else await FileSystem.deleteAsync(download.localPathUri, { idempotent: true });
+			// Delete the download file
+			await FileSystem.deleteAsync(download.uri, { idempotent: true });
+
+			// Get the path for each subdirectory the item exists in descending order
+			// i.e. [ 'Downloads/Series Name/Season 1/', 'Downloads/Series Name/', 'Downloads/' ]
+			const pathParts = download.relativePath.split('/').filter(p => p);
+			const checkPaths: string[] = [];
+			for (let i = pathParts.length; i > 0; i--) {
+				checkPaths.push(pathParts.slice(0, i).join('/') + '/');
+			}
+			// Iterate over each subdirectory
+			for (const p of checkPaths) {
+				const uri = encodeURI(`${FileSystem.documentDirectory}${p}`);
+				const info = await FileSystem.getInfoAsync(uri);
+				// Verify the subdirectory exists and is a directory
+				if (info.exists && info.isDirectory) {
+					// Delete the subdirectory if it is empty
+					const contents = await FileSystem.readDirectoryAsync(uri);
+					if (!contents.length) {
+						console.debug('Deleting empty subdirectory', p);
+						await FileSystem.deleteAsync(uri, { idempotent: true });
+					} else {
+						// If a subdirectory has content do not continue checking parents
+						console.debug('Skipping subdirectory with content', p, contents);
+						break;
+					}
+				}
+			}
+
 			// Delete the store value
 			downloadStore.delete(download);
 			console.log('[DownloadScreen] download "%s" deleted', download.title);
