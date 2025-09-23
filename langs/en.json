@@ -98,6 +98,10 @@
         "title": "Download Failed",
         "description": "\"{{title}}\" failed to download."
     },
+    "missingDownload": {
+        "title": "Missing Download",
+        "description": "This download seems to have been removed outside the Jellyfin app."
+    },
     "resetApplication": {
       "title": "Reset Application",
       "description": "Are you sure you want to reset all settings?",

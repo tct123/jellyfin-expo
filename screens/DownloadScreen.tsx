@@ -21,6 +21,7 @@ import ErrorView from '../components/ErrorView';
 import { Screens } from '../constants/Screens';
 import DownloadListItem from '../features/downloads/components/DownloadListItem';
 import { DownloadAction } from '../features/downloads/constants/DownloadAction';
+import { DownloadStatus } from '../features/downloads/constants/DownloadStatus';
 import { getDownloadItemActions } from '../features/downloads/utils/downloadItemActions';
 import { useStores } from '../hooks/useStores';
 import type DownloadModel from '../models/DownloadModel';
@@ -80,7 +81,19 @@ const DownloadScreen = () => {
 		);
 	}, [ deleteItem, exitEditMode, t ]);
 
-	const onAction = useCallback((action: DownloadAction, item: DownloadModel) => {
+	const onAction = useCallback(async (action: DownloadAction, item: DownloadModel) => {
+		// Verify the download has not been removed from the file system
+		const info = await FileSystem.getInfoAsync(item.uri);
+		if (!info.exists) {
+			item.status = DownloadStatus.Missing;
+			downloadStore.update(item);
+			Alert.alert(
+				t('alerts.missingDownload.title'),
+				t('alerts.missingDownload.description')
+			);
+			return;
+		}
+
 		switch (action) {
 			case DownloadAction.Delete:
 				return onDeleteItems([ item ]);
@@ -110,7 +123,7 @@ const DownloadScreen = () => {
 					});
 			}
 		}
-	}, [ downloadStore, mediaStore, onDeleteItems ]);
+	}, [ downloadStore, mediaStore, onDeleteItems, t ]);
 
 	React.useLayoutEffect(() => {
 		navigation.setOptions({
