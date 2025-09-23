@@ -4,10 +4,11 @@
         "cancel": "Cancelar",
         "delete": "Eliminar",
         "edit": "Editar",
-        "ok": "OK",
+        "ok": "Ok",
         "unknown": "Desconhecido",
         "openInFiles": "Abrir em ficheiros",
-        "share": "Partilhar"
+        "share": "Partilhar",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Adicionar servidor",
