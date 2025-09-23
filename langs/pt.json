@@ -14,14 +14,14 @@
         "addServer": "Adicionar servidor",
         "appearance": "Aspeto",
         "downloads": "Transferências",
-        "home": "Página inicial",
-        "links": "Ligações",
-        "playback": "Reproduzir",
+        "home": "Início",
+        "links": "Links",
+        "playback": "Reprodução",
         "servers": "Servidores",
         "settings": "Definições"
     },
     "addServer": {
-        "address": "Endereço do Servidor",
+        "address": "Endereço do servidor",
         "validation": {
             "empty": "$t(addServer.address) não pode estar vazio",
             "invalid": "$t(addServer.address) é inválido",
