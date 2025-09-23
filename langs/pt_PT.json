@@ -2,13 +2,14 @@
     "common": {
         "beta": "BETA",
         "cancel": "Cancelar",
-        "ok": "OK",
+        "ok": "Ok",
         "unknown": "Desconhecido",
         "delete": "Eliminar",
         "edit": "Editar",
         "play": "Reproduzir",
         "share": "Partilhar",
-        "openInFiles": "Abrir em ficheiros"
+        "openInFiles": "Abrir em ficheiros",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Adicionar servidor",
