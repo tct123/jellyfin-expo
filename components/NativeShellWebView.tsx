@@ -189,7 +189,7 @@ true;
 					console.warn('[Browser Console]', data);
 					break;
 				default:
-					console.debug('[HomeScreen.onMessage]', event, data);
+					console.debug('[HomeScreen.onMessage]', event, JSON.stringify(data));
 			}
 		} catch (ex) {
 			console.warn('Exception handling message', state.data);
