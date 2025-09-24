@@ -69,7 +69,7 @@ const HomeScreen = () => {
 				isFinished: mediaStore.isFinished,
 				isPlaying: mediaStore.isPlaying,
 				positionTicks: mediaStore.positionTicks,
-				positionMillis: mediaStore.positionMillis
+				positionMillis: mediaStore.getPositionMillis()
 			};
 
 			if (mediaStore.type === MediaType.Audio) {

@@ -75,7 +75,7 @@ const AudioPlayer = () => {
 		if (mediaStore.type === MediaType.Audio) {
 			createPlayer({
 				uri: mediaStore.uri,
-				positionMillis: mediaStore.positionMillis
+				positionMillis: mediaStore.getPositionMillis()
 			});
 		}
 	}, [ mediaStore.type, mediaStore.uri ]);
