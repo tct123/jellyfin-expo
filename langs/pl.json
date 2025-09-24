@@ -3,12 +3,13 @@
         "cancel": "Anuluj",
         "unknown": "Nieznane",
         "ok": "OK",
-        "beta": "Wersja Beta",
+        "beta": "BETA",
         "edit": "Edytuj",
         "delete": "Usuń",
         "play": "Odtwarzaj",
         "openInFiles": "Otwórz w plikach",
-        "share": "Udostępnij"
+        "share": "Udostępnij",
+        "alpha": "ALFA"
     },
     "headings": {
         "addServer": "Dodaj serwer",
