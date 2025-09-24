@@ -38,7 +38,7 @@ const VideoPlayer = () => {
 			player.current?.loadAsync({
 				uri: mediaStore.uri
 			}, {
-				positionMillis: mediaStore.positionMillis,
+				positionMillis: mediaStore.getPositionMillis(),
 				shouldPlay: true
 			});
 		}
