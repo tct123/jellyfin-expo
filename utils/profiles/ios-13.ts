@@ -143,6 +143,8 @@ const IosProfile = {
 			Type: DlnaProfileType.Video,
 			VideoCodec: 'h264'
 		},
+		// NOTE: hevc should also be a supported VideoCodec, but the server is failing to properly handle
+		// VideoCodecTag conditions for progressive transcodes.
 		// NOTE: Video transcoding profiles with a static context value seem ignored?
 		{
 			AudioCodec: 'aac,mp3,ac3,eac3,flac,alac',

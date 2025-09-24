@@ -34,10 +34,16 @@ const BaseProfile = {
 					Value: 'high|main|baseline|constrained baseline'
 				},
 				{
+					Condition: ProfileConditionType.EqualsAny,
+					IsRequired: false,
+					Property: ProfileConditionValue.VideoRangeType,
+					Value: 'SDR'
+				},
+				{
 					Condition: ProfileConditionType.LessThanEqual,
 					IsRequired: false,
 					Property: ProfileConditionValue.VideoLevel,
-					Value: '51'
+					Value: '52'
 				},
 				{
 					Condition: ProfileConditionType.NotEquals,
@@ -64,16 +70,34 @@ const BaseProfile = {
 					Value: 'main|main 10'
 				},
 				{
+					Condition: ProfileConditionType.EqualsAny,
+					IsRequired: false,
+					Property: ProfileConditionValue.VideoRangeType,
+					Value: 'SDR|HDR10'
+				},
+				{
 					Condition: ProfileConditionType.LessThanEqual,
 					IsRequired: false,
 					Property: ProfileConditionValue.VideoLevel,
-					Value: '183'
+					Value: '153'
 				},
 				{
 					Condition: ProfileConditionType.NotEquals,
 					IsRequired: false,
 					Property: ProfileConditionValue.IsInterlaced,
 					Value: 'true'
+				},
+				{
+					Condition: ProfileConditionType.EqualsAny,
+					IsRequired: true,
+					Property: ProfileConditionValue.VideoCodecTag,
+					Value: 'hvc1'
+				},
+				{
+					Condition: ProfileConditionType.LessThanEqual,
+					IsRequired: true,
+					Property: ProfileConditionValue.VideoFramerate,
+					Value: '60'
 				}
 			],
 			Type: CodecType.Video
