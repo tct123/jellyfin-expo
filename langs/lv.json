@@ -8,7 +8,8 @@
         "unknown": "Nezināms",
         "play": "Atskaņot",
         "openInFiles": "Atvērt failos",
-        "share": "Dalīties"
+        "share": "Dalīties",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Pievienot Serveri",
