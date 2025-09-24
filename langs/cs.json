@@ -8,7 +8,8 @@
         "delete": "odstranit",
         "play": "Přehrát",
         "openInFiles": "Otevřít v Souborech",
-        "share": "Sdílet"
+        "share": "Sdílet",
+        "alpha": "ALFA"
     },
     "headings": {
         "addServer": "Přidat server",
@@ -100,6 +101,10 @@
         "downloadUnsupported": {
             "title": "Nepodporovaný typ",
             "description": "Stahování obsahu tohoto typu v současné době není podporováno."
+        },
+        "missingDownload": {
+            "description": "Tento stažený soubor byl nejspíše odstraněn mimo aplikaci Jellyfin.",
+            "title": "Chybějící stažený soubor"
         }
     },
     "serverHelp": {
