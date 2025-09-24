@@ -81,7 +81,8 @@ exports[`SettingsScreen should render correctly 1`] = `
           "data": Array [
             Object {
               "badge": Object {
-                "value": "BETA",
+                "status": "warning",
+                "value": "ALPHA",
               },
               "key": "experimental-downloads-switch",
               "onValueChange": [Function],
