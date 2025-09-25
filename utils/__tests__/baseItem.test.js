@@ -6,6 +6,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models';
+
 import { getItemDirectory, getItemFileName, getItemSubtitle } from '../baseItem';
 
 describe('getItemSubtitle', () => {
@@ -66,6 +68,21 @@ describe('getItemDirectory', () => {
 		item.Album = '  ** ';
 		item.AlbumArtist = ':?\\';
 		expect(getItemDirectory(item)).toBe('Unknown Artist/Unknown Album/');
+	});
+
+	it('should handle photos correctly', () => {
+		const item = {
+			Album: 'Album Name',
+			Type: BaseItemKind.Photo
+		};
+		expect(getItemDirectory(item)).toBe('Album Name/');
+
+		item.AlbumArtist = 'Ozzy Osbourne';
+		expect(getItemDirectory(item)).toBe('Album Name/');
+
+		item.Album = '  ** ';
+		item.AlbumArtist = ':?\\';
+		expect(getItemDirectory(item)).toBe('Unknown Album/');
 	});
 
 	it('should handle episodes correctly', () => {
