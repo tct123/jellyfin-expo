@@ -11,10 +11,11 @@ import * as WebBrowser from 'expo-web-browser';
 import Colors from '../constants/Colors';
 
 export async function openBrowser(url, options) {
-	const finalOptions = Object.assign({
+	const finalOptions = {
 		toolbarColor: Colors.blackish,
-		controlsColor: Colors.blue
-	}, options);
+		controlsColor: Colors.blue,
+		...options
+	};
 
 	try {
 		await WebBrowser.openBrowserAsync(url, finalOptions);
