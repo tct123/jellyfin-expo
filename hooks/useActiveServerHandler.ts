@@ -11,7 +11,7 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useState, useEffect } from 'react';
 
 import { Screens } from '../constants/Screens';
-import type { AppStackParams } from '../navigation/AppNavigator';
+import type { AppStackParams } from '../navigation/types';
 
 import { useStores } from './useStores';
 

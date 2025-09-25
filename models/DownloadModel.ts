@@ -18,7 +18,7 @@ export interface DownloadItem extends BaseItemDto {
 	ServerId: string;
 }
 
-interface MobxDownloadModel {
+export interface MobxDownloadModel {
 	itemId: string;
 	serverId: string;
 	serverUrl: string;

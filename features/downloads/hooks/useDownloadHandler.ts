@@ -6,6 +6,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import type { Api } from '@jellyfin/sdk/lib/api';
 import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
 import { getMediaInfoApi } from '@jellyfin/sdk/lib/utils/api/media-info-api';
 import { getPlaystateApi } from '@jellyfin/sdk/lib/utils/api/playstate-api';
@@ -21,10 +22,82 @@ import { ensurePathExists } from '../../../utils/File';
 import { DownloadStatus } from '../constants/DownloadStatus';
 import { toDownloadProfile } from '../utils/profile';
 
+interface DownloadMetadata {
+	url: URL;
+	isTranscoding: boolean;
+}
+
 // Configurable concurrent download limit
 const MAX_CONCURRENT_DOWNLOADS = 3;
 // Media types that support the stream API for download/transcoding
 const STREAMING_MEDIA_TYPES: MediaType[] = [ MediaType.Audio, MediaType.Video ];
+
+const getDownloadMetadata = async (
+	api: Api,
+	download: DownloadModel
+): Promise<DownloadMetadata | undefined> => {
+	const { data: playbackInfo } = await getMediaInfoApi(api)
+		.getPostedPlaybackInfo({
+			itemId: download.item.Id,
+			playbackInfoDto: {
+				DeviceProfile: toDownloadProfile(getDeviceProfile())
+			}
+		});
+
+	// Check that playback info returned at least one source
+	if (!playbackInfo.MediaSources || playbackInfo.MediaSources.length < 1) {
+		console.warn('[useDownloadHandler] no media sources found; fallback to direct file download');
+		return;
+	}
+
+	// Update the download session id if provided
+	if (playbackInfo.PlaySessionId) download.sessionId = playbackInfo.PlaySessionId;
+
+	// The server sorts media sources, so the first _should_ be the best.
+	const firstMediaSource = playbackInfo.MediaSources[0];
+
+	if (firstMediaSource.SupportsDirectPlay || firstMediaSource.SupportsDirectStream) {
+		// For direct play we must build the URL ourselves
+		console.debug('[useDownloadHandler] media source will direct play/stream', firstMediaSource);
+		const endpoint = download.item.MediaType === MediaType.Video ? 'Videos' : 'Audio';
+		download.canPlay = true;
+		download.extension = `.${firstMediaSource.Container || ''}`;
+
+		const streamParams = new URLSearchParams({
+			deviceId: api.deviceInfo.id,
+			ApiKey: download.apiKey,
+			playSessionId: download.sessionId,
+			mediaSourceId: firstMediaSource.Id || '',
+			Tag: firstMediaSource.ETag || '',
+			Static: 'true'
+		});
+
+		return {
+			isTranscoding: false,
+			url: new URL(
+				`/${endpoint}/${download.item.Id}/stream${download.extension}?${streamParams.toString()}`,
+				api.basePath
+			)
+		};
+	} else if (firstMediaSource.SupportsTranscoding && firstMediaSource.TranscodingUrl) {
+		// For transcoding the server returns the URL
+		console.debug('[useDownloadHandler] media source will transcode', firstMediaSource);
+
+		download.canPlay = true;
+		download.extension = `.${firstMediaSource.TranscodingContainer || ''}`;
+
+		return {
+			isTranscoding: true,
+			url: new URL(firstMediaSource.TranscodingUrl, api.basePath)
+		};
+	} else {
+		// If we can't direct play or transcode, then we should fallback to using the direct file download
+		console.warn(
+			'[useDownloadHandler] server returned incompatible media source; fallback to direct file download',
+			firstMediaSource
+		);
+	}
+};
 
 export const useDownloadHandler = (enabled = false) => {
 	const { downloadStore, rootStore, settingStore } = useStores();
@@ -46,9 +119,7 @@ export const useDownloadHandler = (enabled = false) => {
 			const serverUrl = download.serverUrl.endsWith('/') ? download.serverUrl.slice(0, -1) : download.serverUrl;
 			const api = rootStore.getSdk().createApi(serverUrl, download.apiKey);
 
-			let url = new URL(download.downloadUrl, serverUrl);
-			let isTranscoding = false;
-
+			let downloadMetadata: DownloadMetadata | undefined;
 			if (
 				// Check that transcoded downloads are enabled
 				settingStore.isExperimentalDownloadsEnabled &&
@@ -56,66 +127,20 @@ export const useDownloadHandler = (enabled = false) => {
 				download.item.MediaType &&
 				STREAMING_MEDIA_TYPES.includes(download.item.MediaType)
 			) {
-				const { data: playbackInfo } = await getMediaInfoApi(api)
-					.getPostedPlaybackInfo({
-						itemId: download.item.Id,
-						playbackInfoDto: {
-							DeviceProfile: toDownloadProfile(getDeviceProfile())
-						}
-					});
-
-				// Check that playback info returned at least one source
-				if (!playbackInfo.MediaSources || playbackInfo.MediaSources.length < 1) {
-					throw new Error('No media sources found');
-				}
-
-				// Update the download session id if provided
-				if (playbackInfo.PlaySessionId) download.sessionId = playbackInfo.PlaySessionId;
-
-				// The server sorts media sources, so the first _should_ be the best.
-				const firstMediaSource = playbackInfo.MediaSources[0];
-
-				if (firstMediaSource.SupportsDirectPlay || firstMediaSource.SupportsDirectStream) {
-					// For direct play we must build the URL ourselves
-					console.debug('[useDownloadHandler] media source will direct play/stream', firstMediaSource);
-					const endpoint = download.item.MediaType === MediaType.Video ? 'Videos' : 'Audio';
-					download.canPlay = true;
-					download.extension = `.${firstMediaSource.Container || ''}`;
-
-					const streamParams = new URLSearchParams({
-						deviceId: rootStore.deviceId,
-						ApiKey: download.apiKey,
-						playSessionId: download.sessionId,
-						mediaSourceId: firstMediaSource.Id || '',
-						Tag: firstMediaSource.ETag || '',
-						Static: 'true'
-					});
-
-					url = new URL(
-						`/${endpoint}/${download.item.Id}/stream${download.extension}?${streamParams.toString()}`,
-						serverUrl
-					);
-				} else if (firstMediaSource.SupportsTranscoding && firstMediaSource.TranscodingUrl) {
-					// For transcoding the server returns the URL
-					console.debug('[useDownloadHandler] media source will transcode', firstMediaSource);
-					isTranscoding = true;
-					url = new URL(firstMediaSource.TranscodingUrl, serverUrl);
-
-					download.canPlay = true;
-					download.extension = `.${firstMediaSource.TranscodingContainer || ''}`;
-				} else {
-					// If we can't direct play or transcode, then we will fallback to using the default download URL
-					console.warn(
-						'[useDownloadHandler] server returned incompatible media source; using default download URL',
-						firstMediaSource
-					);
-				}
+				downloadMetadata = await getDownloadMetadata(api, download);
 			}
 
-			console.debug('[useDownloadHandler] downloading from url', url);
+			if (!downloadMetadata) {
+				downloadMetadata = {
+					isTranscoding: false,
+					url: new URL(download.downloadUrl, serverUrl)
+				};
+			}
+
+			console.debug('[useDownloadHandler] downloading from url', downloadMetadata.url);
 
 			const resumable = FileSystem.createDownloadResumable(
-				url.toString(),
+				downloadMetadata.url.toString(),
 				download.uri,
 				{},
 				(/*{ totalBytesWritten }*/) => {
@@ -129,7 +154,7 @@ export const useDownloadHandler = (enabled = false) => {
 			download.status = DownloadStatus.Complete;
 
 			// Report transcoding download has stopped so the server will cleanup temp files
-			if (isTranscoding) {
+			if (downloadMetadata.isTranscoding) {
 				console.debug('[useDownloadHandler] Reporting transcoding download stopped', download.sessionId);
 				await getPlaystateApi(api)
 					.reportPlaybackStopped({
@@ -157,31 +182,32 @@ export const useDownloadHandler = (enabled = false) => {
 		}
 	}, [ rootStore.deviceId, rootStore.getSdk, settingStore.isExperimentalDownloadsEnabled, t ]);
 
+	const startNextDownload = useCallback(() => {
+		// Find next pending download that's not already in flight
+		const pendingDownloads = Array.from(downloadStore.downloads.entries())
+			.filter(([ key, download ]) =>
+				download.status === DownloadStatus.Pending && !inFlightRef.current.has(key)
+			);
+
+		// Start downloads up to the limit
+		const availableSlots = MAX_CONCURRENT_DOWNLOADS - inFlightRef.current.size;
+		if (availableSlots <= 0) return;
+		const downloadsToStart = pendingDownloads.slice(0, availableSlots);
+
+		downloadsToStart.forEach(([ key, download ]) => {
+			inFlightRef.current.add(key);
+			void downloadFile(download)
+				.finally(() => {
+					inFlightRef.current.delete(key);
+					// Try to start next download when this one finishes
+					startNextDownload();
+				});
+		});
+	}, [ downloadFile, downloadStore.downloads ]);
+
 	useEffect(() => {
 		if (!enabled) return;
 
-		const startNextDownload = () => {
-			// Find next pending download that's not already in flight
-			const pendingDownloads = Array.from(downloadStore.downloads.entries())
-				.filter(([ key, download ]) =>
-					download.status === DownloadStatus.Pending && !inFlightRef.current.has(key)
-				);
-
-			// Start downloads up to the limit
-			const availableSlots = MAX_CONCURRENT_DOWNLOADS - inFlightRef.current.size;
-			const downloadsToStart = pendingDownloads.slice(0, availableSlots);
-
-			downloadsToStart.forEach(([ key, download ]) => {
-				inFlightRef.current.add(key);
-				void downloadFile(download)
-					.finally(() => {
-						inFlightRef.current.delete(key);
-						// Try to start next download when this one finishes
-						startNextDownload();
-					});
-			});
-		};
-
 		startNextDownload();
-	}, [ enabled, downloadFile, downloadStore.downloads ]);
+	}, [ enabled, startNextDownload ]);
 };
