@@ -5,7 +5,11 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Editează",
-        "delete": "Șterge"
+        "delete": "Șterge",
+        "alpha": "ALPHA",
+        "share": "Distribuie",
+        "play": "Redă",
+        "openInFiles": "Deschide în Fișiere"
     },
     "headings": {
         "addServer": "Adaugă Server",
