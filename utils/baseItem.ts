@@ -7,8 +7,14 @@
  */
 
 import type { BaseItemDto } from '@jellyfin/sdk/lib/generated-client/models/base-item-dto';
+import { BaseItemKind } from '@jellyfin/sdk/lib/generated-client/models/base-item-kind';
 
 import { sanitizeFileName } from './File';
+
+const NO_ARTIST_TYPES: BaseItemKind[] = [
+	BaseItemKind.Photo,
+	BaseItemKind.Video
+];
 
 /** Gets the short episode ID for display. e.g. S2E5-6 */
 const getShortEpisodeId = (item: BaseItemDto): string | undefined => {
@@ -62,12 +68,15 @@ export const getItemSubtitle = (item: BaseItemDto): string | undefined => {
  * Gets the directory path that an item should be saved under.
  */
 export const getItemDirectory = (item: BaseItemDto): string | undefined => {
-	// Songs will use: Artist Name/Album Name/
-	// NOTE: It would be better to separate by Disc but we have no way of identifying songs from multi-disc albums
-	// from the BaseItem of the song.
 	if (item.Album) {
-		const artist = sanitizeFileName(item.AlbumArtist || undefined) || 'Unknown Artist';
+		// Photos or Home Videos will use: Album Name/
 		const album = sanitizeFileName(item.Album) || 'Unknown Album';
+		if (item.Type && NO_ARTIST_TYPES.includes(item.Type)) return `${album}/`;
+
+		// Songs or Music Videos will use: Artist Name/Album Name/
+		// NOTE: It would be better to separate by Disc but we have no way of identifying songs from multi-disc albums
+		// from the BaseItem of the song.
+		const artist = sanitizeFileName(item.AlbumArtist || undefined) || 'Unknown Artist';
 		return `${artist}/${album}/`;
 	}
 
