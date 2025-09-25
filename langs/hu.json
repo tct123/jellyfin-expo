@@ -5,7 +5,9 @@
         "ok": "Oké",
         "beta": "BÉTA",
         "edit": "Szerkesztés",
-        "delete": "Törlés"
+        "delete": "Törlés",
+        "play": "Lejátszás",
+        "share": "Megosztás"
     },
     "headings": {
         "addServer": "Szerver hozzáadása",
