@@ -31,7 +31,9 @@ useStores.mockImplementation(() => ({
 	settingStore: {
 		activeServer: 0
 	},
-	mediaStore: {},
+	mediaStore: {
+		getPositionMillis: jest.fn()
+	},
 	serverStore: {
 		servers: [
 			{
@@ -61,7 +63,9 @@ describe('HomeScreen', () => {
 			rootStore: {
 			},
 			settingStore: {},
-			mediaStore: {},
+			mediaStore: {
+				getPositionMillis: jest.fn()
+			},
 			serverStore: {}
 		}));
 
@@ -84,7 +88,9 @@ describe('HomeScreen', () => {
 			settingStore: {
 				activeServer: 0
 			},
-			mediaStore: {},
+			mediaStore: {
+				getPositionMillis: jest.fn()
+			},
 			serverStore: {
 				servers: [{}]
 			}
