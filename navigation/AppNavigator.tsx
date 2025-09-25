@@ -17,19 +17,7 @@ import { useStores } from '../hooks/useStores';
 import AddServerScreen from '../screens/AddServerScreen';
 
 import TabNavigator from './TabNavigator';
-
-export type AppStackParams = {
-	[Screens.MainScreen]: {
-		screen?: string;
-		params?: {
-			screen?: string;
-			params?: {
-				activeServer: number;
-			}
-		}
-	};
-	[Screens.AddServerScreen]: undefined;
-};
+import type { AppStackParams } from './types';
 
 const AppStack = createNativeStackNavigator<AppStackParams>();
 
