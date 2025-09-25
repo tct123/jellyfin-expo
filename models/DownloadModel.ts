@@ -74,6 +74,10 @@ export default class DownloadModel {
 		this.downloadUrl = downloadUrl;
 	}
 
+	/**
+	 * Returns true if a download has completed.
+	 * e.g. The status is not Pending or Downloading.
+	 */
 	get isComplete() {
 		return COMPLETE_STATUSES.includes(this.status);
 	}

@@ -107,16 +107,25 @@ const DownloadScreen = () => {
 	}, [ deleteItem, exitEditMode, t ]);
 
 	const onAction = useCallback(async (action: DownloadAction, item: DownloadModel) => {
+		// TODO: Allow retrying/removing failed downloads
+		if (item.status === DownloadStatus.Failed) return;
+
 		// Verify the download has not been removed from the file system
 		const info = await FileSystem.getInfoAsync(item.uri);
 		if (!info.exists) {
-			item.status = DownloadStatus.Missing;
-			downloadStore.update(item);
+			if (item.status !== DownloadStatus.Missing) {
+				item.status = DownloadStatus.Missing;
+				downloadStore.update(item);
+			}
 			Alert.alert(
 				t('alerts.missingDownload.title'),
 				t('alerts.missingDownload.description')
 			);
 			return;
+		} else if (item.status === DownloadStatus.Missing) {
+			// The download exists so update the status
+			item.status = DownloadStatus.Complete;
+			downloadStore.update(item);
 		}
 
 		switch (action) {
