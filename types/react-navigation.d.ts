@@ -6,11 +6,11 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import type { AppStackParams } from '../navigation/AppNavigator';
 import type { HomeStackParams } from '../navigation/HomeNavigator';
 import type { RootNavigatorParams } from '../navigation/RootNavigator';
 import type { SettingsStackParams } from '../navigation/SettingsNavigator';
 import type { TabNavigatorParams } from '../navigation/TabNavigator';
+import type { AppStackParams } from '../navigation/types';
 
 declare global {
 	namespace ReactNavigation {

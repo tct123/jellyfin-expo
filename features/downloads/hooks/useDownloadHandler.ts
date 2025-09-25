@@ -191,6 +191,7 @@ export const useDownloadHandler = (enabled = false) => {
 
 		// Start downloads up to the limit
 		const availableSlots = MAX_CONCURRENT_DOWNLOADS - inFlightRef.current.size;
+		if (availableSlots <= 0) return;
 		const downloadsToStart = pendingDownloads.slice(0, availableSlots);
 
 		downloadsToStart.forEach(([ key, download ]) => {

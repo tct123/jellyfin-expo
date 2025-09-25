@@ -24,7 +24,7 @@ interface MobxServerModel {
 interface MobxStore {
 	deviceId?: string;
 	downloadStore: {
-		downloads: MobxDownloadModel[];
+		downloads: Record<string, MobxDownloadModel>;
 	};
 	serverStore: {
 		servers: MobxServerModel[];
