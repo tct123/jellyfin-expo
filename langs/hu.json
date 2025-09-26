@@ -7,7 +7,9 @@
         "edit": "Szerkesztés",
         "delete": "Törlés",
         "play": "Lejátszás",
-        "share": "Megosztás"
+        "share": "Megosztás",
+        "alpha": "ALPHA",
+        "openInFiles": "Megnyitás a Fájlokban"
     },
     "headings": {
         "addServer": "Szerver hozzáadása",
@@ -56,14 +58,15 @@
     "settings": {
         "version": "Verzió: {{version}}",
         "keepAwake": "Tartsa a képernyőt ébren",
-        "rotationLock": "Képernyő irányultság zárolása",
+        "rotationLock": "Képernyő elforgatás zárolása",
         "expoVersion": "Expo Verzió: {{version}}",
         "systemTheme": "Rendszer témájának használata",
         "lightTheme": "Világos téma használata",
         "tabLabels": "Címke fülek megjelenítése",
         "minimumServerVersion": "Legalább a 10.7+ szerver verzió szükséges",
         "nativeVideoPlayer": "Natív Videolejátszó használata",
-        "fmp4Support": "fMP4 preferálása HLS-ben"
+        "fmp4Support": "fMP4 preferálása HLS-ben",
+        "downloadTranscoding": "Átkódolt letöltések"
     },
     "links": {
         "website": "Jellyfin weboldala",
@@ -97,6 +100,10 @@
         "downloadUnsupported": {
             "title": "Nem támogatott típus",
             "description": "Az ilyen típusú tartalom letöltése jelenleg nem támogatott."
+        },
+        "missingDownload": {
+            "title": "Hiányzó letöltés",
+            "description": "Úgy tűnik, hogy ezt a letöltést a Jellyfin alkalmazáson kívülről távolították el."
         }
     },
     "serverHelp": {
