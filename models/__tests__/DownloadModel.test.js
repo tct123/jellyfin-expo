@@ -4,6 +4,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
+import { MediaType } from '@jellyfin/sdk/lib/generated-client/models/media-type';
+
 import { DownloadStatus } from '../../features/downloads/constants/DownloadStatus';
 import DownloadModel, { fromStorageObject } from '../DownloadModel';
 
@@ -141,5 +143,9 @@ describe('DownloadModel', () => {
 		expect(download.isComplete).toBe(value.isComplete);
 		expect(download.isNew).toBe(value.isNew);
 		expect(download.canPlay).toBe(true);
+		expect(download.item.Id).toBe(value.itemId);
+		expect(download.item.ServerId).toBe(value.serverId);
+		expect(download.item.Name).toBe(value.title);
+		expect(download.item.MediaType).toBe(MediaType.Video);
 	});
 });
