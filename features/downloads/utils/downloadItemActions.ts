@@ -15,7 +15,10 @@ import type { DownloadItemAction } from '../types/downloadItemAction';
 export const getDownloadItemActions = (download: DownloadModel): DownloadItemAction[] => {
 	// NOTE: Currently only video has a native UI to play within the app.
 	// The media type check should be removed when we have a native audio player UI available.
-	const isPlayableInApp = download.canPlay && download.item.MediaType === MediaType.Video;
+	const isPlayableInApp = download.canPlay && (
+		!download.item.MediaType || // Legacy downloads won't have a MediaType set but are playable
+		download.item.MediaType === MediaType.Video
+	);
 
 	return [
 		{
