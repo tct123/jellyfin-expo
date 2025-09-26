@@ -7,8 +7,8 @@
         "ok": "D'acord",
         "unknown": "Desconegut",
         "play": "Reproduir",
-        "share": "Compartir",
-        "openInFiles": "Obrir en Arxius"
+        "share": "Comparteix",
+        "openInFiles": "Obre a Fitxers"
     },
     "headings": {
         "addServer": "Afegeix un servidor",
@@ -70,7 +70,7 @@
         "rotationLock": "Bloqueig de rotació",
         "tabLabels": "Mostra les etiquetes de les pestanyes",
         "expoVersion": "Versió d'Expo: {{version}}",
-        "downloadTranscoding": "Descàrregues Transcodificades"
+        "downloadTranscoding": "Descàrregues transcodificades"
     },
     "links": {
         "website": "Lloc web de Jellyfin",
