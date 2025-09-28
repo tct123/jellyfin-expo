@@ -1,112 +1,112 @@
 {
     "common": {
-        "alpha": "",
-        "beta": "",
-        "cancel": "",
-        "delete": "",
-        "edit": "",
-        "ok": "",
-        "openInFiles": "",
-        "play": "",
-        "share": "",
-        "unknown": ""
+        "alpha": "ALPHA",
+        "beta": "BETA",
+        "cancel": "Anile",
+        "delete": "Efase",
+        "edit": "Modifye",
+        "ok": "ok",
+        "openInFiles": "Ouvè nan Dosye",
+        "play": "Jwe",
+        "share": "Pataje",
+        "unknown": "Enkoni"
     },
     "headings": {
-        "addServer": "",
-        "appearance": "",
-        "downloads": "",
-        "home": "",
-        "links": "",
-        "playback": "",
-        "servers": "",
-        "settings": ""
+        "addServer": "Ajoute Sèvè",
+        "appearance": "Aparans",
+        "downloads": "Telechajman",
+        "home": "Lakay",
+        "links": "Lyen",
+        "playback": "Lekti",
+        "servers": "Sèvè yo",
+        "settings": "Paramèt"
     },
     "addServer": {
-        "address": "",
+        "address": "Adrès Sèvè",
         "validation": {
-            "empty": "",
-            "invalid": "",
-            "invalidProduct": "",
-            "noConnection": ""
+            "empty": "$t(addServer.address) paka vid",
+            "invalid": "$t(addServer.address) pa valid",
+            "invalidProduct": "Pa on sèvè Jellyfin",
+            "noConnection": "Pat ka konekte ak sèvè"
         }
     },
     "downloads": {
         "noDownloads": {
-            "heading": "",
-            "description": ""
+            "heading": "Pa gen Telechajman",
+            "description": "Sa ou telechaje pral parèt la."
         }
     },
     "home": {
         "errors": {
             "502": {
-                "description": ""
+                "description": "Pa ka konekte ak sèvè Jellyfin. Li ka poutèt on erè konfigirasyon proxy oubien Jellyfin offline."
             },
             "504": {
-                "description": ""
+                "description": "Pa ka konekte ak sèvè Jellyfin. Li ka poutet tan a depase tan limit proxy a nan eseye konekte ak Jellyfin."
             },
             "http": {
-                "heading": "",
-                "description": ""
+                "heading": "Yon bagay mal pase!",
+                "description": "Sèvè Jellyfin remet on erè."
             },
             "invalidServer": {
-                "heading": "",
-                "description": ""
+                "heading": "Sèvè a pa valid",
+                "description": "On baggy rive épi infomasyon sèvè ki sove a pa valid. Eseye retire sèvè nan Paramèt epi eseye anko."
             },
             "offline": {
-                "heading": "",
-                "description": ""
+                "heading": "Sèvè offline?",
+                "description": "Erè nan kontakte sèvè Jellyfin."
             }
         },
-        "errorCode": "",
-        "errorUrl": "",
-        "retry": ""
+        "errorCode": "Code Erè: {{errorCode}}",
+        "errorUrl": "URL: {{url}}",
+        "retry": "Eseye anko?"
     },
     "serverHelp": {
-        "heading": "",
-        "description": "",
-        "learnMore": ""
+        "heading": "Kisa ki Jellyfin?",
+        "description": "Jellyfin se yo solisyon medya fet ak volontè. Li pemet ou jere medya epi aksede li de nenpòt kote\n\n\nPou ou itilize klien sa, se pou'w otè sèvè Jellfyfin ou.",
+        "learnMore": "Apron kijan ou ka otè sèvè pa'w"
     },
     "settings": {
-        "downloadTranscoding": "",
-        "version": "",
-        "keepAwake": "",
-        "nativeVideoPlayer": "",
-        "fmp4Support": "",
-        "lightTheme": "",
-        "systemTheme": "",
-        "rotationLock": "",
-        "tabLabels": ""
+        "downloadTranscoding": "Telechajman Transkode",
+        "version": "Vesyon: {{version}}",
+        "keepAwake": "Kite Ekran Reveye",
+        "nativeVideoPlayer": "Itilize Jwè Videyo Natif",
+        "fmp4Support": "Pito fMP4 nan HLS",
+        "lightTheme": "Itilize Tèm Klè",
+        "systemTheme": "Itilize Tèm Sistèm",
+        "rotationLock": "Kadnase Vire",
+        "tabLabels": "Montre Etikèt Onglet"
     },
     "links": {
-        "website": "",
-        "documentation": "",
-        "source": "",
-        "translate": "",
-        "help": ""
+        "website": "Sit entènèt Jellyfin",
+        "documentation": "Dokimatasyon",
+        "source": "Sous Kòd",
+        "translate": "Tradui",
+        "help": "Jwen Èd"
     },
     "alerts": {
         "deleteDownloads": {
-            "title": "",
-            "description": "",
-            "confirm": ""
+            "title": "Efase Telechajman",
+            "description": "Atik sa yo pral efase a pèmanan.",
+            "confirm": "Efase {{downloadCount}} Telechajman yo"
         },
         "deleteServer": {
-            "title": "",
-            "description": "",
-            "confirm": ""
+            "title": "Efase Sèvè",
+            "description": "Ou su ou vle efase sèvè {{serverName}}?",
+            "confirm": "Efase"
         },
         "downloadFailed": {
-            "title": "",
-            "description": ""
+            "title": "Telechaje Echwe",
+            "description": "\"\"{{title}}\"\" pat ka telechaje."
         },
         "missingDownload": {
-            "title": "",
-            "description": ""
+            "title": "Telechajman Manke",
+            "description": "Genlè yo retire telechajman sa nan alikasyon Jellyfin."
         },
         "resetApplication": {
-            "title": "",
-            "description": "",
-            "confirm": ""
+            "title": "Reinisyalize Aplikasyon",
+            "description": "Ou su ou vle reinisyalize tout paramèt?",
+            "confirm": "Reinisyalize"
         }
     }
 }
