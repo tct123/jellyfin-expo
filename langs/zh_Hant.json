@@ -5,7 +5,11 @@
         "ok": "確定",
         "beta": "測試版",
         "delete": "刪除",
-        "edit": "編輯"
+        "edit": "編輯",
+        "alpha": "Alpha版",
+        "share": "分享",
+        "play": "播放",
+        "openInFiles": "在檔案中開啟"
     },
     "headings": {
         "addServer": "新增伺服器",
@@ -62,7 +66,8 @@
         "lightTheme": "使用亮色主題",
         "minimumServerVersion": "需要伺服器版本 10.7+",
         "nativeVideoPlayer": "使用原生影片播放器",
-        "fmp4Support": "優先在 HLS 中使用 fMP4"
+        "fmp4Support": "優先在 HLS 中使用 fMP4",
+        "downloadTranscoding": "轉碼下載"
     },
     "links": {
         "website": "Jellyfin 網站",
@@ -96,6 +101,10 @@
         "downloadUnsupported": {
             "title": "不支援的類型",
             "description": "目前不支援下載此類型的內容。"
+        },
+        "missingDownload": {
+            "title": "缺失的下載",
+            "description": "此下載似乎已在 Jellyfin 應用程式外被移除。"
         }
     },
     "serverHelp": {
