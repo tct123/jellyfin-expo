@@ -100,6 +100,9 @@
         "downloadUnsupported": {
             "title": "Tipo non supportato",
             "description": "Il download di contenuti di questo tipo non è al momento supportato."
+        },
+        "missingDownload": {
+            "description": "Sembra che questo download sia stato eliminato al di fuori dell'app Jellyfin."
         }
     },
     "serverHelp": {
