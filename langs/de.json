@@ -8,7 +8,8 @@
         "delete": "Löschen",
         "play": "Wiedergabe",
         "openInFiles": "Öffnen in Dateien",
-        "share": "Teilen"
+        "share": "Teilen",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Server hinzufügen",
@@ -100,6 +101,10 @@
         "downloadFailed": {
             "title": "Download fehlgeschlagen",
             "description": "Download von „{{title}}“ ist fehlgeschlagen."
+        },
+        "missingDownload": {
+            "title": "Download fehlt",
+            "description": "Dieser Download scheint außerhalb der Jellyfin-App entfernt worden zu sein."
         }
     },
     "serverHelp": {
