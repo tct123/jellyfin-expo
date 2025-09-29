@@ -8,7 +8,8 @@
         "delete": "Elimina",
         "play": "Riproduci",
         "openInFiles": "Apri in File",
-        "share": "Condividi"
+        "share": "Condividi",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Aggiungi Server",
@@ -102,7 +103,8 @@
             "description": "Il download di contenuti di questo tipo non è al momento supportato."
         },
         "missingDownload": {
-            "description": "Sembra che questo download sia stato eliminato al di fuori dell'app Jellyfin."
+            "description": "Sembra che questo download sia stato eliminato al di fuori dell'app Jellyfin.",
+            "title": "Download Assente"
         }
     },
     "serverHelp": {
