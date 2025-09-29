@@ -66,7 +66,8 @@
         "delete": "Eliminar",
         "play": "Reproducir",
         "share": "Compartir",
-        "openInFiles": "Abrir archivos"
+        "openInFiles": "Abrir archivos",
+        "alpha": "ALPHA"
     },
     "alerts": {
         "resetApplication": {
@@ -91,6 +92,10 @@
         "downloadUnsupported": {
             "description": "Actualmente no se admite la descarga de contenido de este tipo.",
             "title": "Tipo no compatible"
+        },
+        "missingDownload": {
+            "description": "Esta descarga parece haber sido eliminada fuera de la aplicación de Jellyfin.",
+            "title": "Descarga Faltante"
         }
     },
     "links": {
