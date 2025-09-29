@@ -104,6 +104,10 @@
             "confirm": "Nodzēst {{downloadCount}} lejupielādes",
             "title": "Dzēst lejupielādes",
             "description": "Šīs vienības tiks neatgriezeniski dzēstas no šīs ierīces."
+        },
+        "missingDownload": {
+            "title": "Trūkstoša lejuplāde",
+            "description": "Šī lejuplāde izskatās dzēsta ārpus Jellyfin aplikācijas."
         }
     },
     "downloads": {
