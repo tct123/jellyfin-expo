@@ -8,7 +8,8 @@
         "unknown": "Ezezaguna",
         "openInFiles": "Ireki Fitxategietan",
         "share": "Partekatu",
-        "play": "Erreproduzitu"
+        "play": "Erreproduzitu",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Zerbitzaria gehitu",
@@ -106,6 +107,10 @@
             "title": "Berrezarri aplikazioa",
             "description": "Ziur zaude ezarpen guztiak berrezarri nahi dituzula?",
             "confirm": "Berrezarri"
+        },
+        "missingDownload": {
+            "title": "Deskarga falta da",
+            "description": "Badirudi deskarga hau Jellyfin aplikaziotik kanpo kendu dela."
         }
     }
 }
