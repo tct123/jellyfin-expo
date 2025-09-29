@@ -5,7 +5,11 @@
         "unknown": "לא ידוע",
         "edit": "עריכה",
         "delete": "מחיקה",
-        "beta": "BETA"
+        "beta": "BETA",
+        "alpha": "אלפא",
+        "play": "הפעלה",
+        "openInFiles": "פתיחה בקבצים",
+        "share": "שיתוף"
     },
     "headings": {
         "addServer": "הוספת שרת",
@@ -66,7 +70,8 @@
         "systemTheme": "השתמש בערכת נושא המועדפת של המערכת",
         "rotationLock": "נעילת סיבוב",
         "tabLabels": "הצג",
-        "expoVersion": "גרסת Expo:‏ {{version}}"
+        "expoVersion": "גרסת Expo:‏ {{version}}",
+        "downloadTranscoding": "הורדות מקודדות"
     },
     "links": {
         "website": "אתר Jellyfin",
@@ -100,6 +105,10 @@
         "downloadUnsupported": {
             "title": "סוג לא נתמך",
             "description": "הורדת תוכן מסוג זה אינה נתמכת כרגע."
+        },
+        "missingDownload": {
+            "title": "הורדה חסרה",
+            "description": "נראה שהורדה זו נמחקה מחוץ לאפליקציית Jellyfin."
         }
     },
     "downloads": {
