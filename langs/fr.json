@@ -27,7 +27,8 @@
         "delete": "Supprimer",
         "play": "Lire",
         "share": "Partager",
-        "openInFiles": "Ouvrir dans fichiers"
+        "openInFiles": "Ouvrir dans fichiers",
+        "alpha": "ALPHA"
     },
     "alerts": {
         "resetApplication": {
