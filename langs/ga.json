@@ -8,7 +8,8 @@
         "unknown": "Anaithnid",
         "play": "Seinn",
         "openInFiles": "Oscail i gComhaid",
-        "share": "Comhroinn"
+        "share": "Comhroinn",
+        "alpha": "ALFA"
     },
     "headings": {
         "addServer": "Cuir Freastalaí leis",
@@ -102,6 +103,10 @@
         "downloadUnsupported": {
             "title": "Cineál Gan Tacaíocht",
             "description": "Ní thacaítear le hábhar den chineál seo a íoslódáil faoi láthair."
+        },
+        "missingDownload": {
+            "title": "Íoslódáil ar Iarraidh",
+            "description": "Is cosúil gur baineadh an íoslódáil seo lasmuigh den aip Jellyfin."
         }
     },
     "downloads": {
