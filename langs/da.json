@@ -104,7 +104,7 @@
         },
         "missingDownload": {
             "title": "Manglende download",
-            "description": "Dette download ser ud til at være fjernet uden for Jellyfin-appen."
+            "description": "Denne download ser ud til at være fjernet udenfor Jellyfin-appen."
         }
     },
     "serverHelp": {
