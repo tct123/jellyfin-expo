@@ -8,7 +8,8 @@
         "delete": "Sil",
         "share": "Paylaş",
         "play": "Oynat",
-        "openInFiles": "Dosyalar'da Aç"
+        "openInFiles": "Dosyalar'da Aç",
+        "alpha": "ALFA"
     },
     "headings": {
         "addServer": "Sunucu Ekle",
@@ -104,6 +105,10 @@
         "downloadUnsupported": {
             "title": "Desteklenmeyen Tür",
             "description": "Bu tür içeriklerin indirilmesi şu anda desteklenmemektedir."
+        },
+        "missingDownload": {
+            "title": "İndirme Eksik",
+            "description": "Bu indirme, Jellyfin uygulaması dışında kaldırılmış gibi görünüyor."
         }
     },
     "downloads": {
