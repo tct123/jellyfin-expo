@@ -5,7 +5,8 @@
         "delete": "Διαγραφή",
         "edit": "Επεξεργασία",
         "ok": "Εντάξει",
-        "unknown": "Άγνωστος"
+        "unknown": "Άγνωστος",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Προσθήκη Διακομιστή",
@@ -99,6 +100,10 @@
         "downloadFailed": {
             "title": "Η λήψη απέτυχε",
             "description": "Η λήψη του \"{{title}}\" απέτυχε."
+        },
+        "missingDownload": {
+            "title": "Ελλιπής Λήψη",
+            "description": "Αυτή η λήψη ενδέχεται να αφαιρέθηκε εκτός της εφαρμογής Jellyfin."
         }
     },
     "downloads": {
