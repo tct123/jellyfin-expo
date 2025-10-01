@@ -8,7 +8,8 @@
         "unknown": "Desconegut",
         "play": "Reproduir",
         "share": "Comparteix",
-        "openInFiles": "Obre a Fitxers"
+        "openInFiles": "Obre a Fitxers",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Afegeix un servidor",
@@ -103,6 +104,10 @@
         "downloadUnsupported": {
             "description": "Actualment, no s'admet la descàrrega de contingut d'aquest tipus.",
             "title": "Tipus no admès"
+        },
+        "missingDownload": {
+            "description": "Aquesta descàrrega sembla haver estar eliminada fora de l'aplicació de Jellyfin.",
+            "title": "No s'ha trobat la descàrrega"
         }
     },
     "downloads": {
