@@ -5,7 +5,9 @@
         "delete": "Padam",
         "edit": "Edit",
         "ok": "OK",
-        "unknown": "Tidak Diketahui"
+        "unknown": "Tidak Diketahui",
+        "share": "Kongsi",
+        "play": "Main"
     },
     "headings": {
         "addServer": "Tambah pelayan",
@@ -13,17 +15,17 @@
         "downloads": "Download",
         "home": "Rumah",
         "links": "pautan",
-        "playback": "",
+        "playback": "Main balik",
         "servers": "Pelayan",
         "settings": "Tetapan"
     },
     "addServer": {
         "address": "Server Address",
         "validation": {
-            "empty": "",
+            "empty": "$t(addServer.address) tidak boleh kosong",
             "invalid": "tidak sah",
-            "invalidProduct": "",
-            "noConnection": ""
+            "invalidProduct": "Bukan pelayan Jellyfin",
+            "noConnection": "Tidak dapat berhubung dengan pelayan"
         }
     },
     "home": {
@@ -49,7 +51,7 @@
         },
         "errorCode": "",
         "errorUrl": "",
-        "retry": ""
+        "retry": "Cuba sekali lagi ?"
     },
     "serverHelp": {
         "heading": "",
@@ -57,7 +59,7 @@
         "learnMore": ""
     },
     "settings": {
-        "version": "",
+        "version": "Versi: {{version}}",
         "keepAwake": "",
         "nativeVideoPlayer": "",
         "minimumServerVersion": "",
@@ -92,6 +94,12 @@
         "downloadUnsupported": {
             "description": "Memuat turun kandungan jenis ini tidak disokong buat masa sekarang.",
             "title": "Jenis Tidak Disokongi"
+        }
+    },
+    "downloads": {
+        "noDownloads": {
+            "heading": "Tiada muat turun",
+            "description": "Kandungan yang anda muat turun akan dipaparkan di sini."
         }
     }
 }
