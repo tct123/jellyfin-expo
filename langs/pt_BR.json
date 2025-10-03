@@ -5,7 +5,10 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Editar",
-        "delete": "Excluir"
+        "delete": "Excluir",
+        "share": "Compartilhar",
+        "play": "Reproduzir",
+        "openInFiles": "ALFA"
     },
     "headings": {
         "addServer": "Adicionar servidor",
@@ -96,6 +99,9 @@
         "downloadUnsupported": {
             "title": "Tipo não suportado",
             "description": "O download deste tipo de conteúdo não é suportado atualmente."
+        },
+        "missingDownload": {
+            "title": "Download Faltando"
         }
     },
     "serverHelp": {
