@@ -70,7 +70,8 @@
         "systemTheme": "Usar tema de sistema",
         "rotationLock": "Bloquear rotação",
         "tabLabels": "Mostrar rótulos de guia",
-        "expoVersion": "Versão Expo: {{version}}"
+        "expoVersion": "Versão Expo: {{version}}",
+        "downloadTranscoding": "Transferências transcodificadas"
     },
     "links": {
         "website": "Site do Jellyfin",
@@ -103,6 +104,10 @@
         "downloadFailed": {
             "title": "Transferência falhou",
             "description": "A transferência de \"{{title}}\" falhou."
+        },
+        "missingDownload": {
+            "title": "Transferência em falta",
+            "description": "Esta transferência parece ter sido removida fora da aplicação Jellyfin."
         }
     },
     "downloads": {
