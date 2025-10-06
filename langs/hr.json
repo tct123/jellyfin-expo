@@ -6,7 +6,10 @@
         "unknown": "Nepoznato",
         "delete": "Izbriši",
         "edit": "Uredi",
-        "play": "Start"
+        "play": "Start",
+        "alpha": "ALPHA",
+        "share": "Dijeli",
+        "openInFiles": "Otvori u „Datoteke“"
     },
     "headings": {
         "addServer": "Dodaj Server",
