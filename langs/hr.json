@@ -70,7 +70,8 @@
         "systemTheme": "Koristite temu sustava",
         "rotationLock": "Zaključavanje rotacije",
         "tabLabels": "Pokaži oznake kartica",
-        "expoVersion": "Expo verzija: {{version}}"
+        "expoVersion": "Expo verzija: {{version}}",
+        "downloadTranscoding": "Transkodirana preuzimanja"
     },
     "links": {
         "website": "Jellyfin web stranica",
@@ -103,6 +104,10 @@
         "downloadUnsupported": {
             "description": "Preuzimanje sadržaja ove vrste trenutačno nije podržano.",
             "title": "Nepodržana vrsta"
+        },
+        "missingDownload": {
+            "title": "Nedostajuće preuzimanje",
+            "description": "Čini se da je ovo preuzimanje uklonjeno izvan aplikacije Jellyfin."
         }
     },
     "downloads": {
