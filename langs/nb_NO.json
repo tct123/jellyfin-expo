@@ -6,7 +6,10 @@
         "beta": "BETA",
         "edit": "Rediger",
         "delete": "Slett",
-        "play": "Spill Av"
+        "play": "Spill Av",
+        "alpha": "ALPHA",
+        "share": "Del",
+        "openInFiles": "Åpne i Filer"
     },
     "headings": {
         "addServer": "Legg til server",
@@ -63,7 +66,8 @@
         "systemTheme": "Bruk systemtema",
         "minimumServerVersion": "Krever server versjon 10.7+",
         "fmp4Support": "Foretrekk fMP4 i HLS",
-        "nativeVideoPlayer": "Bruk innebygget videospiller"
+        "nativeVideoPlayer": "Bruk innebygget videospiller",
+        "downloadTranscoding": "Transkodede Nedlastninger"
     },
     "links": {
         "website": "Jellyfin Nettside",
@@ -97,6 +101,9 @@
         "downloadUnsupported": {
             "description": "Nedlastning av denne typen innhold er ikke støttet for tiden.",
             "title": "Formatet støttes ikke"
+        },
+        "missingDownload": {
+            "title": "Manglende Nedlastning"
         }
     },
     "serverHelp": {
