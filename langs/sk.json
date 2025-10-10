@@ -7,7 +7,9 @@
         "edit": "Upraviť",
         "delete": "Vymazať",
         "play": "Prehrať",
-        "openInFiles": "Otvoriť v Súboroch"
+        "openInFiles": "Otvoriť v Súboroch",
+        "alpha": "ALPHA",
+        "share": "Zdieľať"
     },
     "headings": {
         "addServer": "Pridať server",
@@ -64,7 +66,8 @@
         "systemTheme": "Použiť systémovú tému",
         "fmp4Support": "Preferovať fMP4 v HLS",
         "minimumServerVersion": "Vyžaduje verziu serveru 10.7 a novšiu",
-        "nativeVideoPlayer": "Použiť natívny video prehrávač"
+        "nativeVideoPlayer": "Použiť natívny video prehrávač",
+        "downloadTranscoding": "Prekódované stiahnutia"
     },
     "links": {
         "website": "Jellyfin webstránka",
@@ -98,6 +101,10 @@
         "downloadUnsupported": {
             "title": "Nepodporovaný typ",
             "description": "Sťahovanie obsahu tohto typu nie je v súčasnosti podporované."
+        },
+        "missingDownload": {
+            "title": "Chýbajúce stiahnutie",
+            "description": "Zdá sa, že toto stiahnutie bolo odstránené mimo aplikácie Jellyfin."
         }
     },
     "serverHelp": {
