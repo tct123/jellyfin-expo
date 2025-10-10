@@ -5,7 +5,11 @@
         "ok": "حسنا",
         "beta": "نسخة تجريبية",
         "edit": "تعديل",
-        "delete": "حذف"
+        "delete": "حذف",
+        "alpha": "الإصدار التجريبي الأولي",
+        "openInFiles": "فتح في الملفات",
+        "play": "تشغيل",
+        "share": "مشاركة"
     },
     "headings": {
         "addServer": "اضافة خادم",
@@ -62,7 +66,8 @@
         "tabLabels": "إظهار عناوين التبويبات",
         "fmp4Support": "تفضيل fMP4 في HLS",
         "minimumServerVersion": "يتطلب إصدار الخادم 10.7+",
-        "nativeVideoPlayer": "استخدم مشغل الفيديو الأصلي"
+        "nativeVideoPlayer": "استخدم مشغل الفيديو الأصلي",
+        "downloadTranscoding": "التنزيلات المُرمَّزة"
     },
     "links": {
         "website": "موقع Jellyfin",
@@ -96,6 +101,10 @@
         "downloadUnsupported": {
             "title": "نوع غير مدعوم",
             "description": "لا يتم دعم تنزيل هذا النوع من المحتوى حاليًا."
+        },
+        "missingDownload": {
+            "title": "التحميل مفقود",
+            "description": "يبدو أن هذا التنزيل قد تمت إزالته خارج تطبيق Jellyfin."
         }
     },
     "serverHelp": {
