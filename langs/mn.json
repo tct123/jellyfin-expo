@@ -6,7 +6,10 @@
         "unknown": "Тодорхойгүй",
         "delete": "Устгах",
         "edit": "Засварлах",
-        "play": "Тоглуулах"
+        "play": "Тоглуулах",
+        "alpha": "АЛЬФА",
+        "share": "Хуваалцах",
+        "openInFiles": "Файлуудад нээх"
     },
     "headings": {
         "addServer": "Сервер нэмэх",
@@ -67,7 +70,8 @@
         "systemTheme": "Системийн горим ашиглах",
         "rotationLock": "Эргэлтийн түгжих",
         "tabLabels": "Таб шошгыг харуулах",
-        "expoVersion": "Expo Хувилбар: {{version}}"
+        "expoVersion": "Expo Хувилбар: {{version}}",
+        "downloadTranscoding": "Дахин кодлогдсон татсан файлууд"
     },
     "links": {
         "website": "Jellyfin вэбсайт",
@@ -100,6 +104,10 @@
         "downloadFailed": {
             "title": "Устгах амжилтгүй",
             "description": "“{{title}}” татаж авч чадсангүй."
+        },
+        "missingDownload": {
+            "title": "Татаж аваагүй файл",
+            "description": "Энэ татсан файлыг Jellyfin аппликейшнээс гадна устгасан бололтой."
         }
     },
     "downloads": {
