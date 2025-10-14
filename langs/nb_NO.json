@@ -103,7 +103,8 @@
             "title": "Formatet støttes ikke"
         },
         "missingDownload": {
-            "title": "Manglende Nedlastning"
+            "title": "Manglende Nedlastning",
+            "description": "Denne nedlastingen ser ut til å ha blitt fjernet utenfor Jellyfin-appen."
         }
     },
     "serverHelp": {
