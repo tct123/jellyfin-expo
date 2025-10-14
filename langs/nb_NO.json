@@ -34,7 +34,7 @@
         "errors": {
             "offline": {
                 "description": "Problem med å kontakte Jellyfin-serveren.",
-                "heading": "Er serveren offline?"
+                "heading": "Er serveren avslått?"
             },
             "http": {
                 "description": "Jellyfin-serveren returnerte en feil.",
@@ -58,7 +58,7 @@
     },
     "settings": {
         "version": "Versjon: {{version}}",
-        "keepAwake": "Hold skjermen våken",
+        "keepAwake": "Hold skjermen på",
         "rotationLock": "Rotasjonslås",
         "expoVersion": "Expo-versjon: {{version}}",
         "tabLabels": "Vis faneetiketter",
@@ -96,7 +96,7 @@
         },
         "downloadFailed": {
             "title": "Nedlastinger Mislyktes",
-            "description": "\"{{title}}\" kunne ikke lastes ned."
+            "description": "\"{{title}}\" mislyktes med å laste ned."
         },
         "downloadUnsupported": {
             "description": "Nedlastning av denne typen innhold er ikke støttet for tiden.",
@@ -115,7 +115,7 @@
     "downloads": {
         "noDownloads": {
             "heading": "Ingen nedlastinger",
-            "description": "Her vises innhold du har lastet ned."
+            "description": "Nedlastet innhold vises her."
         }
     }
 }
