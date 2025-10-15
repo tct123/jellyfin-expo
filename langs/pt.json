@@ -8,7 +8,8 @@
         "unknown": "Desconhecido",
         "openInFiles": "Abrir em ficheiros",
         "share": "Partilhar",
-        "alpha": "ALPHA"
+        "alpha": "ALPHA",
+        "play": "Play"
     },
     "headings": {
         "addServer": "Adicionar servidor",
@@ -69,7 +70,8 @@
         "systemTheme": "Usar o tema de sistema",
         "rotationLock": "Bloquear rotação",
         "tabLabels": "Mostrar legendas dos painéis",
-        "expoVersion": "Versão do Expo: {{version}}"
+        "expoVersion": "Versão do Expo: {{version}}",
+        "downloadTranscoding": "Downloads Transcritos"
     },
     "links": {
         "website": "Site do Jellyfin",
@@ -102,6 +104,10 @@
         "downloadUnsupported": {
             "title": "Tipo não suportado",
             "description": "O download do conteúdo deste tipo não é suportado."
+        },
+        "missingDownload": {
+            "title": "Downloads Faltantes",
+            "description": "Este download parece ter sido removido fora do applicativo do Jellyfin."
         }
     },
     "downloads": {
