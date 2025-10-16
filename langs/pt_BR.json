@@ -8,7 +8,8 @@
         "delete": "Excluir",
         "share": "Compartilhar",
         "play": "Reproduzir",
-        "openInFiles": "ALFA"
+        "openInFiles": "ALFA",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Adicionar servidor",
@@ -65,7 +66,8 @@
         "lightTheme": "Usar tema Light",
         "fmp4Support": "Prefira fMP4 em HLS",
         "minimumServerVersion": "Requer uma versão 10.7+ do servidor",
-        "nativeVideoPlayer": "Usar player nativo"
+        "nativeVideoPlayer": "Usar player nativo",
+        "downloadTranscoding": "Downloads Transcritos"
     },
     "links": {
         "website": "Site do Jellyfin",
@@ -101,7 +103,8 @@
             "description": "O download deste tipo de conteúdo não é suportado atualmente."
         },
         "missingDownload": {
-            "title": "Download Faltando"
+            "title": "Download Faltando",
+            "description": "Este download parece ter sido removido fora do aplicativo Jellyfin."
         }
     },
     "serverHelp": {
