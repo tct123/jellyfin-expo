@@ -9,7 +9,7 @@
         "share": "Compartilhar",
         "play": "Reproduzir",
         "openInFiles": "ALFA",
-        "alpha": "ALPHA"
+        "alpha": "ALFA"
     },
     "headings": {
         "addServer": "Adicionar servidor",
@@ -104,7 +104,7 @@
         },
         "missingDownload": {
             "title": "Download Faltando",
-            "description": "Este download parece ter sido removido fora do aplicativo Jellyfin."
+            "description": "Parece que esse download foi removido fora do Jellyfin"
         }
     },
     "serverHelp": {
