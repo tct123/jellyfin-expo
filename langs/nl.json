@@ -8,7 +8,8 @@
         "delete": "Wissen",
         "share": "Delen",
         "play": "Speel",
-        "openInFiles": "Open in Bestanden"
+        "openInFiles": "Open in Bestanden",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Server toevoegen",
@@ -100,6 +101,10 @@
         "downloadUnsupported": {
             "title": "Niet ondersteund type",
             "description": "Het downloaden van dit type content wordt momenteel niet ondersteund."
+        },
+        "missingDownload": {
+            "title": "Download Mist",
+            "description": "Deze download lijkt verplaatst te zijn buiten de Jellyfin app om."
         }
     },
     "serverHelp": {
