@@ -6,7 +6,10 @@
         "edit": "Επεξεργασία",
         "ok": "Εντάξει",
         "unknown": "Άγνωστος",
-        "alpha": "ALPHA"
+        "alpha": "ALPHA",
+        "play": "Παίξε",
+        "openInFiles": "Ανοιγμα στα Αρχεία",
+        "share": "Κοινή χρήση"
     },
     "headings": {
         "addServer": "Προσθήκη Διακομιστή",
@@ -67,7 +70,8 @@
         "systemTheme": "Χρησιμοποιήστε το Θέμα Συστήματος",
         "rotationLock": "Κλείδωμα Περιστροφής",
         "tabLabels": "Εμφάνιση Κτικετών Καρτελών",
-        "expoVersion": "Έκδοση Expo: {{version}}"
+        "expoVersion": "Έκδοση Expo: {{version}}",
+        "downloadTranscoding": "Μετακωδικοποιημένες Λήψεις"
     },
     "links": {
         "website": "Ιστοσελίδα Jellyfin",
