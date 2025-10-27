@@ -66,7 +66,8 @@
         "lightTheme": "Folosește tema luminoasă",
         "minimumServerVersion": "Necesită versiunea de server 10.7+",
         "nativeVideoPlayer": "Utilizează redarea video nativă",
-        "fmp4Support": "Preferați fMP4 în HLS"
+        "fmp4Support": "Preferați fMP4 în HLS",
+        "downloadTranscoding": "Descărcări Transcodate"
     },
     "links": {
         "website": "Site-ul Jellyfin",
@@ -100,6 +101,10 @@
         "downloadUnsupported": {
             "title": "Tip Nesuportat",
             "description": "Descărcarea conținutului de acest tip nu este suportată momentan."
+        },
+        "missingDownload": {
+            "title": "Descărcare Lipsă",
+            "description": "Se pare că această descărcare a fost eliminată în afara aplicației Jellyfin."
         }
     },
     "serverHelp": {
