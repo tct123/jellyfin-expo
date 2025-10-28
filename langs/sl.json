@@ -5,7 +5,11 @@
         "ok": "V redu",
         "beta": "BETA",
         "edit": "Uredi",
-        "delete": "Izbriši"
+        "delete": "Izbriši",
+        "alpha": "ALPHA",
+        "openInFiles": "Odpri v Datotekah",
+        "play": "Predvajaj",
+        "share": "Deli"
     },
     "headings": {
         "addServer": "Dodaj strežnik",
