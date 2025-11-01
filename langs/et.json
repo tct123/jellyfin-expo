@@ -5,7 +5,9 @@
         "unknown": "Teadmata",
         "beta": "BETA",
         "delete": "Kustuta",
-        "edit": "Muuda"
+        "edit": "Muuda",
+        "play": "Esita",
+        "share": "Jaga"
     },
     "headings": {
         "addServer": "Lisa server",
@@ -66,7 +68,8 @@
         "systemTheme": "Kasuta süsteemi teemat",
         "rotationLock": "Pööramine keelatud",
         "tabLabels": "Kuva vahekaardi sildid",
-        "expoVersion": "Expo versioon: {{version}}"
+        "expoVersion": "Expo versioon: {{version}}",
+        "downloadTranscoding": "Transkodeeritud allalaadimised"
     },
     "links": {
         "website": "Jellyfini veebisait",
@@ -86,6 +89,21 @@
             "title": "Lähtesta rakendus",
             "description": "Kas olete kindel, et soovid kõik seaded lähtestada?",
             "confirm": "Lähtesta"
+        },
+        "deleteDownloads": {
+            "title": "Kustuta allalaadimised",
+            "description": "Need üksused kustutatakse sellest seadmest jäädavalt.",
+            "confirm": "Kustuta {{downloadCount}} allalaadimist"
+        },
+        "downloadFailed": {
+            "title": "Allalaadimine nurjus",
+            "description": "\"{{title}}\" allalaadimine nurjus."
+        }
+    },
+    "downloads": {
+        "noDownloads": {
+            "heading": "Allalaadimisi pole",
+            "description": "Allalaaditud sisu kuvatakse siin."
         }
     }
 }
