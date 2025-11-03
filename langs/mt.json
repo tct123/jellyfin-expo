@@ -5,7 +5,9 @@
         "delete": "Ħassar",
         "edit": "Editja",
         "ok": "OK",
-        "unknown": "Mhux magħruf"
+        "unknown": "Mhux magħruf",
+        "openInFiles": "Iftaħ fil-fajls",
+        "share": "Aqsam"
     },
     "headings": {
         "addServer": "Żid Server",
@@ -85,6 +87,12 @@
             "title": "",
             "description": "",
             "confirm": ""
+        }
+    },
+    "downloads": {
+        "noDownloads": {
+            "heading": "Ebda downloads",
+            "description": "Il-kontenut li tniżżel se jidher hawn."
         }
     }
 }
