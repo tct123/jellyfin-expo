@@ -7,7 +7,8 @@
         "delete": "Kustuta",
         "edit": "Muuda",
         "play": "Esita",
-        "share": "Jaga"
+        "share": "Jaga",
+        "openInFiles": "Ava rakenduses 'Failid'"
     },
     "headings": {
         "addServer": "Lisa server",
@@ -98,6 +99,9 @@
         "downloadFailed": {
             "title": "Allalaadimine nurjus",
             "description": "\"{{title}}\" allalaadimine nurjus."
+        },
+        "missingDownload": {
+            "title": "Allalaadimine puudub"
         }
     },
     "downloads": {
