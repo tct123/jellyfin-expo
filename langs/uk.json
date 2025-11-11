@@ -58,7 +58,7 @@
     "settings": {
         "version": "Версія: {{version}}",
         "keepAwake": "Залишити екран активним",
-        "rotationLock": "Повернути блокування",
+        "rotationLock": "Блокувати орієнтацію екрана",
         "expoVersion": "Версія Експо: {{version}}",
         "tabLabels": "Показати мітки вкладок",
         "systemTheme": "Використовувати системну тему",
