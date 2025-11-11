@@ -65,7 +65,8 @@
         "lightTheme": "Використовувати світлу тему",
         "fmp4Support": "Віддавати перевагу fMP4 у HLS",
         "minimumServerVersion": "Потрібен сервер версії 10.7+",
-        "nativeVideoPlayer": "Використовуйте вбудований відеоплеєр"
+        "nativeVideoPlayer": "Використовувати вбудований відеоплеєр",
+        "downloadTranscoding": "Перекодовані завантаження"
     },
     "links": {
         "website": "Jellyfin Вебсайт",
