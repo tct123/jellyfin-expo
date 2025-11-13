@@ -8,7 +8,8 @@
         "edit": "Muuda",
         "play": "Esita",
         "share": "Jaga",
-        "openInFiles": "Ava rakenduses 'Failid'"
+        "openInFiles": "Ava rakenduses 'Failid'",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Lisa server",
