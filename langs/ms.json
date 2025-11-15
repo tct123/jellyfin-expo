@@ -7,7 +7,9 @@
         "ok": "OK",
         "unknown": "Tidak Diketahui",
         "share": "Kongsi",
-        "play": "Main"
+        "play": "Main",
+        "alpha": "ALPHA",
+        "openInFiles": "buka dalam fail"
     },
     "headings": {
         "addServer": "Tambah pelayan",
@@ -20,7 +22,7 @@
         "settings": "Tetapan"
     },
     "addServer": {
-        "address": "Server Address",
+        "address": "Alamat Pelayan",
         "validation": {
             "empty": "$t(addServer.address) tidak boleh kosong",
             "invalid": "tidak sah",
@@ -31,22 +33,22 @@
     "home": {
         "errors": {
             "502": {
-                "description": ""
+                "description": "Tidak dapat mencapai pelayan Jellyfin. Ini biasanya disebabkan oleh ralat konfigurasi proksi atau Jellyfin sedang tidak dalam talian."
             },
             "504": {
-                "description": ""
+                "description": "Tidak dapat mencapai pelayan Jellyfin. Ini biasanya kerana proksi tamat masa semasa menyambung ke Jellyfin."
             },
             "http": {
-                "heading": "",
-                "description": ""
+                "heading": "ada yang tidak kena!",
+                "description": "Pelayan Jellyfin mempunyai ralat."
             },
             "invalidServer": {
-                "heading": "",
-                "description": ""
+                "heading": "Pelayan tidak sah",
+                "description": "Sesuatu telah berlaku dan maklumat pelayan yang disimpan tidak sah. Cuba keluarkan pelayan daripada Tetapan dan tambahkan semula."
             },
             "offline": {
-                "heading": "",
-                "description": ""
+                "heading": "Pelayan luar talian?",
+                "description": "Ralat menghubungi pelayan Jellyfin."
             }
         },
         "errorCode": "",
