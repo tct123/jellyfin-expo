@@ -86,5 +86,11 @@
             "description": "Is jy seker jy wil al die instellings herstel?",
             "confirm": "Herstel"
         }
+    },
+    "downloads": {
+        "noDownloads": {
+            "heading": "Geen aflaaie",
+            "description": "Inhoud wat jy aflaai, sal hier verskyn."
+        }
     }
 }
