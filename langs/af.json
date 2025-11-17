@@ -5,7 +5,9 @@
         "delete": "Skrap",
         "edit": "Redigeer",
         "ok": "OK",
-        "unknown": "Onbekend"
+        "unknown": "Onbekend",
+        "play": "Speel",
+        "share": "Deel"
     },
     "headings": {
         "addServer": "Voeg Bediener By",
