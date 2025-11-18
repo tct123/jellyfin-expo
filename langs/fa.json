@@ -3,9 +3,13 @@
         "cancel": "انصراف",
         "unknown": "ناشناخته",
         "ok": "تایید",
-        "beta": "بتا",
+        "beta": "آزمایشی",
         "delete": "حذف",
-        "edit": "ویرایش"
+        "edit": "ویرایش",
+        "share": "اشتراک گذاری",
+        "play": "پلی",
+        "alpha": "آلفا",
+        "openInFiles": "باز کردن در فایلها"
     },
     "headings": {
         "addServer": "اضافه کردن سرور",
@@ -48,7 +52,7 @@
             }
         },
         "errorCode": "کد خطا : {{errorCode}}",
-        "errorUrl": "یو ار ال : {{ url}}",
+        "errorUrl": "آدرس : {{ url}}",
         "retry": "دوباره امتحان کنم؟"
     },
     "settings": {
