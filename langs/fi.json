@@ -6,7 +6,10 @@
         "unknown": "Tuntematon",
         "edit": "Muokkaa",
         "delete": "Poista",
-        "play": "Toista"
+        "play": "Toista",
+        "alpha": "ALPHA",
+        "openInFiles": "Avaa tiedostoista",
+        "share": "Jaa"
     },
     "headings": {
         "addServer": "Lisää Palvelin",
@@ -67,7 +70,8 @@
         "systemTheme": "Käytä järjestelmän teemaa",
         "rotationLock": "Kierron lukitus",
         "tabLabels": "Näytä välilehtien tunnisteet",
-        "expoVersion": "Expo versio: {{version}}"
+        "expoVersion": "Expo versio: {{version}}",
+        "downloadTranscoding": "Transkoodatut lataukset"
     },
     "links": {
         "website": "Jellyfin verkkosivu",
@@ -100,6 +104,10 @@
         "downloadUnsupported": {
             "title": "Ei tuettu tyyppi",
             "description": "Tämän tyyppisen sisällön lataamista ei tällä hetkellä tueta."
+        },
+        "missingDownload": {
+            "title": "Puuttuva lataus",
+            "description": "Tämä lataus on poistettu Jellyfin sovelluksen ulkopuolelta."
         }
     },
     "downloads": {
