@@ -5,7 +5,11 @@
         "ok": "OK",
         "beta": "BETA",
         "edit": "Editar",
-        "delete": "Borrar"
+        "delete": "Borrar",
+        "alpha": "ALFA",
+        "openInFiles": "Abrir en Archivos",
+        "play": "Reproducir",
+        "share": "Compartir"
     },
     "headings": {
         "addServer": "Añadir servidor",
