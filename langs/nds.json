@@ -5,7 +5,11 @@
         "ok": "Ok",
         "unknown": "Unbekannt",
         "edit": "Bearbeiten",
-        "delete": "Löschen"
+        "delete": "Löschen",
+        "share": "Teilen",
+        "openInFiles": "In Dateien öffnen",
+        "play": "Abspielen",
+        "alpha": "Alpha"
     },
     "headings": {
         "addServer": "Server hinzufügen",
