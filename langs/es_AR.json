@@ -66,7 +66,8 @@
         "systemTheme": "Usar tema del sistema",
         "minimumServerVersion": "Requiere la versión de Servidor 10.7+",
         "nativeVideoPlayer": "Utilizar el Reproductor de Vídeo Nativo",
-        "fmp4Support": "Preferir fMP4 en HLS"
+        "fmp4Support": "Preferir fMP4 en HLS",
+        "downloadTranscoding": "Descargas transcodificadas"
     },
     "links": {
         "website": "Sitio web de Jellyfin",
@@ -100,6 +101,10 @@
         "downloadUnsupported": {
             "title": "Tipo no soportado",
             "description": "Por el momento no se puede descargar contenido de este tipo."
+        },
+        "missingDownload": {
+            "title": "Descarga faltante",
+            "description": "Esta descarga parece haber sido eliminada fuera de la app de Jellyfin."
         }
     },
     "serverHelp": {
