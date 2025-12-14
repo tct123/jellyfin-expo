@@ -5,7 +5,11 @@
         "delete": "Ištrinti",
         "edit": "Redaguoti",
         "ok": "Gerai",
-        "unknown": "Nežinomas"
+        "unknown": "Nežinomas",
+        "play": "Paleisti",
+        "share": "Pasidalinti",
+        "openInFiles": "Atidaryti per „Files“",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Pridėti serverį",
