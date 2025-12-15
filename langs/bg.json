@@ -7,7 +7,9 @@
         "edit": "Редактирай",
         "beta": "БЕТА",
         "play": "Пускане",
-        "share": "Споделяне"
+        "share": "Споделяне",
+        "alpha": "АЛФА",
+        "openInFiles": "Отвори във Files"
     },
     "headings": {
         "addServer": "Добави сървър",
@@ -63,7 +65,8 @@
         "tabLabels": "Покажи надписи на табове",
         "fmp4Support": "Предпочитай fMP4 в HLS",
         "lightTheme": "Използвай Светла Тема",
-        "systemTheme": "Използвай Системната тема"
+        "systemTheme": "Използвай Системната тема",
+        "downloadTranscoding": "Транскодирани Свалания"
     },
     "links": {
         "website": "Сайт на Джелифин",
@@ -97,6 +100,10 @@
         "downloadFailed": {
             "title": "Изтеглянето е неуспешно",
             "description": "\"{{title}}\" изтеглянето е неуспешно."
+        },
+        "missingDownload": {
+            "title": "Липсващ файл",
+            "description": "Този файл изглежда е бил изтрит от друго приложение."
         }
     },
     "serverHelp": {
