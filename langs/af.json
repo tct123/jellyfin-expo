@@ -7,7 +7,8 @@
         "ok": "OK",
         "unknown": "Onbekend",
         "play": "Speel",
-        "share": "Deel"
+        "share": "Deel",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Voeg Bediener By",
