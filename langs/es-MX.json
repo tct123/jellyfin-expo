@@ -1,12 +1,12 @@
 {
     "common": {
-        "alpha": "",
-        "beta": "",
-        "cancel": "",
+        "alpha": "ALFA",
+        "beta": "BETA",
+        "cancel": "Cancelar",
         "delete": "",
         "edit": "",
-        "ok": "",
-        "openInFiles": "",
+        "ok": "OK",
+        "openInFiles": "Abrir en Archivos",
         "play": "",
         "share": "",
         "unknown": ""
