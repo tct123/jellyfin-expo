@@ -62,7 +62,7 @@
         "rotationLock": "Bloqueo de rotación",
         "expoVersion": "Versión de Expo: {{version}}",
         "tabLabels": "Mostrar Etiquetas",
-        "lightTheme": "Usar Tema Ligero",
+        "lightTheme": "Usar Tema Claro",
         "systemTheme": "Usar tema del sistema",
         "minimumServerVersion": "Requiere la versión de Servidor 10.7+",
         "nativeVideoPlayer": "Utilizar el Reproductor de Vídeo Nativo",
@@ -109,7 +109,7 @@
     },
     "serverHelp": {
         "learnMore": "Aprenda mas acerca de tener su propio servidor",
-        "description": "Jellyfin es la solución de medios creada por voluntarios. Este permite que usted administre su propios medios y los acceda desde cualquier lado.\n\n\nPara utilizar este cliente, usted necesita tener su propio servidor Jellyfin.",
+        "description": "Jellyfin es la solución de medios creada por voluntarios. Este permite que usted administre su propios medios y los acceda desde cualquier lugar.\n\n\nPara utilizar este cliente, usted necesita tener su propio servidor Jellyfin.",
         "heading": "¿Que es Jellyfin?"
     },
     "downloads": {
