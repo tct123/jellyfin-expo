@@ -5,7 +5,8 @@
         "delete": "Eyða",
         "edit": "Breyta",
         "ok": "OK",
-        "unknown": "Óþekkt"
+        "unknown": "Óþekkt",
+        "share": "Deila"
     },
     "headings": {
         "addServer": "Bæta við þjón",
@@ -77,8 +78,8 @@
     },
     "alerts": {
         "deleteServer": {
-            "title": "",
-            "description": "",
+            "title": "Eyða þjóni",
+            "description": "Ertu viss um að þú viljir eyða þjóninum {{serverName}}?",
             "confirm": "Eyða"
         },
         "resetApplication": {
