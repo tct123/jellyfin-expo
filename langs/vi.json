@@ -5,7 +5,9 @@
         "unknown": "Không rõ",
         "delete": "Xoá",
         "beta": "Bản thử nghiệm",
-        "edit": "Chỉnh sửa"
+        "edit": "Chỉnh sửa",
+        "play": "Phát",
+        "share": "Chia sẻ"
     },
     "headings": {
         "addServer": "Thêm Máy Chủ",
