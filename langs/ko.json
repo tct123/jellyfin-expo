@@ -91,7 +91,8 @@
         },
         "deleteDownloads": {
             "title": "다운로드 항목 지우기",
-            "description": "해당 아이템은 기기에서 영구적으로 제거됩니다."
+            "description": "해당 아이템은 기기에서 영구적으로 제거됩니다.",
+            "confirm": "{{downloadCount}} 다운로드 삭제"
         },
         "downloadFailed": {
             "title": "다운로드 실패",
