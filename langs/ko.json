@@ -95,6 +95,10 @@
         "downloadFailed": {
             "title": "다운로드 실패",
             "description": "\"{{title}}\" 다운로드에 실패했습니다."
+        },
+        "missingDownload": {
+            "title": "다운로드 누락",
+            "description": "이 다운로드 파일은 젤리핀 앱 외부에서는 삭제된 것 같습니다."
         }
     },
     "serverHelp": {
