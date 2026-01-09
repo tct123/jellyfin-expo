@@ -5,7 +5,8 @@
         "ok": "Iawn",
         "unknown": "Anhysbys",
         "edit": "Golygu",
-        "delete": "Dileu"
+        "delete": "Dileu",
+        "alpha": "ALPHA"
     },
     "headings": {
         "addServer": "Adio Gweinydd",
