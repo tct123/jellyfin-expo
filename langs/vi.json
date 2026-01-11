@@ -95,14 +95,15 @@
         },
         "deleteDownloads": {
             "description": "Những mục này sẽ bị xoá vĩnh viễn khỏi thiết bị này.",
-            "title": "Xoá Tải Xuống"
+            "title": "Xóa Các Tệp Đã Tải Xuống",
+            "confirm": "Xóa {{downloadCount}} tệp đã tải"
         },
         "downloadFailed": {
             "title": "Tải Xuống Thất Bại",
             "description": "Tải xuống \"{{title}}\" thất bại."
         },
         "missingDownload": {
-            "title": "Tải xuống bị thiếu",
+            "title": "Thiếu tệp tải xuống",
             "description": "Mục tải xuống này có vẻ đã bị xoá ở bên ngoài app Jellyfin."
         }
     },
