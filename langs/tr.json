@@ -71,7 +71,7 @@
         "rotationLock": "Döndürme Kilidi",
         "tabLabels": "Sekme Etiketlerini Göster",
         "expoVersion": "Expo Sürümü: {{version}}",
-        "downloadTranscoding": "Dönüştürülmüş İndirmeler"
+        "downloadTranscoding": "Dönüştürülerek İndirme"
     },
     "links": {
         "website": "Jellyfin Web Sitesi",
