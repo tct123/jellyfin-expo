@@ -33,7 +33,7 @@
     "home": {
         "errors": {
             "offline": {
-                "description": "连接 Jellyfin 服务器时出错。",
+                "description": "连接到 Jellyfin 服务器时出错。",
                 "heading": "服务器离线？"
             },
             "http": {
@@ -48,7 +48,7 @@
             },
             "invalidServer": {
                 "heading": "无效的服务器",
-                "description": "有错误发生，已保存的服务器端信息无效，请尝试从设置中先删除再重新添加。"
+                "description": "发生错误，已保存的服务器信息无效。请在设置中将其删除后重新添加。"
             }
         },
         "offline": "连接Jellyfin服务器时出错。",
