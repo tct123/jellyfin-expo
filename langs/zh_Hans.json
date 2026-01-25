@@ -71,7 +71,7 @@
     },
     "links": {
         "website": "Jellyfin 网站",
-        "documentation": "说明文档",
+        "documentation": "文档",
         "source": "源代码",
         "feature": "功能请求",
         "issue": "报告问题",
@@ -104,12 +104,12 @@
         },
         "missingDownload": {
             "title": "缺失的下载",
-            "description": "此下载似乎已在 Jellyfin 应用外被移除。"
+            "description": "此下载似乎已在 Jellyfin 外被删除。"
         }
     },
     "serverHelp": {
-        "learnMore": "了解有关如何自建服务器的更多信息",
-        "description": "Jellyfin 是由志愿者构建的媒体解决方案。 它允许您托管自己的媒体并从任何地方访问它。\n\n\n要使用此客户端，您需要拥有自己的 Jellyfin 服务器。",
+        "learnMore": "了解如何自建服务器",
+        "description": "Jellyfin 是由志愿者打造的媒体解决方案，让您自由托管个人媒体，并随时随地访问。\n\n\n要使用此客户端，您需要先搭建自己的 Jellyfin 服务器",
         "heading": "什么是 Jellyfin？"
     },
     "downloads": {
