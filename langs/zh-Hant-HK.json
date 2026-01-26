@@ -1,55 +1,55 @@
 {
     "common": {
-        "alpha": "",
-        "beta": "",
-        "cancel": "",
-        "delete": "",
-        "edit": "",
-        "ok": "",
-        "openInFiles": "",
-        "play": "",
-        "share": "",
-        "unknown": ""
+        "alpha": "ALPHA",
+        "beta": "BETA",
+        "cancel": "取消",
+        "delete": "刪除",
+        "edit": "編輯",
+        "ok": "OK",
+        "openInFiles": "於「檔案」中開啟",
+        "play": "播放",
+        "share": "分享",
+        "unknown": "未知"
     },
     "headings": {
-        "addServer": "",
-        "appearance": "",
-        "downloads": "",
-        "home": "",
-        "links": "",
-        "playback": "",
-        "servers": "",
-        "settings": ""
+        "addServer": "添加伺服器",
+        "appearance": "外觀",
+        "downloads": "下載",
+        "home": "主頁",
+        "links": "鏈接",
+        "playback": "回放",
+        "servers": "伺服器",
+        "settings": "設定"
     },
     "addServer": {
-        "address": "",
+        "address": "伺服器網址",
         "validation": {
-            "empty": "",
-            "invalid": "",
-            "invalidProduct": "",
-            "noConnection": ""
+            "empty": "$t(addServer.address)地址不得留空",
+            "invalid": "$t(addServer.address) 無效",
+            "invalidProduct": "此伺服器並非 Jellyfin",
+            "noConnection": "連接服務器失敗"
         }
     },
     "downloads": {
         "noDownloads": {
-            "heading": "",
-            "description": ""
+            "heading": "沒有下載項目",
+            "description": "你下載的內容會在此顯示。"
         }
     },
     "home": {
         "errors": {
             "502": {
-                "description": ""
+                "description": "無法連接 Jellyfin 伺服器。通常是代理（Proxy）設定錯誤，或 Jellyfin 已離線。"
             },
             "504": {
-                "description": ""
+                "description": "無法連接 Jellyfin 伺服器。通常是代理在連線至 Jellyfin 時逾時所致。"
             },
             "http": {
-                "heading": "",
-                "description": ""
+                "heading": "有嘢出錯！",
+                "description": "Jellyfin 伺服器返回錯誤。"
             },
             "invalidServer": {
-                "heading": "",
+                "heading": "伺服器無效",
                 "description": ""
             },
             "offline": {
