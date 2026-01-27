@@ -64,7 +64,6 @@
         "version": "Хувилбар: {{version}}",
         "keepAwake": "Дэлгэцийг унтрахгүй байлгах",
         "nativeVideoPlayer": "Дотоод тоглуулагч ашиглах",
-        "minimumServerVersion": "",
         "fmp4Support": "HLS-д fMP4-ийг илүүд үзэх",
         "lightTheme": "Гэрэлтэй горим",
         "systemTheme": "Системийн горим ашиглах",
@@ -78,7 +77,6 @@
         "documentation": "Баримт бичиг",
         "source": "Эх код",
         "translate": "Орчуулах",
-        "issue": "",
         "help": "Тусламж хүсэх"
     },
     "alerts": {

@@ -49,64 +49,8 @@
                 "description": "Jellyfin 伺服器返回錯誤。"
             },
             "invalidServer": {
-                "heading": "伺服器無效",
-                "description": ""
-            },
-            "offline": {
-                "heading": "",
-                "description": ""
+                "heading": "伺服器無效"
             }
-        },
-        "errorCode": "",
-        "errorUrl": "",
-        "retry": ""
-    },
-    "serverHelp": {
-        "heading": "",
-        "description": "",
-        "learnMore": ""
-    },
-    "settings": {
-        "downloadTranscoding": "",
-        "version": "",
-        "keepAwake": "",
-        "nativeVideoPlayer": "",
-        "fmp4Support": "",
-        "lightTheme": "",
-        "systemTheme": "",
-        "rotationLock": "",
-        "tabLabels": ""
-    },
-    "links": {
-        "website": "",
-        "documentation": "",
-        "source": "",
-        "translate": "",
-        "help": ""
-    },
-    "alerts": {
-        "deleteDownloads": {
-            "title": "",
-            "description": "",
-            "confirm": ""
-        },
-        "deleteServer": {
-            "title": "",
-            "description": "",
-            "confirm": ""
-        },
-        "downloadFailed": {
-            "title": "",
-            "description": ""
-        },
-        "missingDownload": {
-            "title": "",
-            "description": ""
-        },
-        "resetApplication": {
-            "title": "",
-            "description": "",
-            "confirm": ""
         }
     }
 }

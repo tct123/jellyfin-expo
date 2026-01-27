@@ -51,40 +51,12 @@
                 "description": "Ralat menghubungi pelayan Jellyfin."
             }
         },
-        "errorCode": "",
-        "errorUrl": "",
         "retry": "Cuba sekali lagi ?"
     },
-    "serverHelp": {
-        "heading": "",
-        "description": "",
-        "learnMore": ""
-    },
     "settings": {
-        "version": "Versi: {{version}}",
-        "keepAwake": "",
-        "nativeVideoPlayer": "",
-        "minimumServerVersion": "",
-        "fmp4Support": "",
-        "lightTheme": "",
-        "systemTheme": "",
-        "rotationLock": "",
-        "tabLabels": "",
-        "expoVersion": ""
-    },
-    "links": {
-        "website": "",
-        "documentation": "",
-        "source": "",
-        "translate": "",
-        "issue": ""
+        "version": "Versi: {{version}}"
     },
     "alerts": {
-        "deleteServer": {
-            "title": "",
-            "description": "",
-            "confirm": ""
-        },
         "resetApplication": {
             "title": "Set Semula Aplikasi",
             "description": "Adakah anda masti mahu menetapkan semula semua tetapan?",

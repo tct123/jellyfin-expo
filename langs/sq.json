@@ -31,9 +31,6 @@
             "502": {
                 "description": "E pamundur të arrij tek serveri Jellyfin. Kjo zakonisht si pasoj i një gabimi në konfigurimin proxy ose Jellyfin është offline."
             },
-            "504": {
-                "description": ""
-            },
             "http": {
                 "heading": "Diçka shkoj gabim!",
                 "description": "Serveri Jellyfin ktheu një gabim."
@@ -65,7 +62,6 @@
         "lightTheme": "Përdor Temën e Bardhë",
         "systemTheme": "Përdor Temën e Sistemit",
         "rotationLock": "Bllokim i Rrotullimit",
-        "tabLabels": "",
         "expoVersion": "Versioni Expo: {{version}}"
     },
     "links": {
