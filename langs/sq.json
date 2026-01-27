@@ -57,19 +57,16 @@
         "version": "Versioni: {{version}}",
         "keepAwake": "Mbajeni ekranin zgjuar",
         "nativeVideoPlayer": "Përdorni Video Player-in e vetë",
-        "minimumServerVersion": "Nevojitet Versioni 10.7+ i Serverit",
         "fmp4Support": "Prefero fMP4 në HLS",
         "lightTheme": "Përdor Temën e Bardhë",
         "systemTheme": "Përdor Temën e Sistemit",
-        "rotationLock": "Bllokim i Rrotullimit",
-        "expoVersion": "Versioni Expo: {{version}}"
+        "rotationLock": "Bllokim i Rrotullimit"
     },
     "links": {
         "website": "Websiti i Jellyfin",
         "documentation": "Dokumentacion",
         "source": "Kodi fillestar",
-        "translate": "Përkthe",
-        "issue": "Raporto një Problem"
+        "translate": "Përkthe"
     },
     "alerts": {
         "deleteServer": {

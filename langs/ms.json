@@ -64,10 +64,6 @@
         },
         "downloadFailed": {
             "description": "\"{{title}}\" gagal untuk dimuat turun."
-        },
-        "downloadUnsupported": {
-            "description": "Memuat turun kandungan jenis ini tidak disokong buat masa sekarang.",
-            "title": "Jenis Tidak Disokongi"
         }
     },
     "downloads": {

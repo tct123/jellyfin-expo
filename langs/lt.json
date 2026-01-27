@@ -64,20 +64,17 @@
         "version": "Versija: {{version}}",
         "keepAwake": "Neleisti ekranui užmigti",
         "nativeVideoPlayer": "Naudoti numatytą vaizdo grotuvą",
-        "minimumServerVersion": "Reikalinga Serverio Versija 10.7+",
         "fmp4Support": "Pirmenybė fMP4 HLS",
         "lightTheme": "Naudoti šviesią temą",
         "systemTheme": "Naudoti sistemos temą",
         "rotationLock": "Užrakinti pasukimą",
-        "tabLabels": "Rodyti skilčių etiketes",
-        "expoVersion": "Expo Versija: {{version}}"
+        "tabLabels": "Rodyti skilčių etiketes"
     },
     "links": {
         "website": "Jellyfin tinklalapis",
         "documentation": "Dokumentacija",
         "source": "Išeities kodas",
         "translate": "Išversti",
-        "issue": "Pranešti apie problemą",
         "help": "Gauti pagalbą"
     },
     "alerts": {
@@ -99,10 +96,6 @@
         "downloadFailed": {
             "title": "Atsisiųsti nepavyko",
             "description": "„{{title}}“ nepavyko atsisiųsti."
-        },
-        "downloadUnsupported": {
-            "title": "Nepalaikomas tipas",
-            "description": "Šiuo metu tokio tipo turinio atsisiuntimas nepalaikomas."
         }
     },
     "downloads": {

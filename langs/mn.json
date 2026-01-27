@@ -69,7 +69,6 @@
         "systemTheme": "Системийн горим ашиглах",
         "rotationLock": "Эргэлтийн түгжих",
         "tabLabels": "Таб шошгыг харуулах",
-        "expoVersion": "Expo Хувилбар: {{version}}",
         "downloadTranscoding": "Дахин кодлогдсон татсан файлууд"
     },
     "links": {
@@ -89,10 +88,6 @@
             "title": "Програмыг дахин тохируулах",
             "description": "Та бүх тохиргоог анхны байдалд оруулахдаа итгэлтэй байна уу?",
             "confirm": "Дахин тохируулах"
-        },
-        "downloadUnsupported": {
-            "description": "Энэ төрлийн агуулгыг одоогоор татаж авахыг дэмждэггүй.",
-            "title": "Дэмжигдээгүй төрөл"
         },
         "deleteDownloads": {
             "confirm": "{{downloadCount}} татан авалтыг устгах",
