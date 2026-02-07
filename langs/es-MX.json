@@ -4,6 +4,10 @@
         "beta": "BETA",
         "cancel": "Cancelar",
         "ok": "OK",
-        "openInFiles": "Abrir en Archivos"
+        "openInFiles": "Abrir en Archivos",
+        "delete": "Borrar",
+        "edit": "Editar",
+        "play": "Reproducir",
+        "share": "Compartir"
     }
 }
