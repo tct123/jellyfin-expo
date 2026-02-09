@@ -12,7 +12,7 @@
         "alpha": "ALPHA"
     },
     "headings": {
-        "addServer": "Aggiungi Server",
+        "addServer": "Aggiungi server",
         "home": "Home",
         "links": "Collegamenti",
         "servers": "Server",
@@ -22,7 +22,7 @@
         "downloads": "Scaricati"
     },
     "addServer": {
-        "address": "Indirizzo del Server",
+        "address": "Indirizzo del server",
         "validation": {
             "empty": "$t(addServer.address) non può essere vuoto",
             "invalid": "$t(addServer.address) non è valido",
