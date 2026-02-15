@@ -63,7 +63,8 @@
         "systemTheme": "Uporabi temo sistema",
         "lightTheme": "Uporabi svetlo temo",
         "fmp4Support": "Prioritiziraj fMP4 v HLS",
-        "nativeVideoPlayer": "Uporabi vgrajeni video predvajalnik"
+        "nativeVideoPlayer": "Uporabi vgrajeni video predvajalnik",
+        "downloadTranscoding": "Transkodirani prenosi"
     },
     "links": {
         "website": "Jellyfin spletna stran",
@@ -91,6 +92,10 @@
         "downloadFailed": {
             "title": "Prenos ni uspel",
             "description": "Prenos \"{{title}}\" ni uspel."
+        },
+        "missingDownload": {
+            "title": "Mankajoč Prenos",
+            "description": "Ta prenos je bil očitno odstranjen zunaj aplikacije Jellyfin."
         }
     },
     "serverHelp": {
