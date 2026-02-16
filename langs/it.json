@@ -95,13 +95,13 @@
         },
         "missingDownload": {
             "description": "Sembra che questo download sia stato eliminato al di fuori dell'applicazione Jellyfin.",
-            "title": "Download assente"
+            "title": "Download mancante"
         }
     },
     "serverHelp": {
         "learnMore": "Scopri come installare il tuo server",
         "description": "Jellyfin è la soluzione multimediale definitiva sviluppata da volontari. Ti permette di ospitare i tuoi file multimediali e renderli accessibili ovunque.\n\n\nPer utilizzare questo servizio, devi installare il tuo server Jellyfin.",
-        "heading": "Cos’è Jellyfin?"
+        "heading": "Cos'è Jellyfin?"
     },
     "downloads": {
         "noDownloads": {
